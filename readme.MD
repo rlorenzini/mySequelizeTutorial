@@ -27,7 +27,7 @@ const Contributors =
 
 <a name="and-so-it-begins"><img height="200px" src="photos/and-so-it-begins.png"/></a>
 
-<a href="#top">back to top</a>
+<a href="#top">`back to top`</a>
 
 **Sequelize** is a tool used to make the connection between your *backend* and your *database* simpler. Setting up Sequelize and understand what is going on can be daunting, so I hope this simple and basic tutorial helps anyone who reads it. This tutorial is **VERY BASIC** and will not go into great depth about every aspect of Sequelize.
 
@@ -42,7 +42,7 @@ const Contributors =
 
 <a name="setting-up"><img height="200px" src="photos/setting-up.png"/></a>
 
-<a href="#top">back to top</a>
+<a href="#top">`back to top`</a>
 
 <img height="400px" src="photos/terminalStart.png"/> 
 
@@ -101,7 +101,7 @@ I always perform an initial commit to verify I have properly setup my git enviro
 <a name="npm-time"><img height="200px" src="photos/npm-initialization.png"/></a>
 
 
-<a href="#top">back to top</a>
+<a href="#top">`back to top`</a>
 
 <img height="400px" src="photos/terminalNPMInstall.png"/> 
 
@@ -142,7 +142,7 @@ is so we can tell Sequelize where the models are. More on that later.
 <a name="database-setup"><img height="200px" src="photos/database-setup.png"/></a>
 
 
-<a href="#top">back to top</a>
+<a href="#top">`back to top`</a>
 
 In your command-line, which should be in your directory for your backend (the folder which has **app.js**), run the following command. 
 
@@ -201,7 +201,7 @@ SERVER goes into "host", USER & DATABASE goes into "username"/USER and "database
 <a name="first-migration"><img height="200px" src="photos/first-migration"/></a>
 
 
-<a href="#top">back to top</a>
+<a href="#top">`back to top`</a>
 
 <img height="400px" src="photos/posticoDatabaseInitial.png"/> 
 
@@ -272,7 +272,7 @@ Looking at our Postico after our db:migrate, we can see our Users table and the 
 
 <a name="forms-and-posts"><img height="200px" src="photos/forms-and-posts.png"/></a>
 
-<a href="#top">back to top</a>
+<a href="#top">`back to top`</a>
 
 <img height="400px" src="photos/codePostForm.png"/> 
 
