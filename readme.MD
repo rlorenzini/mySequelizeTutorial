@@ -300,6 +300,7 @@ console.log(req.body)
 As we see, we are no longer working with **this.state.username**, but we have all of our values of "a". To get the value on the backend, we now use **req.body.username**. Below, I will list what the frontend sent and what the backend received so we can visualize the change better.
 
 | FRONTEND FORM VALUES | BACKEND JSON FILE |
+| :--- | :--- |
 | this.state.username | req.body.username |
 | this.state.password | req.body.password |
 | this.state.firstName | req.body.firstName |
