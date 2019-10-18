@@ -30,23 +30,31 @@ I have created a new folder called mySequelize and opened a terminal at that fol
 
 My terminal is displaying the following, indicating I am on my Macbook Pro, in the folder 'mySequelize', as user: richardlorenzini.
 
-```(base) Richards-MBP:mySequelize richardlorenzini$```
+```console
+(base) Richards-MBP:mySequelize richardlorenzini$
+```
 
 ## Setting Up Git
 
 <img height="25rem" src="photos/terminalGitInit.png"/> 
 
-```git init``` 
+```console
+git init
+``` 
 
 We will begin by initializing our git folder and connecting to this git repository.
 
 <img height="25rem" src="photos/terminalGitAddOrigin.png"/> 
 
-```git add remote origin <insert_repository_url_here>```
+```console
+git add remote origin <insert_repository_url_here>
+```
 
 <img height="25rem" src="photos/terminalGitIgnore.png"/> 
 
-```touch .gitignore```
+```console
+touch .gitignore
+```
 
 .gitignore is used to tell your git commands to ignore certain folders. This is extremely useful when working in a Node.js environment, as your Node_Modules folder (the packages installed into your project) can get massive quickly.
 
@@ -56,7 +64,9 @@ My .gitignore file can be located in my GitHub repository <a href='https://githu
 
 <img height="25rem" src="photos/terminalGitPush.png"/> 
 
-```git add . && git commit -m "first commit" && git push origin master``` 
+```console
+git add . && git commit -m "first commit" && git push origin master
+``` 
 
 I always perform an initial commit to verify I have properly setup my git environment.
 
@@ -66,13 +76,17 @@ I always perform an initial commit to verify I have properly setup my git enviro
 
 <img height="25rem" src="photos/terminalNPMInstall.png"/> 
 
-```npm install express && npm install cors && npm install body-parser && npm install sequelize && npm install sequelize pg```
+```console
+npm install express && npm install cors && npm install body-parser && npm install sequelize && npm install sequelize pg
+```
 
 I install **express** to make my time coding my backend simpler, **cors** is to avoid certain HTTP request issues, **body-parser** allows us to translate what is being sent from the frontend to the backend, **sequelize** is the point of this tutorial and makes the transfer of data from the backend to our database simpler, and **sequelize pg** is used to tell sequelize we are using a *postgres database*.
 
 <img height="25rem" src="photos/terminalSQLCLI.png"/> 
 
-```npm install -g sequelize-cli```
+```console
+npm install -g sequelize-cli
+```
 
 Sequelize does not, by default, have a command-line interface. **Sequelize CLI** literally stands for "Sequelize Command-Line Interface". We are installing this so we can avoid a lot of the file creating and editing Sequelize performs. This also makes migrations easier.
 
@@ -80,7 +94,11 @@ Sequelize does not, by default, have a command-line interface. **Sequelize CLI**
 
 Setting up our backend **app.js** environment. What we installed, we are requiring. 
 
-**NOTE:** ```models = require(./models)``` is so we can tell Sequelize where the models are. More on that later.
+**NOTE:** 
+```console
+models = require(./models)
+``` 
+is so we can tell Sequelize where the models are. More on that later.
 
 ## Database Setup
 
@@ -88,11 +106,17 @@ Setting up our backend **app.js** environment. What we installed, we are requiri
 
 In your command-line, which should be in your directory for your backend (the folder which has **app.js**), run the following command. 
 
-```sequelize init```
+```console
+sequelize init
+```
 
 We have now initialize Sequelize. If you receive an error message informing you Sequelize is not a command, you did not properly install the Sequelize-CLI. 
 
-Sequelize will create several folders inside of your working directory: models; seeders; migrations; config. At this point, running ```sequelize db:migrate``` can help avoid any early-stage issues, but is not required.
+Sequelize will create several folders inside of your working directory: models; seeders; migrations; config. At this point, running 
+```console
+sequelize db:migrate
+``` 
+can help avoid any early-stage issues, but is not required.
 
 | FOLDER | QUICK EXPLANATION |
 | :--- | :--- |
@@ -136,17 +160,37 @@ Once we connect into our database via Postico, we can see all of our tables, col
 
 <img height="25rem" src="photos/terminalModelCreate.png"/> 
 
-```sequelize model:create --name Users --attributes 'username:string, password:string, firstName:string, lastName:string, email:string'```
+```console
+sequelize model:create --name Users --attributes 'username:string, password:string, firstName:string, lastName:string, email:string'
+```
 
-We are finally creating our first **TABLE**. A *table* in Sequelize is referred to as a **MODEL** and *columns* are **ATTRIBUTES**. Our ```model:create``` command takes in a name and attributes. The name must be declared as ```--name NameOfYourTable```. You **MUST** delcare --name or the command will fail. Columns are immediately declared after the name of the table, and must be declared with --attributes to work. Attributes are wrapped inside of apostrophes as a whole and not individually, so be mindful of your syntax.
+We are finally creating our first **TABLE**. A *table* in Sequelize is referred to as a **MODEL** and *columns* are **ATTRIBUTES**. Our 
+```console
+model:create
+``` 
+command takes in a name and attributes. The name must be declared as 
+```console
+--name NameOfYourTable
+```
+. You **MUST** delcare --name or the command will fail. Columns are immediately declared after the name of the table, and must be declared with --attributes to work. Attributes are wrapped inside of apostrophes as a whole and not individually, so be mindful of your syntax.
 
-```--attributes 'FirstColumnName:DATATYPE, SecondColumnName:DATA, etc:etc'``` 
+```console
+--attributes 'FirstColumnName:DATATYPE, SecondColumnName:DATA, etc:etc'
+``` 
 
 <img height="25rem" src="photos/codeMigrationFile.png"/> 
 
-Running our model:create command has generated a new migration file. Migration files are JavaScript files with JavaScript code. Essentially, in our migration file above, we are creating a Class via Sequelize. This file is executed when we run ```sequelize db:migrate```. This particular migration file is telling us it will create a table called Users with the attributes id, username, password, firstName, lastName, email, createdAt, and updatedAt. Id, createdAt, and updatedAt are automatically generated by Sequelize. 
+Running our model:create command has generated a new migration file. Migration files are JavaScript files with JavaScript code. Essentially, in our migration file above, we are creating a Class via Sequelize. This file is executed when we run 
+```console
+sequelize db:migrate
+```
+This particular migration file is telling us it will create a table called Users with the attributes id, username, password, firstName, lastName, email, createdAt, and updatedAt. Id, createdAt, and updatedAt are automatically generated by Sequelize. 
 
-Our migration file starts with ```model.exports``` which is an object. The first key for our object is UP, and the last key is DOWN. Both UP and DOWN need to be utilized in a specific manner.
+Our migration file starts with 
+```console
+model.exports
+```
+which is an object. The first key for our object is UP, and the last key is DOWN. Both UP and DOWN need to be utilized in a specific manner.
 
 
 | UP | Used to create, modify, or update your database. |
