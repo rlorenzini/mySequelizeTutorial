@@ -12,6 +12,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
 
+//====================SUBMIT DATA TO OUR DATABASE==============================
 app.post('/submitData', (req,res) => {
 
   let username = req.body.username,
@@ -40,6 +41,24 @@ app.post('/submitData', (req,res) => {
     } // end of else
   }); //end of promise
 }); // end of post submitData
+
+//====================QUERYING OUR DATA========================================
+//models.Table.<insert_here>({})
+//findOne, findAll, destroy, build, findByPk, update
+
+//findOne({ where: { attribute: desiredValue } })
+
+//findAll({ where: { attribute: desiredValue } })
+//findAll({ }) returns all from whichever Table you declare
+
+//destroy({ where: { attribute: desiredValue } })
+//destroy({ }) can be used in various ways to destroy empty data, tables, etc
+//destroy({ where: {} }) destroys all data in a table
+//destroy({ where: {}, truncate: true })
+
+//build({ attribute: desiredValue }) needs the required attributes at minimum
+//build
+
 
 app.listen(PORT, () => {
   console.log(`Server running at localhost: ${PORT} `);
