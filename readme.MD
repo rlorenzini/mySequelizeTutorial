@@ -2,8 +2,6 @@
 
 # SEQUELIZE TUTORIAL FOR BEGINNERS
 
-**Created By:**
-
 ```JavaScript
 const Contributors = 
 [ { Name: "Richard Lorenzini" }, { Name: "Jaclyn Legacion" } ]
