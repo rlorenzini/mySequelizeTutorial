@@ -337,3 +337,8 @@ This is how our **build** object would look if we did not define our req.body va
 Postico is now displaying "a" values in each of our columns. **NOTE:** Postico does not refresh dynamically as data is put into your database. Remember to refresh to see the results. Our id column is, by default, 1 as this is our first entry. Behind my terminal is createdAt and updatedAt, which are updated automatically by Sequelize. 
 
 Looking at our terminal, we see a long command being run which may be familiar to some of you. The command is run using pg-promise. Sequelize takes our **models.Users.build({})** and translates it into pg-promise for us, so we do not have to execute pg-promise ourselves. As you may recall, by default our config file uses "mysql" as the "dialect". Sequelize can communicate with multiple backend technologies, which is great for us. If we decided to change our server to a mysql server, converting is much easier now as we only need to switch to mysql. The backend, frontend, models, and migrations do not change. We only have to uninstall pg-promise, install mysql, and require mysql. There may be a few other tweaks, but overall this is much faster and simpler than rewriting huge chunks of your code.
+
+
+# FUTURE UPDATES
+_(maybe?)_
+**findOne, findAll, destroy, build, findByPk, update**
