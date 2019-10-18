@@ -82,8 +82,9 @@ I always perform an initial commit to verify I have properly setup my git enviro
 <img height="400px" src="photos/terminalNPMInstall.png"/> 
 
 ```console
-npm install express && npm install cors && npm install body-parser && npm install sequelize && npm install sequelize pg
+npm init && npm install express && npm install cors && npm install body-parser && npm install sequelize && npm install sequelize pg
 ```
+Don't forget to initialize node in your project with ```npm init```. Otherwise, you can't install or use any packages.
 
 I install **express** to make my time coding my backend simpler, **cors** is to avoid certain HTTP request issues, **body-parser** allows us to translate what is being sent from the frontend to the backend, **sequelize** is the point of this tutorial and makes the transfer of data from the backend to our database simpler, and **sequelize pg** is used to tell sequelize we are using a *postgres database*.
 
