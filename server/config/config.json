@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "ryxtwaay",
+    "password": "aZ2gdpGh8QSseEnz2Q3p15yIhpKDe4U5",
+    "database": "ryxtwaay",
+    "host": "otto.db.elephantsql.com",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "ryxtwaay",
+    "password": "aZ2gdpGh8QSseEnz2Q3p15yIhpKDe4U5",
+    "database": "ryxtwaay",
+    "host": "otto.db.elephantsql.com",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "ryxtwaay",
+    "password": "aZ2gdpGh8QSseEnz2Q3p15yIhpKDe4U5",
+    "database": "ryxtwaay",
+    "host": "otto.db.elephantsql.com",
+    "dialect": "postgres"
+  }
+}
