@@ -4,7 +4,7 @@
 
 ```JavaScript
 const Contributors = 
-[ { Name: "Richard Lorenzini" }, { Jaclyn Legacion } ]
+[ { Name: "Richard Lorenzini" }, { Name: "Jaclyn Legacion" } ]
 ```
 <br/>
 
@@ -12,12 +12,12 @@ const Contributors =
 
 | SEARCH OPTIONS | WHAT IT'S FOR |
 | :--- | :--- |
-| DOC#START | BEGINNING OF DOCUMENTATION |
-| SQLZ#START | SETTING UP FROM SCRATCH |
-| SQLZ#NPM | SEQUELIZE INSTALLATION |
-| SQLZ#DB | SETTING UP THE DATABASE |
-| SQLZ#MIG | FIRST MIGRATION |
-| SQLZ#FORMS | FORMS AND POSTS |
+| [DOC#START](#and-so-it-begins) | BEGINNING OF DOCUMENTATION |
+| [SQLZ#START](#setting-up) | SETTING UP FROM SCRATCH |
+| [SQLZ#NPM](#npm-time) | SEQUELIZE INSTALLATION |
+| [SQLZ#DB](#database-setup) | SETTING UP THE DATABASE |
+| [SQLZ#MIG](#first-migration) | FIRST MIGRATION |
+| [SQLZ#FORMS](#forms-and-posts) | FORMS AND POSTS |
 
 # AND SO IT BEGINS
 
