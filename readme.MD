@@ -21,15 +21,24 @@ const Contributors =
 | [SQLZ#MIG](#first-migration) | FIRST MIGRATION |
 | [SQLZ#FORMS](#forms-and-posts) | FORMS AND POSTS |
 
-</br>
-</br>
-</br>
+<br/>
+<br/>
+<br/>
 
 <a name="and-so-it-begins"><img height="200px" src="photos/and-so-it-begins.png"/></a>
 
 <a href="#top">back to top</a>
 
 **Sequelize** is a tool used to make the connection between your *backend* and your *database* simpler. Setting up Sequelize and understand what is going on can be daunting, so I hope this simple and basic tutorial helps anyone who reads it. This tutorial is **VERY BASIC** and will not go into great depth about every aspect of Sequelize.
+
+<br/>
+<br/>
+<br/>
+
+---
+
+<br/>
+
 
 <a name="setting-up"><img height="200px" src="photos/setting-up.png"/></a>
 
@@ -81,9 +90,13 @@ git add . && git commit -m "first commit" && git push origin master
 
 I always perform an initial commit to verify I have properly setup my git environment.
 
-</br>
-</br>
-</br>
+<br/>
+<br/>
+<br/>
+
+---
+
+<br/>
 
 <a name="npm-time"><img height="200px" src="photos/npm-initialization.png"/></a>
 
@@ -118,9 +131,13 @@ models = require(./models)
 is so we can tell Sequelize where the models are. More on that later.
 
 
-</br>
-</br>
-</br>
+<br/>
+<br/>
+<br/>
+
+---
+
+<br/>
 
 <a name="database-setup"><img height="200px" src="photos/database-setup.png"/></a>
 
@@ -173,9 +190,13 @@ SERVER goes into "host", USER & DATABASE goes into "username"/USER and "database
 
 <img height="400px" src="photos/codeConfigElephantSQL.png"/> 
 
-</br>
-</br>
-</br>
+<br/>
+<br/>
+<br/>
+
+---
+
+<br/>
 
 <a name="first-migration"><img height="200px" src="photos/first-migration"/></a>
 
@@ -241,13 +262,15 @@ Say you created a Users table in pg-promise. If the user then goes to a *login p
 
 Looking at our Postico after our db:migrate, we can see our Users table and the columns we specified. **MAGNIFICENT.**
 
-</br>
-</br>
-</br>
+<br/>
+<br/>
+<br/>
+
+---
+
+<br/>
 
 <a name="forms-and-posts"><img height="200px" src="photos/forms-and-posts.png"/></a>
-
-# FORMS AND POSTS
 
 <a href="#top">back to top</a>
 
