@@ -342,5 +342,23 @@ Looking at our terminal, we see a long command being run which may be familiar t
 
 
 # FUTURE UPDATES
+
 _(maybe?)_
+
 **findOne, findAll, destroy, build, findByPk, update**
+
+models.TableName.<insert_here>({})
+
+findOne({ where: { attribute: desiredValue } })
+
+findAll({ where: { attribute: desiredValue } })
+findAll({ }) returns all from whichever Table you declare
+
+destroy({ where: { attribute: desiredValue } })
+destroy({ }) can be used in various ways to destroy empty data, tables, etc
+destroy({ where: {} }) destroys all data in a table
+destroy({ where: {}, truncate: true })
+
+build({ attribute: desiredValue }) needs the required attributes at minimum
+
+
