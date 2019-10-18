@@ -198,7 +198,8 @@ model.exports
 ```
 which is an object. The first key for our object is UP, and the last key is DOWN. Both UP and DOWN need to be utilized in a specific manner.
 
-
+| WHAT | WHY |
+| :--- | :--- |
 | UP | Used to create, modify, or update your database. |
 | DOWN | Used to delete, undo, or reverse whatever UP does. |
 
