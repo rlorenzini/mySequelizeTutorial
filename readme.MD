@@ -199,7 +199,7 @@ SERVER goes into "host", USER & DATABASE goes into "username"/USER and "database
 
 <br/>
 
-<a name="first-migration"><img height="200px" src="photos/first-migration"/></a>
+<a name="first-migration"><img height="200px" src="photos/first-migration.png"/></a>
 
 
 <a href="#top">`back to top`</a>
