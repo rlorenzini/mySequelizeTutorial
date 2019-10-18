@@ -33,6 +33,7 @@ const Contributors =
 
 **Sequelize** is a tool used to make the connection between your *backend* and your *database* simpler. Setting up Sequelize and understanding what's going on can be daunting, so I hope this simple and basic tutorial helps anyone who reads it. 
 <br/>
+<br/>
 This tutorial is **VERY BASIC** and will not go into great depth about every aspect of Sequelize.
 
 <br/>
