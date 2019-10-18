@@ -39,9 +39,9 @@ const Contributors =
 
 <img height="400px" src="photos/terminalStart.png"/> 
 
-I have created a new folder called mySequelize and opened a terminal at that folder.
+I have created a new folder called `mySequelize` and opened a terminal at that folder.
 
-My terminal is displaying the following, indicating I am on my Macbook Pro, in the folder 'mySequelize', as user: richardlorenzini.
+My terminal is displaying the following, indicating I am on my Macbook Pro, in the folder `mySequelize`, as user: richardlorenzini.
 
 ```console
 (base) Richards-MBP:mySequelize richardlorenzini$
