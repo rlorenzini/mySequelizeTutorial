@@ -57,7 +57,6 @@ app.post('/submitData', (req,res) => {
 //destroy({ where: {}, truncate: true })
 
 //build({ attribute: desiredValue }) needs the required attributes at minimum
-//build
 
 
 app.listen(PORT, () => {
