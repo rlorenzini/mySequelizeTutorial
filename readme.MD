@@ -178,9 +178,11 @@ I prefer to setup a database on a website called **ElephantSQL**. It is a free o
 
 ElephantSQL provides us several pieces of information, which is automatically generated when we create our database. What we are interested in is **Server, User & Database, and Password**.
 
-| SERVER | The URL our database will be hosted on. A local environment runs a database on PORT 5432 by default. |
-| USER/DATABASE | When we go to our server, this is our username and the database name we are looking for. |
-| PASSWORD | The password we need to access the DATABASE via our USER. |
+| INFOMATION | DESCRIPTION |
+| :--- | :--- |
+| **SERVER** | The URL our database will be hosted on. A local environment runs a database on PORT 5432 by default. |
+| **USER/DATABASE** | When we go to our server, this is our username and the database name we are looking for. |
+| **PASSWORD** | The password we need to access the DATABASE via our USER. |
 
 
 The placement of the information into postico and your config file are straight forward. 
