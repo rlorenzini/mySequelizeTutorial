@@ -29,7 +29,7 @@ const Contributors =
 
 **SQLZ#START**
 
-<img height="25rem" src="photos/terminalStart.png"/> 
+<img height="400px" src="photos/terminalStart.png"/> 
 
 I have created a new folder called mySequelize and opened a terminal at that folder.
 
@@ -41,7 +41,7 @@ My terminal is displaying the following, indicating I am on my Macbook Pro, in t
 
 ## Setting Up Git
 
-<img height="25rem" src="photos/terminalGitInit.png"/> 
+<img height="400px" src="photos/terminalGitInit.png"/> 
 
 ```console
 git init
@@ -49,7 +49,7 @@ git init
 
 We will begin by initializing our git folder and connecting to this git repository.
 
-<img height="25rem" src="photos/terminalGitAddOrigin.png"/> 
+<img height="400px" src="photos/terminalGitAddOrigin.png"/> 
 
 ```console
 git add remote origin <insert_repository_url_here>
