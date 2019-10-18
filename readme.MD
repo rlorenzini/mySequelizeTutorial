@@ -1,4 +1,4 @@
-<img height="200px" src="photos/sequelize-101.png"/>
+<img height="200px" src="photos/sequelize-101.png" href/>
 
 # SEQUELIZE TUTORIAL FOR BEGINNERS
 
@@ -25,15 +25,13 @@ const Contributors =
 </br>
 </br>
 
-<img height="200px" src="photos/and-so-it-begins.png"/>
-
-# AND SO IT BEGINS
+<a href="#and-so-it-begins"><img height="200px" src="photos/and-so-it-begins.png"/></a>
 
 **DOC#START**
 
 **Sequelize** is a tool used to make the connection between your *backend* and your *database* simpler. Setting up Sequelize and understand what is going on can be daunting, so I hope this simple and basic tutorial helps anyone who reads it. This tutorial is **VERY BASIC** and will not go into great depth about every aspect of Sequelize.
 
-## Setting Up
+<a href="#setting-up"><img height="200px" src="photos/setting-up.png"/></a>
 
 **SQLZ#START**
 
@@ -87,9 +85,8 @@ I always perform an initial commit to verify I have properly setup my git enviro
 </br>
 </br>
 
-<img height="200px" src="photos/npm-initialization.png"/>
+<a href="npm-time"><img height="200px" src="photos/npm-initialization.png"/></a>
 
-# NPM TIME
 
 **SQLZ#NPM**
 
@@ -125,9 +122,8 @@ is so we can tell Sequelize where the models are. More on that later.
 </br>
 </br>
 
-<img height="200px" src="photos/database-setup.png"/>
+<a href="#database-setup"><img height="200px" src="photos/database-setup.png"/></a>
 
-## Database Setup
 
 **SQLZ#DB**
 
@@ -181,9 +177,8 @@ SERVER goes into "host", USER & DATABASE goes into "username"/USER and "database
 </br>
 </br>
 
-<img height="200px" src="photos/first-migration"/>
+<a href="#first-migration"><img height="200px" src="photos/first-migration"/></a>
 
-# FIRST MIGRATION
 
 **SQLZ#MIG**
 
@@ -250,7 +245,7 @@ Looking at our Postico after our db:migrate, we can see our Users table and the 
 </br>
 </br>
 
-<img height="200px" src="photos/forms-and-posts.png"/>
+<a href="forms-and-posts"><img height="200px" src="photos/forms-and-posts.png"/></a>
 
 # FORMS AND POSTS
 
