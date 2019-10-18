@@ -28,11 +28,15 @@
 I have created a new folder called mySequelize and opened a terminal at that folder.
 
 My terminal is displaying the following, indicating I am on my Macbook Pro, in the folder 'mySequelize', as user: richardlorenzini.
+
 ```(base) Richards-MBP:mySequelize richardlorenzini$```
+
+## Setting Up Git
 
 <img height="300px" src="photos/terminalGitInit.png"/> 
 
 ```git init``` 
+
 We will begin by initializing our git folder and connecting to this git repository.
 
 <img height="300px" src="photos/terminalGitAddOrigin.png"/> 
@@ -52,6 +56,7 @@ My .gitignore file can be located in my GitHub repository <a href='https://githu
 <img height="300px" src="photos/terminalGitPush.png"/> 
 
 ```git add . && git commit -m "first commit" && git push origin master``` 
+
 I always perform an initial commit to verify I have properly setup my git environment.
 
 # NPM TIME
@@ -67,6 +72,7 @@ I install **express** to make my time coding my backend simpler, **cors** is to 
 <img height="300px" src="photos/terminalSQLCLI.png"/> 
 
 ```npm install -g sequelize-cli```
+
 Sequelize does not, by default, have a command-line interface. **Sequelize CLI** literally stands for "Sequelize Command-Line Interface". We are installing this so we can avoid a lot of the file creating and editing Sequelize performs. This also makes migrations easier.
 
 <img height="300px" src="photos/codeBackendSetup.png"/> 
