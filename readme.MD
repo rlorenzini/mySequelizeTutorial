@@ -25,13 +25,13 @@ const Contributors =
 </br>
 </br>
 
-<a href="#and-so-it-begins"><img height="200px" src="photos/and-so-it-begins.png"/></a>
+<a name="and-so-it-begins"><img height="200px" src="photos/and-so-it-begins.png"/></a>
 
 **DOC#START**
 
 **Sequelize** is a tool used to make the connection between your *backend* and your *database* simpler. Setting up Sequelize and understand what is going on can be daunting, so I hope this simple and basic tutorial helps anyone who reads it. This tutorial is **VERY BASIC** and will not go into great depth about every aspect of Sequelize.
 
-<a href="#setting-up"><img height="200px" src="photos/setting-up.png"/></a>
+<a name="setting-up"><img height="200px" src="photos/setting-up.png"/></a>
 
 **SQLZ#START**
 
@@ -85,7 +85,7 @@ I always perform an initial commit to verify I have properly setup my git enviro
 </br>
 </br>
 
-<a href="npm-time"><img height="200px" src="photos/npm-initialization.png"/></a>
+<a name="npm-time"><img height="200px" src="photos/npm-initialization.png"/></a>
 
 
 **SQLZ#NPM**
@@ -122,7 +122,7 @@ is so we can tell Sequelize where the models are. More on that later.
 </br>
 </br>
 
-<a href="#database-setup"><img height="200px" src="photos/database-setup.png"/></a>
+<a name="database-setup"><img height="200px" src="photos/database-setup.png"/></a>
 
 
 **SQLZ#DB**
@@ -177,7 +177,7 @@ SERVER goes into "host", USER & DATABASE goes into "username"/USER and "database
 </br>
 </br>
 
-<a href="#first-migration"><img height="200px" src="photos/first-migration"/></a>
+<a name="first-migration"><img height="200px" src="photos/first-migration"/></a>
 
 
 **SQLZ#MIG**
@@ -245,7 +245,7 @@ Looking at our Postico after our db:migrate, we can see our Users table and the 
 </br>
 </br>
 
-<a href="forms-and-posts"><img height="200px" src="photos/forms-and-posts.png"/></a>
+<a name="forms-and-posts"><img height="200px" src="photos/forms-and-posts.png"/></a>
 
 # FORMS AND POSTS
 
