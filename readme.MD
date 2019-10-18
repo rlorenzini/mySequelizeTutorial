@@ -4,7 +4,7 @@
 
 ```JavaScript
 const Contributors = 
-[ { Name: "Richard Lorenzini" }, { Jaclyn Legacion } ]
+[ { Name: "Richard Lorenzini" }, { Name: "Jaclyn Legacion" } ]
 ```
 <br/>
 
