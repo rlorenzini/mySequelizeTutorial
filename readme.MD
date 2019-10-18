@@ -223,21 +223,63 @@ Looking at our Postico after our db:migrate, we can see our Users table and the 
 
 <img height="400px" src="photos/codePostForm.png"/> 
 
-fetch, form, post, inputs, etc
-NOTE: forgot picture of backend console.log(req.body), must explain manually
+I built my project in **React**, a framework for **JavaScript** based on Components and Single Page Applications. React is my comfort zone and go-to for building projects, but that is not the only reason I used it for this project. React allows you to break apart the webpage into components and inject them easily wherever they are needed. This way, I do not have to show off my entire project, but I can show off just the raw HTML code used to build the form.
+
+I purposely removed code-wrapping and indentions so the code is easier to follow. Otherwise, my code would either go further than my screen or would be less appealing to look at. 
+
+For those who are unfamiliar with React, this is what you need to know about the form shown above. **onClick** is similar in functionality and purpose as **action**. **onChange** is a React thing, so do not get caught up on that too much. I'm using it to make it easier for me to pass my values to my backend via my **fetch** above, **handleSubmitData**.
+
+**Fetch** has two very common uses: **POST and GET**. I your client, who is on the **frontend** of your applications, wants to **get information or a new page**, you have to use a **get request** via fetch. In my example above, our client wants to **submit data to the database**, so we have to allow them to **post their data** to our backend. This is why we are using a **post request** via fetch. 
+
+Our header informs our server, the **backend**, what to expect. This is why we installed **body-parser** on the backend, so we can easily pass our data as a **JSON** file. **JSON.stringify()**, which is a JSON function, translates roughly to, "take this data and make it a JSON file." JSON.stringify, as you would expect if you are familiar with JSON files, wants an object. We define our keys and values, where our keys are what our backend calls and our values are directly taken from our form. In my example, **this.state.username** is the value submitted by our user via the **username input**. 
+
+**NOTE:** There are many ways to do this step, with many different frameworks and libraries to change how you do it. For example, if you wish to use **AXIOS** to handle your fetch requests your code will look different. Be sure to keep in mind the technologies you are using, as my code may or may not translate properly into your technologies without a bit of fiddling.
 
 <img height="400px" src="photos/appPostForm.png"/> 
 
-ugly website
-
 <img height="400px" src="photos/terminalPostBody.png"/> 
 
-how req.body comes to us in terminal 
+Our POST request is console logged on our backend so we can get an idea of what we are receiving from the frontend. When using **body-parser**, the JSON file is sent in the request as **body**. To access the JSON file, we must call **req.body**. Our user, me, sent nothing but "a" in every input.
+
+```JavaScript
+console.log(req.body)
+```
+As we see, we are no longer working with **this.state.username**, but we have all of our values of "a". To get the value on the backend, we now use **req.body.username**. Below, I will list what the frontend sent and what the backend received so we can visualize the change better.
+
+| FRONTEND FORM VALUES | BACKEND JSON FILE |
+| this.state.username | req.body.username |
+| this.state.password | req.body.password |
+| this.state.firstName | req.body.firstName |
+| this.state.lastName | req.body.lastName |
+| this.state.email | req.body.email |
+
+
 
 <img height="400px" src="photos/codeBackendPostToDB.png"/> 
 
-explain the app.js code 
+Personally, the first thing I do is create variable names for my data being received. Typing out **username** is quicker and takes up less space than typing **req.body.username**. This is a personal preference to shorten and clean-up my code, but is not required. 
+
+Line 24 is where we are now in Sequelize territory. We are still working on our backend, but we now must communicate to Sequelize what we want Sequelize to do with our data. As you may recall above, we created a model/table called "Users". Once we migrated, we received a model file called **"users.js"**. This is where Sequelize begins to shine, but you must understand **what you are doing and why**. We required our models earlier, at the very beginning, because Sequelize needs to know **where to find them**. For any coder who has ever created routes, paths, or imported their own files, this concept isn't new but might look different.
+
+Our model === users. When we type ```models```, Sequelize immediately knows two things. First, we are going to be doing something with a model. Secondly, it knows where which models we are going to be working with are. The next argument, ```users```, tells Sequelize, "Check the /models folder for a file called 'users'." The last argument, **build**, is as basic as it comes. Time to build a new model with our data! This is going to be our first Users entry into our database.
+
+**models.Users.build()** 
+
+**build()** is a function and our **model** is built similar to a **Class**. Sequelize wants us to pass our data in as an object. Our keys **must** be exactly the same as the **attributes** our model is built with. If my model has an attribute "firstname", I cannot send this key as "firstName". If you run into errors about improperly building a model, this should be the first place you look. It is very easy to use the wrong syntax, especially if your database uses a different convention than your backend.
+
+```JavaScript
+{
+username: req.body.username,
+password: req.body.password,
+firstName: req.body.firstName,
+lastName: req.body.lastName,
+email: req.body.email
+}
+```
+This is how our **build** object would look if we did not define our req.body values as variables. It is not wrong and will work, but my preference is to define variables first.
 
 <img height="400px" src="photos/posticoTerminalResults.png"/> 
 
-explain the results 
+Postico is now displaying "a" values in each of our columns. **NOTE:** Postico does not refresh dynamically as data is put into your database. Remember to refresh to see the results. Our id column is, by default, 1 as this is our first entry. Behind my terminal is createdAt and updatedAt, which are updated automatically by Sequelize. 
+
+Looking at our terminal, we see a long command being run which may be familiar to some of you. The command is run using pg-promise. Sequelize takes our **models.Users.build({})** and translates it into pg-promise for us, so we do not have to execute pg-promise ourselves. As you may recall, by default our config file uses "mysql" as the "dialect". Sequelize can communicate with multiple backend technologies, which is great for us. If we decided to change our server to a mysql server, converting is much easier now as we only need to switch to mysql. The backend, frontend, models, and migrations do not change. We only have to uninstall pg-promise, install mysql, and require mysql. There may be a few other tweaks, but overall this is much faster and simpler than rewriting huge chunks of your code.
