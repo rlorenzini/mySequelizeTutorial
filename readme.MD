@@ -38,7 +38,6 @@ This tutorial is **VERY BASIC** and will not go into great depth about every asp
 
 <br/>
 <br/>
-<br/>
 
 ---
 
@@ -97,7 +96,6 @@ I always perform an initial commit to verify I have properly setup my git enviro
 
 <br/>
 <br/>
-<br/>
 
 ---
 
@@ -136,7 +134,6 @@ models = require(./models)
 is so we can tell Sequelize where the models are. More on that later.
 
 
-<br/>
 <br/>
 <br/>
 
@@ -195,7 +192,6 @@ SERVER goes into "host", USER & DATABASE goes into "username"/USER and "database
 
 <img height="400px" src="photos/codeConfigElephantSQL.png"/> 
 
-<br/>
 <br/>
 <br/>
 
@@ -267,7 +263,6 @@ Say you created a Users table in pg-promise. If the user then goes to a *login p
 
 Looking at our Postico after our db:migrate, we can see our Users table and the columns we specified. **MAGNIFICENT.**
 
-<br/>
 <br/>
 <br/>
 
