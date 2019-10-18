@@ -181,7 +181,7 @@ NOTE: forgot picture of backend console.log(req.body), must explain manually
 
 ugly website
 
-<img height="400px" src="photos/terminalPostForm.png"/> 
+<img height="400px" src="photos/terminalPostBody.png"/> 
 
 how req.body comes to us in terminal 
 
