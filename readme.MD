@@ -178,7 +178,7 @@ command takes in a name and attributes. The name must be declared as
 ```console
 --name NameOfYourTable
 ```
-. You **MUST** delcare --name or the command will fail. Columns are immediately declared after the name of the table, and must be declared with --attributes to work. Attributes are wrapped inside of apostrophes as a whole and not individually, so be mindful of your syntax.
+. You **MUST** declare --name or the command will fail. Columns are immediately declared after the name of the table, and must be declared with --attributes to work. Attributes are wrapped inside of apostrophes as a whole and not individually, so be mindful of your syntax.
 
 ```console
 --attributes 'FirstColumnName:DATATYPE, SecondColumnName:DATA, etc:etc'
