@@ -3,7 +3,6 @@
 **Created By:**
 
 ```{ Name: "Richard Lorenzini" }``` <br/>
-```{ Name: "Jaclyn Legacion" }```
 
 
 | SEARCH OPTIONS | WHAT IT'S FOR |
