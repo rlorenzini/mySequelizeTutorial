@@ -21,12 +21,12 @@ export default class SubmitData extends Component {
   }
 
   handleSubmitData=()=>(
-    fetch('http://localhost:8080/register', {
+    fetch('http://localhost:8080/submitData', {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.styingify({
+      body: JSON.stringify({
       username: this.state.username,
       password: this.state.password,
       firstName: this.state.firstName,
