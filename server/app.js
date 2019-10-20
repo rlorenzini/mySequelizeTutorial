@@ -59,6 +59,11 @@ app.post('/submitData', (req,res) => {
 //build({ attribute: desiredValue }) needs the required attributes at minimum
 
 
+//ASSOCIATIONS
+//hasOne
+//hasMany
+//check unogs for example
+
 app.listen(PORT, () => {
   console.log(`Server running at localhost: ${PORT} `);
 });
