@@ -44,8 +44,9 @@ export default class Register extends Component {
   render(){
     return(
       <div className='registerForm'>
-        <span className='mainText'>Register</span>
       <div className='inputWrapper'>
+        <div></div>
+        <span className='mainText'>Register</span>
         <label className='labelText'>Username</label>
         <input className='registerInput' name="username" onChange={this.handleTextBoxChange} placeholder="New Username"/>
         <label className='labelText'>First Name</label>
@@ -56,8 +57,9 @@ export default class Register extends Component {
         <input className='registerInput' name="email" type='email' onChange={this.handleTextBoxChange} placeholder="Email"/>
         <label className='labelText'>Password</label>
         <input className='registerInput' name="password" onChange={this.handleTextBoxChange} type="password" placeholder="New Password"/>
+        <div></div>
+        <button className='registerButton' onClick={this.handleSubmitData}>Register</button>
       </div>
-      <button className='registerButton' onClick={this.handleSubmitData}>Register</button>
       </div>
     );
   };
