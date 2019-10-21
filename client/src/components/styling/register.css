@@ -1,0 +1,47 @@
+/* login form styling here */
+.registerForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputWrapper {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 10rem 20rem;
+  grid-row-gap: 5px;
+}
+
+.mainText {
+  font-size: 3rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+.labelText {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.registerInput {
+  background-color: black;
+  color: white;
+  font-size: 1.5rem;
+  border: 2px solid blue;
+  border-radius: 15px;
+  height: 3rem;
+  text-align: center;
+}
+
+.registerButton {
+  margin-top: 10px;
+  margin-left: 10rem;
+  height: 3rem;
+  width: 20rem;
+  font-size: 1.5rem;
+  background-color: black;
+  color: white;
+  border: blue solid 2px;
+  border-radius: 15px;
+}

@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
 
 //====================SUBMIT DATA TO OUR DATABASE==============================
-app.post('/submitData', (req,res) => {
+app.post('/register', (req,res) => {
 
   let username = req.body.username,
     password = req.body.password,
