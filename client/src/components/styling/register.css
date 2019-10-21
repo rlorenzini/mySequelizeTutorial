@@ -20,6 +20,9 @@
 }
 
 .labelText {
+  padding-top: 0.79375rem;
+  /* padding-bottom added for visualization of vertical alignment */
+  padding-bottom: 0.79375rem;
   font-size: 1.5rem;
   font-weight: 600;
 }

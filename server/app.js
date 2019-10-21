@@ -28,8 +28,11 @@ app.post('/register', (req,res) => {
     }
   }).then((user) => {
     if (user) {
-      res.status(500).json({ message: 'username already exists '})
+      res.status(500).json({ status: 500, message: 'username already exists '})
     } else {
+
+      // encrypt here (bcrypt)
+      //why encrypt before you check if user exists?
       let user = models.Users.build({
         username: username,
         password: password,

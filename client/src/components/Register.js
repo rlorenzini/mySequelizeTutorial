@@ -33,7 +33,12 @@ export default class Register extends Component {
       lastName: this.state.lastName,
       email: this.state.email
       }) //end of body
-    }) // end of fetch
+    }).then(response =>
+      response.json()).then(json => {
+        if (json.status === 500) {
+          alert(json.message)
+        }
+      })
   ) //end of handleSubmitData function
 
   render(){
