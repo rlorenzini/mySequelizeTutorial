@@ -1,13 +1,14 @@
-import React from 'react';
-import BaseLayout from './components/BaseLayout';
-import './App.css';
+import React, { Component } from 'react';
+// import BaseLayout from './components/BaseLayout';
+// import './App.css';
 
-function App() {
+class App extends Component {
+  render() {
   return (
     <div className='App'>
-      <BaseLayout />
+      <div>This will be the home page.</div>
     </div>
-  );
+  )};
 }
 
 export default App;
