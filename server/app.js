@@ -12,7 +12,16 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
 
-//====================SUBMIT DATA TO OUR DATABASE==============================
+app.get('/displayData', (req,res) => {
+  // models.potatoes.findAll().then((result) => {
+  //   for (i = 0; i < result.length; i ++) {
+  //   console.log(result[i].name)}
+  // })
+  models.potatoes.findAll().then((result) => {
+    res.json({result:result})
+  })
+})
+//====================REGISTRATION==============================
 app.post('/register', (req,res) => {
 
   let username = req.body.username,
