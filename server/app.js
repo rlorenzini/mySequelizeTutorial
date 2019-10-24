@@ -12,6 +12,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
 
+//====================DISPLAYING POTATOES=======================
 app.get('/displayData', (req,res) => {
   // models.potatoes.findAll().then((result) => {
   //   for (i = 0; i < result.length; i ++) {
