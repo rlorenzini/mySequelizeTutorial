@@ -18,6 +18,7 @@ const Contributors =
 | [SQLZ#DB](#database-setup) | SETTING UP THE DATABASE |
 | [SQLZ#MIG](#first-migration) | FIRST MIGRATION |
 | [SQLZ#FORMS](#forms-and-posts) | FORMS AND POSTS |
+| [SQLZ#SEEDS](#using-seeders) | USING SEEDERS |
 
 <br/>
 <br/>
@@ -337,6 +338,130 @@ This is how our **build** object would look if we did not define our req.body va
 Postico is now displaying "a" values in each of our columns. **NOTE:** Postico does not refresh dynamically as data is put into your database. Remember to refresh to see the results. Our id column is, by default, 1 as this is our first entry. Behind my terminal is createdAt and updatedAt, which are updated automatically by Sequelize. 
 
 Looking at our terminal, we see a long command being run which may be familiar to some of you. The command is run using pg-promise. Sequelize takes our **models.Users.build({})** and translates it into pg-promise for us, so we do not have to execute pg-promise ourselves. As you may recall, by default our config file uses "mysql" as the "dialect". Sequelize can communicate with multiple backend technologies, which is great for us. If we decided to change our server to a mysql server, converting is much easier now as we only need to switch to mysql. The backend, frontend, models, and migrations do not change. We only have to uninstall pg-promise, install mysql, and require mysql. There may be a few other tweaks, but overall this is much faster and simpler than rewriting huge chunks of your code.
+
+<a name="using-seeders">Using Seeders</a>
+
+<a href="#top">`back to top`</a>
+
+## What Are Seeders?
+
+To explain the ins and outs of seeders, we first need to go back to the basics of using a database. Why do we use databases? What is the point of a database? **Why would you have an empty database?** A lot of these questions seem rhetorical, but these are common questions teams ask when planning out their application. 
+
+**Why do we use databases?**
+
+To store large amounts of data in one spot, which our application is able to access as long as it has a connection (wireless or hardwired) to our database. Remember, a database is just a computer which is set up to store data for an application. Databases are so important and widely used there are warehouses full of only databases called Data Centers. 
+
+**What is the point of a database?**
+
+A databse holds all our data so our client doesn't have to. Also, we can now manage and regulate the data directly. The point of *your* database can change based on the scope and purpose of your application.
+
+**Why would you have an empty database?**
+
+This question definitely seems pointless, but there are times when a database would be empty. When you launch an application, do you have a pre-defined user base? If you have a log in but no one has registered an account, is your database going to be empty? What if our database is just for holding data which is relevant to our website? For example, what if we are creating a food market database, starting with potatoes, but do not want a userbase? 
+
+**Ask yourself: WHAT AM I BUILDING AND WHY?**
+
+This question determines everything you are going to do moving forward, and the more you plan **now** the less you have to adjust in the *future*. Typically. Development can change drastically at times if the scope, scale, and focus of the application changes. If we decided to add a userbase to our food market website, we now need a second table, some form of session control to know when a user is logged into our application, and we have to discuss if we want users to be allowed to favorite foods. Maybe our users are now requesting a list of local food markets and farms. Are we going to allow them to save local locations to their user? Will we include a mapping feature to give them directions to their local markets? 
+
+Throughout all of those adjustments, our original potatoes database was never changed. It still only stores information on potatoes. We **might** add a column for our association with the users, *if* we want a favorites feature, but that is another discuss.
+
+## USING SEEDERS
+
+For the purpose of my database, I have decided I want a table called "potatoes", which will only hold information on a variety of potatoes. I have also decided I do not want my userbase to be able to manipulate the potatoes table, so I have no reason to create a potato registration feature. If my userbase is not going to add potatoes to the potato table, **why make a page to add potatoes to our database?** This is where **seeders** take over.
+
+A **seeder** is a file full of data which gets planted into our database. With **Sequelize** we must include certain information into our seeder file, or our seeder file will fail to execute. First, let's create our potatoes table. What do people generally look for when it comes to potatoes? The name, the starch level, and the best way to cook them. This is data our userbase will come to us for, so from the beginning we are going to provide it.
+
+```console
+sequelize model:create --name potatoes --attributes 'name:string, starch_level:string, cook_method:string'
+```
+
+```console
+sequelize db:migrate
+```
+
+We have created a table called **potatoes** with the columns **id, name, starch_level, cook_method, createdAt, and updatedAt.** The id, createdAt, and updatedAt are automatically created by Sequelize and have the constraint **NOT NULL**. As you may recall, we did not have to enter that information when registering new users. Sequelize automates these values during a table insertion, but we have to do *a little* extra work when using seeders. **DON'T PANIC!** We will figure this out.
+
+**QUICK NOTE:** There are multiple naming conventions used across different languages, frameworks, and libraries. JavaScript commonly use what is called **camelCase**, but this is entirely at the discretion of the developer. For this small tutorial, I'm not concerned about naming conventions. Sequelize's naming convention is to title your tables in the **singular**, ie. *potato* and **not** *potatoes*. Sequelize will check your --name and make the table name the **plural** of your table name. If the --name you give your table is already plural, Sequelize does not make any adjustments. Keep this is mind, as if you use the Sequelize naming conventions certain parts of my tutorial **will need adjusted in your code**.
+
+For example, my models.potatoes.findOne() *should* be models.potato.findOne() **if** I had used proper naming conventions. 
+
+On to the code! Let's create a seeder file and plug in our data.
+
+```console
+sequelize seed:generate --name potato-data
+```
+
+<img height="400px" src="photos/seederUp.png" />
+
+This is my completed **UP** for my seeder file, which has 13 **objects** inside of 1 **array**. Seeders typically only have one of two arguments, being **bulkInsert** and **bulkDelete**. Let's break down why our **UP** is using **bulkInsert** and how to properly use **bulkInsert**.
+
+Again, like with a lot of things, Sequelize automates a lot of stuff for us. The first four lines of our file are automated and we do not pick the variables passed through the function.
+
+```JavaScript
+'use strict';
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+```
+
+Just like our migrations, we have **module.exports = {}** to tell Sequelize **everything in this object is to be used when we migrate**. Also just like our migrations, there are two primary keys: **UP and DOWN**. These function exactly how they do with migrations. When you run your migration, the **UP** is executed. When you reverse your migrations, the **DOWN** is executed. The only difference is the command we run in our terminal to execute seeders instead of migrations, but we will get to that.
+
+Our keys, **UP and DOWN**, both have functions as their values. The functions return the result we desire. Since we want to insert a bunch of potatoes into our database, we are going to **bulkInsert** information into our database. Sequelize really picked straight forward function names. **addColumn, removeColumn, bulkInsert, findOne, findAll, build**. This helps keep Sequelize user-friendly, and allows us a better learning experience. 
+
+**bulkInsert works as follows:**
+
+```JavaScript
+return queryInterface.bulkInsert(
+  "name_of_table_we_want_to_manipulate",
+  [ {name_of_column_inside_our_our_table: "value_we_want_to_insert_inside_said_column"}, 
+  {createdAt: new Date()},
+  {updatedAt: new Date()}
+  ], {} );
+```
+Sequelize is very straight forward, which I have expressed many times. **bulkInsert** takes in the table name and an array. The array can hold many objects, where the keys match the column names. As you can see, our keys do not need to be in quotes. Our data in the first object is in quotes because we are passing a **string**. You must know the **data type** of the column when creating a seeder, or else the seed will fail. We set all of our columns to strings when we created our table initially (recall model:create ..... 'name:string, starch_level:string.......'). Common data types are **strings, integers, floats, booleans, and text.** 
+
+Our finished result is...
+
+```JavaScript
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.bulkInsert(
+      "potatoes",
+      [
+```
+
+**Why do we have an object for *createdAt and updatedAt* but *not id* when they are all set to *NOT NULL*?
+
+Very good questions, complete stranger! This is just another Sequelize quirk. Sequelize will **always** handle the first column, **id**, for us, until we tell it otherwise. In our case, there's no reason to change this, so we are letting Sequelize do its thing. 
+
+Sequelize, however, does not automate **createdAt and updatedAt** when seeding for... Reasons. It does during insertions, such as when we inserted a new user via our registration, but not during seeding. Luckily, we have a built-in JavaScript function called **Date()** which Sequelize already uses. By setting our value to **new Date()**, we are passing in a time stamp of the moment the seeder is migrated. **Why use *new Date()?*** Because I don't want to type out this: 2019-10-22 17:37:01.364+00. This is how the time stamp comes thorugh, and even though it is easy to do ourselves... I just see no reason to.
+
+```JavaScript
+{name: "Yukon Gold", starch_level: "All Purpose", cook_method: "boil, bake, fry", createdAt: new Date(), updatedAt: new Date()},
+```
+
+This is the first entry of my seeder. As you recall, we created the attributes **name, starch_level, and cook_method** when we ran our **model:create** command. We did not create a constraint of **NOT NULL** on these values, but we decided when we created our table these values were important for our userbase. This is why we have created our object this way. Feel free to experiment and see if and when you can ignore passing values into a column, if you can put the columns out of order, and if you can pass through a limited amount of digits or pass an integer as a string. Or, maybe wait until **after** we create our **DOWN**. 
+
+<img height="400px" src="photos/seederDown" />
+
+```JavaScript
+down: (queryInterface, Sequelize) => {
+    return queryInterface.bulkDelete("potatoes", null, {})
+  }
+```
+
+Well, that was much shorter than the **UP**. Why? Because the **UP** is passing in 13 potato types with name, starch_level, cook_method, createdAt, and updatedAt keys. **DOWN** is just saying "delete everything", but let's get a *little* more technical with that.
+
+**bulkDelete** passes through the table name, which for us is "potatoes", and the value we want to set everything to **null**. What's that empty object in both our **UP** and **DOWN**? That is for options, which we are not using at this time. This is more useful when using **bulkUpdate** in your seeder.
+
+Now we run our seeder.
+
+```console
+sequelize db:seed:all
+```
+And our database is full of data! Success.
+
+<img height="300px" src="photos/posticoPotatoes" />
+
 
 
 # FUTURE UPDATES
