@@ -407,7 +407,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
 ```
 
-Just like our migrations, we have **module.exports = {}** to tell Sequelize **everything in this object is to be used when we migrate**. Also just like our migrations, there are two primary keys: **UP and DOWN**. These function exactly how they do with migrations. When you run your migration, the **UP** is executed. When you reverse your migrations, the **DOWN** is executed. The only difference is the command we run in our terminal to execute seeders instead of migrations, but we will get to that.
+Just like our migrations, we have **module.exports = {}** to tell Sequelize **"everything in this object is to be used when we migrate"**. Also just like our migrations, there are two primary keys: **UP and DOWN**. These function exactly how they do with migrations. When you run your migration, the **UP** is executed. When you reverse your migrations, the **DOWN** is executed. The only difference is the command we run in our terminal to execute seeders instead of migrations, which is **db:seed** instead of *db:migrate*. (More on this later.)
 
 Our keys, **UP and DOWN**, both have functions as their values. The functions return the result we desire. Since we want to insert a bunch of potatoes into our database, we are going to **bulkInsert** information into our database. Sequelize really picked straight forward function names. **addColumn, removeColumn, bulkInsert, findOne, findAll, build**. This helps keep Sequelize user-friendly, and allows us a better learning experience. 
 
@@ -421,7 +421,7 @@ return queryInterface.bulkInsert(
   {updatedAt: new Date()}
   ], {} );
 ```
-Sequelize is very straight forward, which I have expressed many times. **bulkInsert** takes in the table name and an array. The array can hold many objects, where the keys match the column names. As you can see, our keys do not need to be in quotes. Our data in the first object is in quotes because we are passing a **string**. You must know the **data type** of the column when creating a seeder, or else the seed will fail. We set all of our columns to strings when we created our table initially (recall model:create ..... 'name:string, starch_level:string.......'). Common data types are **strings, integers, floats, booleans, and text.** 
+Sequelize is very straight forward, which I have expressed many times. **bulkInsert** takes in the table name and an array. The array can hold many objects, where the keys match the column names. Our keys do not need to be in quotes, but our data in the first object is in quotes because we are passing in a **string**. You must know the **data type** of the column when creating a seeder, or else the seed will fail. We set all of our columns to strings when we created our table initially (recall model:create ..... 'name:**string**, starch_level:**string**.......'). Common data types to be aware of are **strings, integers, floats, booleans, and text.** 
 
 Our finished result is...
 
@@ -443,7 +443,9 @@ Our finished result is...
 Very good questions, complete stranger! This is just another Sequelize quirk. Sequelize will **always** handle the first column, **id**, for us, until we tell it otherwise. In our case, there's no reason to change this, so we are letting Sequelize do its thing. 
 
 Sequelize, however, does not automate **createdAt and updatedAt** when seeding for... Reasons. It does during insertions, such as when we inserted a new user via our registration, but not during seeding. Luckily, we have a built-in JavaScript function called **Date()** which Sequelize already uses. By setting our value to **new Date()**, we are passing in a time stamp of the moment the seeder is migrated. **Why use *new Date()?*** Because I don't want to type out this: 
+
 ```2019-10-22 17:37:01.364+00``` 
+
 This is how the time stamp comes thorugh, and even though it is easy to do ourselves... I just see no reason to.
 
 ```JavaScript
@@ -462,9 +464,9 @@ down: (queryInterface, Sequelize) => {
 
 Well, that was much shorter than the **UP**. Why? Because the **UP** is passing in 13 potato types with name, starch_level, cook_method, createdAt, and updatedAt keys. **DOWN** is just saying "delete everything", but let's get a *little* more technical with that.
 
-**bulkDelete** passes through the table name, which for us is "potatoes", and the value we want to set everything to **null**. What's that empty object in both our **UP** and **DOWN**? That is for options, which we are not using at this time. This is more useful when using **bulkUpdate** in your seeder.
+**bulkDelete** passes through the table name, which for us is "potatoes", and the value we want to set everything to, **null**. What's that empty object in both our **UP** and **DOWN**? That is for options, which we are not using at this time. This is more useful when using **bulkUpdate** in your seeder.
 
-Now we run our seeder.
+Now we run our seeder, similar to how we would run our migration.
 
 ```console
 sequelize db:seed:all
@@ -473,7 +475,19 @@ And our database is full of data! Success.
 
 <img height="300px" src="photos/posticoPotatoes.png" />
 
+A few seeder commands you may need to know.
 
+```console
+sequelize db:seed:undo
+```
+
+**db:seed:undo** can pass the same arguments as **db:seed**, with the two most common being **:all** or **--name file-name**. 
+
+```console
+sequelize db:seed --name file-name
+```
+
+If you have multiple seeders and want to run just one, specify the name of the seeder with **--name file-name**.
 
 # FUTURE UPDATES
 
