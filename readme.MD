@@ -429,10 +429,16 @@ Our finished result is...
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert(
       "potatoes",
-      [
+      [{
+      name: "Yukon Gold", 
+      starch_level: "All Purpose", 
+      cook_method: "boil, bake, fry", 
+      createdAt: new Date(), 
+      updatedAt: new Date()
+      }]
 ```
 
-**Why do we have an object for *createdAt and updatedAt* but *not id* when they are all set to *NOT NULL*?
+**Why do we have an object for *createdAt and updatedAt* but *not id* when they are all set to *NOT NULL*?**
 
 Very good questions, complete stranger! This is just another Sequelize quirk. Sequelize will **always** handle the first column, **id**, for us, until we tell it otherwise. In our case, there's no reason to change this, so we are letting Sequelize do its thing. 
 
