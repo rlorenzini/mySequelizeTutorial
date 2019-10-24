@@ -442,7 +442,9 @@ Our finished result is...
 
 Very good questions, complete stranger! This is just another Sequelize quirk. Sequelize will **always** handle the first column, **id**, for us, until we tell it otherwise. In our case, there's no reason to change this, so we are letting Sequelize do its thing. 
 
-Sequelize, however, does not automate **createdAt and updatedAt** when seeding for... Reasons. It does during insertions, such as when we inserted a new user via our registration, but not during seeding. Luckily, we have a built-in JavaScript function called **Date()** which Sequelize already uses. By setting our value to **new Date()**, we are passing in a time stamp of the moment the seeder is migrated. **Why use *new Date()?*** Because I don't want to type out this: 2019-10-22 17:37:01.364+00. This is how the time stamp comes thorugh, and even though it is easy to do ourselves... I just see no reason to.
+Sequelize, however, does not automate **createdAt and updatedAt** when seeding for... Reasons. It does during insertions, such as when we inserted a new user via our registration, but not during seeding. Luckily, we have a built-in JavaScript function called **Date()** which Sequelize already uses. By setting our value to **new Date()**, we are passing in a time stamp of the moment the seeder is migrated. **Why use *new Date()?*** Because I don't want to type out this: 
+```2019-10-22 17:37:01.364+00``` 
+This is how the time stamp comes thorugh, and even though it is easy to do ourselves... I just see no reason to.
 
 ```JavaScript
 {name: "Yukon Gold", starch_level: "All Purpose", cook_method: "boil, bake, fry", createdAt: new Date(), updatedAt: new Date()},
