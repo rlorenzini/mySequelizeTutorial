@@ -441,7 +441,7 @@ Sequelize, however, does not automate **createdAt and updatedAt** when seeding f
 
 This is the first entry of my seeder. As you recall, we created the attributes **name, starch_level, and cook_method** when we ran our **model:create** command. We did not create a constraint of **NOT NULL** on these values, but we decided when we created our table these values were important for our userbase. This is why we have created our object this way. Feel free to experiment and see if and when you can ignore passing values into a column, if you can put the columns out of order, and if you can pass through a limited amount of digits or pass an integer as a string. Or, maybe wait until **after** we create our **DOWN**. 
 
-<img height="400px" src="photos/seederDown" />
+<img height="400px" src="photos/seederDown.png" />
 
 ```JavaScript
 down: (queryInterface, Sequelize) => {
@@ -460,7 +460,7 @@ sequelize db:seed:all
 ```
 And our database is full of data! Success.
 
-<img height="300px" src="photos/posticoPotatoes" />
+<img height="300px" src="photos/posticoPotatoes.png" />
 
 
 
