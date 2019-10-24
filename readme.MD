@@ -164,7 +164,7 @@ can help avoid any early-stage issues, but is not required.
 | MODELS | A visual representation of each table in your database. Does not always update with migration. |
 | MIGRATIONS | JavaScript files which execute during migration. These files are the backbone of Sequelize. |
 | SEEDERS | Used to dump data into a table. DO NOT USE in place of forms, post, and create/build. |
-| SEEDERS | Seeders should not be used until you have a deeper understanding of Sequelize. |
+| SEEDERS | Seeders should not be used until you have a basic understanding of Sequelize and databases. |
 | CONFIG | The config file in this folder tells Sequelize what database you are using and where it is located. |
 
 <img height="400px" src="photos/codeConfigMysql.png"/> 
@@ -314,7 +314,7 @@ As we see, we are no longer working with **this.state.username**, but we have al
 
 Personally, the first thing I do is create variable names for my data being received. Typing out **username** is quicker and takes up less space than typing **req.body.username**. This is a personal preference to shorten and clean-up my code, but is not required. 
 
-Line 24 is where we are now in Sequelize territory. We are still working on our backend, but we now must communicate to Sequelize what we want Sequelize to do with our data. As you may recall above, we created a model/table called "Users". Once we migrated, we received a model file called **"users.js"**. This is where Sequelize begins to shine, but you must understand **what you are doing and why**. We required our models earlier, at the very beginning, because Sequelize needs to know **where to find them**. For any coder who has ever created routes, paths, or imported their own files, this concept isn't new but might look different.
+Line 24 is where we are now in Sequelize territory. We are still working on our backend, but we now must communicate to Sequelize what we want Sequelize to do with our data. As you may recall above, we created a model/table called **"Users"**. Once we migrated, we received a model file called **"users.js"**. This is where Sequelize begins to shine, but you must understand **what you are doing and why**. We required our models earlier, at the very beginning, because Sequelize needs to know **where to find them**. For any coder who has ever created routes, paths, or imported their own files, this concept isn't new but might look different.
 
 Our model === users. When we type ```models```, Sequelize immediately knows two things. First, we are going to be doing something with a model. Secondly, it knows where which models we are going to be working with are. The next argument, ```users```, tells Sequelize, "Check the /models folder for a file called 'users'." The last argument, **build**, is as basic as it comes. Time to build a new model with our data! This is going to be our first Users entry into our database.
 
@@ -335,7 +335,7 @@ This is how our **build** object would look if we did not define our req.body va
 
 <img height="400px" src="photos/posticoTerminalResults.png"/> 
 
-Postico is now displaying "a" values in each of our columns. **NOTE:** Postico does not refresh dynamically as data is put into your database. Remember to refresh to see the results. Our id column is, by default, 1 as this is our first entry. Behind my terminal is createdAt and updatedAt, which are updated automatically by Sequelize. 
+Postico is now displaying **"a"** values in each of our columns. **NOTE:** Postico does not refresh dynamically as data is put into your database. Remember to refresh to see the results. Our **id** column is, by default, 1 as this is our first entry. Behind my terminal is **createdAt and updatedAt**, which are updated automatically by Sequelize. 
 
 Looking at our terminal, we see a long command being run which may be familiar to some of you. The command is run using pg-promise. Sequelize takes our **models.Users.build({})** and translates it into pg-promise for us, so we do not have to execute pg-promise ourselves. As you may recall, by default our config file uses "mysql" as the "dialect". Sequelize can communicate with multiple backend technologies, which is great for us. If we decided to change our server to a mysql server, converting is much easier now as we only need to switch to mysql. The backend, frontend, models, and migrations do not change. We only have to uninstall pg-promise, install mysql, and require mysql. There may be a few other tweaks, but overall this is much faster and simpler than rewriting huge chunks of your code.
 
