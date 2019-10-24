@@ -340,6 +340,9 @@ Postico is now displaying "a" values in each of our columns. **NOTE:** Postico d
 Looking at our terminal, we see a long command being run which may be familiar to some of you. The command is run using pg-promise. Sequelize takes our **models.Users.build({})** and translates it into pg-promise for us, so we do not have to execute pg-promise ourselves. As you may recall, by default our config file uses "mysql" as the "dialect". Sequelize can communicate with multiple backend technologies, which is great for us. If we decided to change our server to a mysql server, converting is much easier now as we only need to switch to mysql. The backend, frontend, models, and migrations do not change. We only have to uninstall pg-promise, install mysql, and require mysql. There may be a few other tweaks, but overall this is much faster and simpler than rewriting huge chunks of your code.
 
 <a name="using-seeders">Using Seeders</a>
+# JACKIE
+# JACKIE
+# JACKIE
 
 <a href="#top">`back to top`</a>
 
@@ -365,7 +368,7 @@ This question determines everything you are going to do moving forward, and the 
 
 Throughout all of those adjustments, our original potatoes database was never changed. It still only stores information on potatoes. We **might** add a column for our association with the users, *if* we want a favorites feature, but that is another discuss.
 
-## USING SEEDERS
+## CREATING SEEDERS
 
 For the purpose of my database, I have decided I want a table called "potatoes", which will only hold information on a variety of potatoes. I have also decided I do not want my userbase to be able to manipulate the potatoes table, so I have no reason to create a potato registration feature. If my userbase is not going to add potatoes to the potato table, **why make a page to add potatoes to our database?** This is where **seeders** take over.
 
