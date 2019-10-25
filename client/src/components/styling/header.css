@@ -1,0 +1,11 @@
+a {
+  padding-right: 10px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: darkred;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+}

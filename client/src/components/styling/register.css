@@ -1,0 +1,157 @@
+/* login form styling here */
+.registerForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputWrapper {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 10rem 20rem;
+  grid-row-gap: 5px;
+}
+
+.mainText {
+  font-size: 3rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+.labelText {
+  padding-top: 0.79375rem;
+  /* padding-bottom added for visualization of vertical alignment */
+  padding-bottom: 0.79375rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.registerInput {
+  background-color: black;
+  color: white;
+  font-size: 1.5rem;
+  border: 2px solid blue;
+  border-radius: 15px;
+  height: 3rem;
+  text-align: center;
+}
+
+.registerButton {
+  margin-top: 10px;
+  /* margin-left: 10rem; */
+  height: 3rem;
+  width: 20rem;
+  font-size: 1.5rem;
+  background-color: black;
+  color: white;
+  border: blue solid 2px;
+  border-radius: 15px;
+}
+/* ================================================= */
+@media only screen and (max-width:600px) and (min-width: 401px) {
+  /* login form styling here */
+  .registerForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .inputWrapper {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 7.5rem 15rem;
+    grid-row-gap: 5px;
+  }
+
+  .mainText {
+    font-size: 2.25rem;
+    font-weight: 900;
+    text-align: center;
+  }
+
+  .labelText {
+    padding-top: 0.396875rem;
+    /* padding-bottom added for visualization of vertical alignment */
+    padding-bottom: 0.396875rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+
+  .registerInput {
+    background-color: black;
+    color: white;
+    font-size: 1.125rem;
+    border: 2px solid blue;
+    border-radius: 15px;
+    height: 2.25rem;
+    text-align: center;
+  }
+
+  .registerButton {
+    margin-top: 10px;
+    /* margin-left: 10rem; */
+    height: 2.25rem;
+    width: 15rem;
+    font-size: 1.125rem;
+    background-color: black;
+    color: white;
+    border: blue solid 2px;
+    border-radius: 15px;
+  }
+}
+
+/* ================================================= */
+@media only screen and (max-width:400px) {
+  /* login form styling here */
+  .registerForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .inputWrapper {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 5rem 10rem;
+    grid-row-gap: 5px;
+  }
+
+  .mainText {
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-align: center;
+  }
+
+  .labelText {
+    padding-top: 0.396875rem;
+    /* padding-bottom added for visualization of vertical alignment */
+    padding-bottom: 0.396875rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .registerInput {
+    background-color: black;
+    color: white;
+    font-size: 0.75rem;
+    border: 2px solid blue;
+    border-radius: 15px;
+    height: 1.5rem;
+    text-align: center;
+  }
+
+  .registerButton {
+    margin-top: 10px;
+    /* margin-left: 10rem; */
+    height: 1.5rem;
+    width: 10rem;
+    font-size: 0.75rem;
+    background-color: black;
+    color: white;
+    border: blue solid 2px;
+    border-radius: 15px;
+  }
+}

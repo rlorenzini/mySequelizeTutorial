@@ -12,8 +12,18 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
 
-//====================SUBMIT DATA TO OUR DATABASE==============================
-app.post('/submitData', (req,res) => {
+//====================DISPLAYING POTATOES=======================
+app.get('/displayData', (req,res) => {
+  // models.potatoes.findAll().then((result) => {
+  //   for (i = 0; i < result.length; i ++) {
+  //   console.log(result[i].name)}
+  // })
+  models.potatoes.findAll().then((result) => {
+    res.json({result:result})
+  })
+})
+//====================REGISTRATION==============================
+app.post('/register', (req,res) => {
 
   let username = req.body.username,
     password = req.body.password,
@@ -28,8 +38,11 @@ app.post('/submitData', (req,res) => {
     }
   }).then((user) => {
     if (user) {
-      res.status(500).json({ message: 'username already exists '})
+      res.status(500).json({ status: 500, message: 'username already exists '})
     } else {
+
+      // encrypt here (bcrypt)
+      //why encrypt before you check if user exists?
       let user = models.Users.build({
         username: username,
         password: password,
@@ -58,6 +71,11 @@ app.post('/submitData', (req,res) => {
 
 //build({ attribute: desiredValue }) needs the required attributes at minimum
 
+
+//ASSOCIATIONS
+//hasOne
+//hasMany
+//check unogs for example
 
 app.listen(PORT, () => {
   console.log(`Server running at localhost: ${PORT} `);

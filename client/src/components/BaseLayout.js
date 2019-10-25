@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import './styling/baseLayout.css';
-import SubmitData from './SubmitData';
-import DisplayData from './DisplayData';
+import Header from './Header';
 
-export default class BaseLayout extends Component {
+class BaseLayout extends Component {
   render(){
   return (
     <div className="baseLayoutBody">
-      <SubmitData />
-      <DisplayData />
+      <Header history={this.props.history}/>
+      { this.props.children }
     </div>
   )};
 }
+
+export default withRouter(BaseLayout);
