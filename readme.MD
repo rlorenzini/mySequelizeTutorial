@@ -590,7 +590,8 @@ I am going to use a new variable **potatoName** in a dynamic way. Until the **fe
 
 Since I want to replace my **Loading** text once my **fetch call** is completed, I am going to assign **potatoName** to something new. **potatoes** was assigned to **this.state.potatoName** which was assigned to **newArray**. Essentially, **potatoes is newArray**. One way to iterate an array is using the **map()** function. 
 
-```potatoes.map((onePotato) => {
+```
+potatoes.map((onePotato) => {
   do something here 
  })
  ```
