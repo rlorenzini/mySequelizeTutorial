@@ -500,7 +500,7 @@ Sequelize has built-in functions for getting data. Some of the most common funct
 
 We are going to start with **findAll()**.
 
-<img height="400px" src="photos/codeGetPotatos.png" />
+<img height="400px" src="photos/codeGetPotatoes.png" />
 
 Overall, two lines of code is all we need to get all entries in our **potatoes** table and send them to the front. Like everything else, let's break it down.
 
