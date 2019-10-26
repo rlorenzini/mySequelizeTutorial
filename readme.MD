@@ -539,7 +539,7 @@ We take our promise **result** and send it via **res.json** as **result**. Our r
 
 ## Get Requests, Frontend
 
-<img height="400px" src="photos/codeFetchPotatoes" />
+<img height="400px" src="photos/codeFetchPotatoes.png" />
 
 To simplify the tutorial, I am using **React Components** instead of **React Hooks**. This is simply so those who are newer to either coding as a whole or Sequelize will have an easier time understanding what I am doing.
 
@@ -565,13 +565,13 @@ First, I create a **newArray** which will hold our **fetch results**. We **fetch
  
 After our fetch, we are using a **promise**. We take the response and run the **json()** function on it, which makes the response easier for us to use as a whole. Console.log(response) instead if you want to see all the data you receive during a fetch cal. Once we run the **json()** function, we take the new **json file** and iterate through it with a **for loop**. But why? 
 
-<img height="400px" src="photos/codeJsonLog" />
+<img height="400px" src="photos/codeJsonLog.png" />
 
 Our **json file** is an object, which holds an array, which holds objects, and those objects are our potatoes. **json.result** is how we get to our **result array**. **result** should look familiar since we sent the **result of our findAll()** to our frontend from our backend. Since result is an **array**, we must **iterate** through it to get **each result individually**. Using a **for loop**, we can **push each individual object within our array into our newArray**. With React, we must then set a state to use our data elsewhere. In more vanilla JavaScript, pushing the data into a newArray is likely all you need. This simply depends on the frameworks and libraries you are using.
 
 We have the data on the frontend now, but we need to display it for our users.
 
-<img height="400px" src="photos/codeRenderPotatoes" />
+<img height="400px" src="photos/codeRenderPotatoes.png" />
 
 
 
