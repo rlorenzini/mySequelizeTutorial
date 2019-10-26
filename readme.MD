@@ -453,7 +453,7 @@ This is how the time stamp comes thorugh, and even though it is easy to do ourse
 
 This is the first entry of my seeder. As you recall, we created the attributes **name, starch_level, and cook_method** when we ran our **model:create** command. We did not create a constraint of **NOT NULL** on these values, but we decided when we created our table these values were important for our userbase. This is why we have created our object this way. Feel free to experiment and see if and when you can ignore passing values into a column, if you can put the columns out of order, and if you can pass through a limited amount of digits or pass an integer as a string. Or, maybe wait until **after** we create our **DOWN**. 
 
-<img height="400px" src="photos/seederDown.png" />
+<img height="300px" src="photos/seederDown.png" />
 
 ```JavaScript
 down: (queryInterface, Sequelize) => {
