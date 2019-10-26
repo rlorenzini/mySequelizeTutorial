@@ -567,12 +567,49 @@ After our fetch, we are using a **promise**. We take the response and run the **
 
 <img height="400px" src="photos/codeJsonLog.png" />
 
-Our **json file** is an object, which holds an array, which holds objects, and those objects are our potatoes. **json.result** is how we get to our **result array**. **result** should look familiar since we sent the **result of our findAll()** to our frontend from our backend. Since result is an **array**, we must **iterate** through it to get **each result individually**. Using a **for loop**, we can **push each individual object within our array into our newArray**. With React, we must then set a state to use our data elsewhere. In more vanilla JavaScript, pushing the data into a newArray is likely all you need. This simply depends on the frameworks and libraries you are using.
+Our **json file** is an object, which holds an array, which holds objects, and those objects are our potatoes. **json.result** is how we get to our **result array**. **result** should look familiar since we sent the **result of our findAll()** to our frontend from our backend. Since result is an **array**, we must **iterate** through it to get **each result individually**. Using a **for loop**, we can **push each individual object within our array into our newArray**. With React, we must then set a state to use our data elsewhere. I have set the state of **potatoName** to be **newArray**. In more vanilla JavaScript, pushing the data into a newArray is likely all you need. This simply depends on the frameworks and libraries you are using.
 
-We have the data on the frontend now, but we need to display it for our users.
+We have the data on the frontend now, but we need to display it for our users. **NOTE:** Do not copy the following code without understanding it first, **ESPECIALLY** if you are not using React. 
 
 <img height="400px" src="photos/codeRenderPotatoes.png" />
 
+Since I set the state of **potatoName to be newArray**, this translates to **this.state.potatoName = newArray**. For those who are not React developers or do not use state, this essentially means I assigned a new global variable. I'm going to call said global variable **this.state.potatoName** and give it a shorter variable, **potatoes**. **potatoes** holds our **newArray**, which holds **all 13 potatoes** from our database. 
+
+```JavaScript
+render(){
+  let potatoes = this.state.potatoName
+  //get the state, which is an array of all potatoes
+  let potatoName = (<p>Loading</p>)
+  //set a loading message
+  if (!this.state.loading) {
+    //once it is no longer loading
+    potatoName = potatoes.map((onePotato) => {
+    //replace our message with an iteration of each potato
+      return (
+        <li id={onePotato.id}>
+        <p>{onePotato.name} : {onePotato.starch_level}</p>
+        </li>
+      )
+  })// end of potatoes.map
+} // end of if
+```
+
+I am going to use a new variable **potatoName** in a dynamic way. Until the **fetch call** is completed, wherever we insert **potatoName** into our webpage there will be a **paragraph element** with the text **Loading**. My following **if statement** translates to, **"once the fetch call is finished updating my state, do this following code".** Again, do not just copy and paste expecting this to work if you are not using React. 
+
+Since I want to replace my **Loading** text once my **fetch call** is completed, I am going to assign **potatoName** to something new. **potatoes** was assigned to **this.state.potatoName** which was assigned to **newArray**. Essentially, **potatoes is newArray**. One way to iterate an array is using the **map()** function. 
+
+```potatoes.map((onePotato) => {
+  //do something here 
+ })
+ ```
+ 
+Since **map()** says, **"do the following with each index inside this array"**, we assign a variable inside the **map()** function. **onePotato** is now a single potato, but it represents all 13 potatoes. Once **map()** is done with the first index of **onePotato**, **map()** runs again with the second index, then the third, and finishes on the 13th index.
+
+Going back to our console log in our developer tools, we see each index is an object. Now we know **onePotato** is an object with the keys **id, name, starch_level, etc**. Look familiar? It should, since each key represents one column in our potatoes table. Since I want to display the name and starch levels of the potatoes for the user, I'm going to call the **name and starch_level**. **onePotato.name** will represent every potato's name, and **onePotato.starch_level** will represent every potato's starch level.
+
+<img height="400px" src="photos/appDisplayPotatoes.png" />
+
+Our final result isn't pretty, since we really haven't done much styling, but we have successfully taken our potatoes from our database and displayed them for our users.
 
 
 # FUTURE UPDATES
