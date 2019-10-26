@@ -340,6 +340,13 @@ Postico is now displaying **"a"** values in each of our columns. **NOTE:** Posti
 
 Looking at our terminal, we see a long command being run which may be familiar to some of you. The command is run using pg-promise. Sequelize takes our **models.Users.build({})** and translates it into pg-promise for us, so we do not have to execute pg-promise ourselves. As you may recall, by default our config file uses "mysql" as the "dialect". Sequelize can communicate with multiple backend technologies, which is great for us. If we decided to change our server to a mysql server, converting is much easier now as we only need to switch to mysql. The backend, frontend, models, and migrations do not change. We only have to uninstall pg-promise, install mysql, and require mysql. There may be a few other tweaks, but overall this is much faster and simpler than rewriting huge chunks of your code.
 
+<br/>
+<br/>
+
+---
+
+<br/>
+
 <a name="using-seeders"><img height="200px" src="photos/seeders.png"/></a>
 
 
@@ -488,9 +495,14 @@ sequelize db:seed --name file-name
 
 If you have multiple seeders and want to run just one, specify the name of the seeder with **--name file-name**.
 
+<br/>
+<br/>
 
+---
 
-# <a name="display-data">Displaing Data</a>
+<br/>
+
+<a name="display-data"><img height="200px" src="photos/displaying-data.png"/></a>
 
 <a href="#top">`back to top`</a>
 
