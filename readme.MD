@@ -490,7 +490,7 @@ If you have multiple seeders and want to run just one, specify the name of the s
 
 
 
-# <a name="display-data">Displaing Data</a>
+<a name="display-data"><img height="200px" src="photos/displaying-data.png"/></a>
 
 <a href="#top">`back to top`</a>
 
