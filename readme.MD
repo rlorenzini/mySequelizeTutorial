@@ -506,10 +506,6 @@ Overall, two lines of code is all we need to get all entries in our **potatoes**
 
 ```JavaScript
 app.get('/displayData', (req,res) => {
-  // models.potatoes.findAll().then((result) => {
-  //   for (i = 0; i < result.length; i ++) {
-  //   console.log(result[i].name)}
-  // })
   models.potatoes.findAll().then((result) => {
     res.json({result:result})
   })
@@ -558,7 +554,7 @@ let newArray = []
         ...this.state,
         potatoName: newArray
       })
-    }) // end of promise(json)
+    })
  ```
  
 First, I create a **newArray** which will hold our **fetch results**. We **fetch** from our **localhost:8080**, which is where our backend server is **listening**. Our action is **/displayData**, which must be the same on the backend. With fetch, there are multiple methods we can use. Our client wants to **get** data, so we are using **method: 'GET'**. The header is to tell our browser the incoming content will be a **json file**.
@@ -578,20 +574,16 @@ Since I set the state of **potatoName to be newArray**, this translates to **thi
 ```JavaScript
 render(){
   let potatoes = this.state.potatoName
-  //get the state, which is an array of all potatoes
   let potatoName = (<p>Loading</p>)
-  //set a loading message
   if (!this.state.loading) {
-    //once it is no longer loading
     potatoName = potatoes.map((onePotato) => {
-    //replace our message with an iteration of each potato
       return (
         <li id={onePotato.id}>
         <p>{onePotato.name} : {onePotato.starch_level}</p>
         </li>
       )
-  })// end of potatoes.map
-} // end of if
+  })
+}
 ```
 
 I am going to use a new variable **potatoName** in a dynamic way. Until the **fetch call** is completed, wherever we insert **potatoName** into our webpage there will be a **paragraph element** with the text **Loading**. My following **if statement** translates to, **"once the fetch call is finished updating my state, do this following code".** Again, do not just copy and paste expecting this to work if you are not using React. 
@@ -599,7 +591,7 @@ I am going to use a new variable **potatoName** in a dynamic way. Until the **fe
 Since I want to replace my **Loading** text once my **fetch call** is completed, I am going to assign **potatoName** to something new. **potatoes** was assigned to **this.state.potatoName** which was assigned to **newArray**. Essentially, **potatoes is newArray**. One way to iterate an array is using the **map()** function. 
 
 ```potatoes.map((onePotato) => {
-  //do something here 
+  do something here 
  })
  ```
  
