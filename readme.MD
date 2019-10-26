@@ -19,6 +19,7 @@ const Contributors =
 | [SQLZ#MIG](#first-migration) | FIRST MIGRATION |
 | [SQLZ#FORMS](#forms-and-posts) | FORMS AND POSTS |
 | [SQLZ#SEEDS](#using-seeders) | USING SEEDERS |
+| [SQLZ#DISP](#display-data) | DISPLAYING DATA FROM DATABASE |
 
 <br/>
 <br/>
@@ -368,7 +369,7 @@ Throughout all of those adjustments, our original potatoes database was never ch
 
 ## CREATING SEEDERS
 
-For the purpose of my database, I have decided I want a table called "potatoes", which will only hold information on a variety of potatoes. I have also decided I do not want my userbase to be able to manipulate the potatoes table, so I have no reason to create a potato registration feature. If my userbase is not going to add potatoes to the potato table, **why make a page to add potatoes to our database?** This is where **seeders** take over.
+For the purpose of my database, I have decided I want a table called **"potatoes"**, which will only hold information on a variety of potatoes. I have also decided I do not want my userbase to be able to manipulate the potatoes table, so I have no reason to create a potato registration feature. If my userbase is not going to add potatoes to the potato table, **why make a page to add potatoes to our database?** This is where **seeders** take over.
 
 A **seeder** is a file full of data which gets planted into our database. With **Sequelize** we must include certain information into our seeder file, or our seeder file will fail to execute. First, let's create our potatoes table. What do people generally look for when it comes to potatoes? The name, the starch level, and the best way to cook them. This is data our userbase will come to us for, so from the beginning we are going to provide it.
 
@@ -452,7 +453,7 @@ This is how the time stamp comes thorugh, and even though it is easy to do ourse
 
 This is the first entry of my seeder. As you recall, we created the attributes **name, starch_level, and cook_method** when we ran our **model:create** command. We did not create a constraint of **NOT NULL** on these values, but we decided when we created our table these values were important for our userbase. This is why we have created our object this way. Feel free to experiment and see if and when you can ignore passing values into a column, if you can put the columns out of order, and if you can pass through a limited amount of digits or pass an integer as a string. Or, maybe wait until **after** we create our **DOWN**. 
 
-<img height="400px" src="photos/seederDown.png" />
+<img height="300px" src="photos/seederDown.png" />
 
 ```JavaScript
 down: (queryInterface, Sequelize) => {
@@ -487,7 +488,125 @@ sequelize db:seed --name file-name
 
 If you have multiple seeders and want to run just one, specify the name of the seeder with **--name file-name**.
 
+
+
+# <a name="display-data">Displaing Data</a>
+
+<a href="#top">`back to top`</a>
+
+Our food market website now has a database full of potatoes, but it does our end users no good if they can't see that data. Why go to any website if you can't see or use the data in some way? Reddit without posts, Instagram without pictures, Netflix without movies or shows; your users need to have access to relevant data. 
+
+Sequelize has built-in functions for getting data. Some of the most common functions you will use are **findOne(), findAll(), and findByPk()**. **findOne()** is used to return **one result**, **findAll()** is used to return **all results matching our search criteria**, and **findByPk()** is used to find everything related to a certain **primary key**.
+
+We are going to start with **findAll()**.
+
+<img height="300px" src="photos/codeGetPotatoes.png" />
+
+Overall, two lines of code is all we need to get all entries in our **potatoes** table and send them to the front. Like everything else, let's break it down.
+
+```JavaScript
+app.get('/displayData', (req,res) => {
+  models.potatoes.findAll().then((result) => {
+    res.json({result:result})
+  })
+})
+```
+
+**NOTE:** The commented code was a way I tested iterating the data and console logging just the names of the potatoes. I left this in intentionally, so you can test other ways of getting the data. 
+
+## Get Requests, Backend
+
+```JavaScript
+app.get('/displayData', (req,res) => {
+```
+We defined **app** in the beginning as our **Express server**, and the client wants to **get** data from us. The **action** associted with the **get request** is **/displayData**. **/displayData** must match the **fetch request** from the frontend, which we will go over shortly. **(req,res)** are our **request and response**, which are two variables. The community as a whole decided on **req and res** to be universal variable names, since they're short and easy to understand. 
+
+```JavaScript
+models.potatoes.findAll().then((result) => {
+```
+**models** was **required** in the beginning as well as **require('./models')**, which tells Sequelize where to look for our models. **potatoes** is a model/table, and Sequelize has functions built just for models/tables. **models.potatoes.findAll()** tells Sequelize, **"we want to find all the entries in our potatoes model**. The search functions return the results to us, which is why we can use a promise. Sequelize is *promise based*, but *async/await* can still work. Personally, I prefer **promises** when using Sequelize.
+
+```JavaScript
+res.json({result:result})
+  })
+})
+```
+We take our promise **result** and send it via **res.json** as **result**. Our response to the **get request** is to send a **json file** with the key **result** and the value **result**, where our value is the entire result of our **findAll()** function.
+
+## Get Requests, Frontend
+
+<img height="400px" src="photos/codeFetchPotatoes.png" />
+
+To simplify the tutorial, I am using **React Components** instead of **React Hooks**. This is simply so those who are newer to either coding as a whole or Sequelize will have an easier time understanding what I am doing.
+
+```JavaScript
+let newArray = []
+    fetch('http://localhost:8080/displayData', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(response => response.json()).then(json => {
+      for (let i = 0; i < json.result.length; i++) {
+        newArray.push(json.result[i])
+      }
+      this.setState({
+        ...this.state,
+        potatoName: newArray
+      })
+    })
+ ```
+ 
+First, I create a **newArray** which will hold our **fetch results**. We **fetch** from our **localhost:8080**, which is where our backend server is **listening**. Our action is **/displayData**, which must be the same on the backend. With fetch, there are multiple methods we can use. Our client wants to **get** data, so we are using **method: 'GET'**. The header is to tell our browser the incoming content will be a **json file**.
+ 
+After our fetch, we are using a **promise**. We take the response and run the **json()** function on it, which makes the response easier for us to use as a whole. Console.log(response) instead if you want to see all the data you receive during a fetch cal. Once we run the **json()** function, we take the new **json file** and iterate through it with a **for loop**. But why? Let's check our **developer tools** and **console.log(json)** instead of doing the for loop.
+
+<img height="400px" src="photos/codeJsonLog.png" />
+
+Our **json file** is an object, which holds an array, which holds objects, and those objects are our potatoes. **json.result** is how we get to our **result array**. **result** should look familiar since we sent the **result of our findAll()** to our frontend from our backend. Since result is an **array**, we must **iterate** through it to get **each result individually**. Using a **for loop**, we can **push each individual object within our array into our newArray**. With React, we must then set a state to use our data elsewhere. I have set the state of **potatoName** to be **newArray**. In more vanilla JavaScript, pushing the data into a newArray is likely all you need. This simply depends on the frameworks and libraries you are using.
+
+We have the data on the frontend now, but we need to display it for our users. **NOTE:** Do not copy the following code without understanding it first, **ESPECIALLY** if you are not using React. 
+
+<img height="400px" src="photos/codeRenderPotatoes.png" />
+
+Since I set the state of **potatoName to be newArray**, this translates to **this.state.potatoName = newArray**. For those who are not React developers or do not use state, this essentially means I assigned a new global variable. I'm going to call said global variable **this.state.potatoName** and give it a shorter variable, **potatoes**. **potatoes** holds our **newArray**, which holds **all 13 potatoes** from our database. 
+
+```JavaScript
+render(){
+  let potatoes = this.state.potatoName
+  let potatoName = (<p>Loading</p>)
+  if (!this.state.loading) {
+    potatoName = potatoes.map((onePotato) => {
+      return (
+        <li id={onePotato.id}>
+        <p>{onePotato.name} : {onePotato.starch_level}</p>
+        </li>
+      )
+  })
+}
+```
+
+I am going to use a new variable **potatoName** in a dynamic way. Until the **fetch call** is completed, wherever we insert **potatoName** into our webpage there will be a **paragraph element** with the text **Loading**. My following **if statement** translates to, **"once the fetch call is finished updating my state, do this following code".** Again, do not just copy and paste expecting this to work if you are not using React. 
+
+Since I want to replace my **Loading** text once my **fetch call** is completed, I am going to assign **potatoName** to something new. **potatoes** was assigned to **this.state.potatoName** which was assigned to **newArray**. Essentially, **potatoes is newArray**. One way to iterate an array is using the **map()** function. 
+
+```
+potatoes.map((onePotato) => {
+  do something here 
+ })
+ ```
+ 
+Since **map()** says, **"do the following with each index inside this array"**, we assign a variable inside the **map()** function. **onePotato** is now a single potato, but it represents all 13 potatoes. Once **map()** is done with the first index of **onePotato**, **map()** runs again with the second index, then the third, and finishes on the 13th index.
+
+Going back to our console log in our developer tools, we see each index is an object. Now we know **onePotato** is an object with the keys **id, name, starch_level, etc**. Look familiar? It should, since each key represents one column in our potatoes table. Since I want to display the name and starch levels of the potatoes for the user, I'm going to call the **name and starch_level**. **onePotato.name** will represent every potato's name, and **onePotato.starch_level** will represent every potato's starch level.
+
+<img height="400px" src="photos/appDisplayPotatoes.png" />
+
+Our final result isn't pretty, since we really haven't done much styling, but we have successfully taken our potatoes from our database and displayed them for our users.
+
+
 # FUTURE UPDATES
+<a href="#top">`back to top`</a>
 
 _(maybe?)_
 
