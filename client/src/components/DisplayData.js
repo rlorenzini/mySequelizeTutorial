@@ -41,7 +41,7 @@ export default class DisplayData extends Component {
           </li>
         )
       })// end of potatoes.map
-    } // end of if 
+    } // end of if
   return (
     <div>
       <div>We will display data here.</div>
