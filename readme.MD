@@ -19,6 +19,7 @@ const Contributors =
 | [SQLZ#MIG](#first-migration) | FIRST MIGRATION |
 | [SQLZ#FORMS](#forms-and-posts) | FORMS AND POSTS |
 | [SQLZ#SEEDS](#using-seeders) | USING SEEDERS |
+| [SQLZ#DISP](#display-data) | DISPLAYING DATA FROM DATABASE |
 
 <br/>
 <br/>
@@ -368,7 +369,7 @@ Throughout all of those adjustments, our original potatoes database was never ch
 
 ## CREATING SEEDERS
 
-For the purpose of my database, I have decided I want a table called "potatoes", which will only hold information on a variety of potatoes. I have also decided I do not want my userbase to be able to manipulate the potatoes table, so I have no reason to create a potato registration feature. If my userbase is not going to add potatoes to the potato table, **why make a page to add potatoes to our database?** This is where **seeders** take over.
+For the purpose of my database, I have decided I want a table called **"potatoes"**, which will only hold information on a variety of potatoes. I have also decided I do not want my userbase to be able to manipulate the potatoes table, so I have no reason to create a potato registration feature. If my userbase is not going to add potatoes to the potato table, **why make a page to add potatoes to our database?** This is where **seeders** take over.
 
 A **seeder** is a file full of data which gets planted into our database. With **Sequelize** we must include certain information into our seeder file, or our seeder file will fail to execute. First, let's create our potatoes table. What do people generally look for when it comes to potatoes? The name, the starch level, and the best way to cook them. This is data our userbase will come to us for, so from the beginning we are going to provide it.
 
@@ -487,7 +488,95 @@ sequelize db:seed --name file-name
 
 If you have multiple seeders and want to run just one, specify the name of the seeder with **--name file-name**.
 
+
+
+# <a name="display-data">Displaing Data</a>
+
+<a href="#top">`back to top`</a>
+
+Our food market website now has a database full of potatoes, but it does our end users no good if they can't see that data. Why go to any website if you can't see or use the data in some way? Reddit without posts, Instagram without pictures, Netflix without movies or shows; your users need to have access to relevant data. 
+
+Sequelize has built-in functions for getting data. Some of the most common functions you will use are **findOne(), findAll(), and findByPk()**. **findOne()** is used to return **one result**, **findAll()** is used to return **all results matching our search criteria**, and **findByPk()** is used to find everything related to a certain **primary key**.
+
+We are going to start with **findAll()**.
+
+<img height="400px" src="photos/codeGetPotatos.png" />
+
+Overall, two lines of code is all we need to get all entries in our **potatoes** table and send them to the front. Like everything else, let's break it down.
+
+```JavaScript
+app.get('/displayData', (req,res) => {
+  // models.potatoes.findAll().then((result) => {
+  //   for (i = 0; i < result.length; i ++) {
+  //   console.log(result[i].name)}
+  // })
+  models.potatoes.findAll().then((result) => {
+    res.json({result:result})
+  })
+})
+```
+
+**NOTE:** The commented code was a way I tested iterating the data and console logging just the names of the potatoes. I left this in intentionally, so you can test other ways of getting the data. 
+
+## Get Requests, Backend
+
+```JavaScript
+app.get('/displayData', (req,res) => {
+```
+We defined **app** in the beginning as our **Express server**, and the client wants to **get** data from us. The **action** associted with the **get request** is **/displayData**. **/displayData** must match the **fetch request** from the frontend, which we will go over shortly. **(req,res)** are our **request and response**, which are two variables. The community as a whole decided on **req and res** to be universal variable names, since they're short and easy to understand. 
+
+```JavaScript
+models.potatoes.findAll().then((result) => {
+```
+**models** was **required** in the beginning as well as **require('./models')**, which tells Sequelize where to look for our models. **potatoes** is a model/table, and Sequelize has functions built just for models/tables. **models.potatoes.findAll()** tells Sequelize, **"we want to find all the entries in our potatoes model**. The search functions return the results to us, which is why we can use a promise. Sequelize is *promise based*, but *async/await* can still work. Personally, I prefer **promises** when using Sequelize.
+
+```JavaScript
+res.json({result:result})
+  })
+})
+```
+We take our promise **result** and send it via **res.json** as **result**. Our response to the **get request** is to send a **json file** with the key **result** and the value **result**, where our value is the entire result of our **findAll()** function.
+
+## Get Requests, Frontend
+
+<img height="400px" src="photos/codeFetchPotatoes" />
+
+To simplify the tutorial, I am using **React Components** instead of **React Hooks**. This is simply so those who are newer to either coding as a whole or Sequelize will have an easier time understanding what I am doing.
+
+```JavaScript
+let newArray = []
+    fetch('http://localhost:8080/displayData', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(response => response.json()).then(json => {
+      for (let i = 0; i < json.result.length; i++) {
+        newArray.push(json.result[i])
+      }
+      this.setState({
+        ...this.state,
+        potatoName: newArray
+      })
+    }) // end of promise(json)
+ ```
+ 
+First, I create a **newArray** which will hold our **fetch results**. We **fetch** from our **localhost:8080**, which is where our backend server is **listening**. Our action is **/displayData**, which must be the same on the backend. With fetch, there are multiple methods we can use. Our client wants to **get** data, so we are using **method: 'GET'**. The header is to tell our browser the incoming content will be a **json file**.
+ 
+After our fetch, we are using a **promise**. We take the response and run the **json()** function on it, which makes the response easier for us to use as a whole. Console.log(response) instead if you want to see all the data you receive during a fetch cal. Once we run the **json()** function, we take the new **json file** and iterate through it with a **for loop**. But why? 
+
+<img height="400px" src="photos/codeJsonLog" />
+
+Our **json file** is an object, which holds an array, which holds objects, and those objects are our potatoes. **json.result** is how we get to our **result array**. **result** should look familiar since we sent the **result of our findAll()** to our frontend from our backend. Since result is an **array**, we must **iterate** through it to get **each result individually**. Using a **for loop**, we can **push each individual object within our array into our newArray**. With React, we must then set a state to use our data elsewhere. In more vanilla JavaScript, pushing the data into a newArray is likely all you need. This simply depends on the frameworks and libraries you are using.
+
+We have the data on the frontend now, but we need to display it for our users.
+
+<img height="400px" src="photos/codeRenderPotatoes" />
+
+
+
 # FUTURE UPDATES
+<a href="#top">`back to top`</a>
 
 _(maybe?)_
 
