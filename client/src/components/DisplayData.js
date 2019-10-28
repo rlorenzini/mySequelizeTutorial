@@ -47,7 +47,6 @@ export default class DisplayData extends Component {
     } // end of if
   return (
     <div>
-      <div>We will display data here.</div>
       <ul id="potatoListUL">
       {potatoName}
       </ul>
