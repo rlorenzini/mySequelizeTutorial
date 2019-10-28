@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './styling/displayData.css';
 
 export default class DisplayData extends Component {
   constructor() {
@@ -36,8 +37,10 @@ export default class DisplayData extends Component {
       potatoName = potatoes.map((onePotato) => {
         //replace our message with an iteration of each potato
         return (
-          <li id={onePotato.id}>
-          <p>{onePotato.name} : {onePotato.starch_level}</p>
+          <li className="potatoListLI" id={onePotato.id}>
+          <p className="potatoName">Name: {onePotato.name}</p>
+          <p className="potatoStarch">Type: {onePotato.starch_level}</p>
+          <p className="potatoCook">Cook methods: {onePotato.cook_method}</p>
           </li>
         )
       })// end of potatoes.map
@@ -45,7 +48,7 @@ export default class DisplayData extends Component {
   return (
     <div>
       <div>We will display data here.</div>
-      <ul>
+      <ul id="potatoListUL">
       {potatoName}
       </ul>
     </div>
