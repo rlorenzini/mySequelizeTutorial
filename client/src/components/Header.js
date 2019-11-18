@@ -11,8 +11,6 @@ export default class Header extends Component {
     localStorage.removeItem('jsonwebtoken')
     localStorage.removeItem('userid')
     this.props.onLogout()
-    console.log(this.props)
-    // this.props.history.push('/')
   }
 
   render(){
