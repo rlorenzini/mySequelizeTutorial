@@ -3,9 +3,6 @@ import { NavLink } from 'react-router-dom';
 import './styling/header.css';
 
 export default class Header extends Component {
-  constructor(props) {
-    super(props)
-  }
 
   //when logging out, remove jwt with user's info
   //run logout action from react redux
