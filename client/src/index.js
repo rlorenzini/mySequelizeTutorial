@@ -4,7 +4,7 @@ import './index.css';
 //=====================COMPONENTS======================
 import App from './App';
 import BaseLayout from './components/BaseLayout';
-import {Dashboard} from './components/userComponents/Dashboard';
+import Dashboard from './components/userComponents/Dashboard';
 import DisplayData from './components/DisplayData';
 import Register from './components/Register';
 import Login from './components/Login';
