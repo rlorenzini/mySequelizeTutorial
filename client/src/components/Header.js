@@ -10,7 +10,7 @@ export default class Header extends Component {
   handleLogoutClick = () => {
     localStorage.removeItem('jsonwebtoken')
     localStorage.removeItem('userid')
-    this.props.onLogout()
+    this.props.onLogout() //check mapDispatchToProps in BaseLayout 
   }
 
   render(){

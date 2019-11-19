@@ -43,7 +43,7 @@ class Login extends Component {
           localStorage.setItem('userid', userid)
           localStorage.setItem('jsonwebtoken', token)
 
-          this.props.onAuthenticated(username, token)
+          this.props.onAuthenticated(username, token) //check mapDispatchToProps
           this.props.history.push('/dashboard')
 
           setAuthenticationHeader(token)
@@ -85,7 +85,7 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    uname: state.username
+    username: state.username
   }
 };
 

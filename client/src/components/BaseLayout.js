@@ -11,7 +11,8 @@ class BaseLayout extends Component {
       <Header
       onLogout={this.props.onLogout}
       isAuthenticated={this.props.isAuthenticated}
-      history={this.props.history}/>
+      history={this.props.history}
+      />
       { this.props.children }
     </div>
   )};
