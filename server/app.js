@@ -16,10 +16,6 @@ app.use(cors());
 
 //====================DISPLAYING POTATOES=======================
 app.get('/displayData', (req,res) => {
-  // models.potatoes.findAll().then((result) => {
-  //   for (i = 0; i < result.length; i ++) {
-  //   console.log(result[i].name)}
-  // })
   models.potatoes.findAll().then((result) => {
     res.json({result:result})
   })
@@ -97,6 +93,9 @@ app.post('/login', (req,res) => {
 app.get('/username', tools.authenticate, (req, res) => {
   res.send(currentUser[currentUser.length - 1])
 })
+
+//====================ASSOCIATIONS BETWEEN POTATOES AND USERS =================
+
 
 //====================QUERYING OUR DATA========================================
 //models.Table.<insert_here>({})
