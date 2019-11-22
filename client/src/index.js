@@ -21,7 +21,7 @@ import userReducer from './stores/reducers/reducer';
 //=====================OTHER===========================
 import * as serviceWorker from './serviceWorker';
 
-//allReducers is the combined reducer
+//allReducers is the combined reducer 
 
 const store = createStore(
   userReducer,
@@ -29,7 +29,7 @@ const store = createStore(
     applyMiddleware(thunk),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
-); //remove or disable redux devtools extension when in production 
+); //remove or disable redux devtools extension when in production
 
 setAuthenticationHeader(localStorage.getItem('jsonwebtoken'));
 
