@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -7,17 +8,24 @@ class Dashboard extends Component {
     let userid= localStorage.getItem('userid')
     this.state = {
       userid: userid,
-      username: this.props.username
     }
   }
 
   render() {
     console.log(this)
+
     return (
       <div>
-        <h1>Welcome, {this.state.username}!</h1>
+        <h1>Welcome, {this.props.user}!</h1>
       </div>
     )
   }
 }
-export default Dashboard;
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.username
+  }
+}
+
+export default connect(mapStateToProps)(Dashboard);

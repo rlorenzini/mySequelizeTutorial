@@ -1,6 +1,8 @@
 import axios from 'axios';
 //npm install axios
 
+//creates authentication for userComponents and requireAuthentication HOC
+
 export function setAuthenticationHeader(token) {
 
   // set the token in the header

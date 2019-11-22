@@ -1,10 +1,12 @@
 const initialState = {
   isAuthenticated: false,
-  username: '',
+  username: 'user',
 };
-//we want Redux to watch for changes in authentication status and which user is active
 
-const reducer = (state = initialState, action) => {
+//we want Redux to watch for changes in authentication status and which user is active
+//this one reducer has two actions, ON_AUTH and LOGOUT
+
+export default (state = initialState, action) => {
   //Redux actions uses switch cases to change the state in the Redux stores
   switch (action.type) {
     case 'ON_AUTH':
@@ -17,7 +19,7 @@ const reducer = (state = initialState, action) => {
       }
     case 'LOGOUT':
     //LOGOUT sets authentication to false and username to ''
-    //is used as onLogout() but is not considered a function (cannot attach promise)
+    //is not considered a function (cannot attach promise)
       return {
         ...state,
         isAuthenticated: false,
@@ -26,4 +28,3 @@ const reducer = (state = initialState, action) => {
     default: return state
   };
 };
-export default reducer
