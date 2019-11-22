@@ -43,7 +43,7 @@ class Login extends Component {
           localStorage.setItem('userid', userid)
           localStorage.setItem('jsonwebtoken', token)
 
-          this.props.onAuthenticated(username, token) //check mapDispatchToProps
+          this.props.onAuthenticated(token, username) //check mapDispatchToProps
           this.props.history.push('/dashboard')
 
           setAuthenticationHeader(token)
@@ -83,16 +83,18 @@ class Login extends Component {
   };
 };
 
+//passing state.username to redux reducer.js
 const mapStateToProps = (state) => {
   return {
     username: state.username
   }
 };
 
+//our onAuthenticated function is the ON_AUTH action from redux reducer.js
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAuthenticated: (username, token) => dispatch({
-      type: 'ON_AUTH', username: username, token: token
+    onAuthenticated: (token, username) => dispatch({
+      type: 'ON_AUTH', token, username
     })
   }
 };

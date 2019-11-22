@@ -11,17 +11,25 @@ import Login from './components/Login';
 //=====================NAVIGATION======================
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 //=====================REACT REDUX=====================
-import { createStore } from 'redux';
+import thunk from 'redux-thunk';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
-import reducer from './components/stores/reducers/reducer';
 import { setAuthenticationHeader } from './components/utilities/authentication';
 import requireAuth from './components/utilities/requireAuthentication';
+//=====================REDUCERS AND STORES=============
+import userReducer from './stores/reducers/reducer';
 //=====================OTHER===========================
 import * as serviceWorker from './serviceWorker';
 
-// const store = createStore(reducer);
+//allReducers is the combined reducer 
 
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const store = createStore(
+  userReducer,
+  compose(
+    applyMiddleware(thunk),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
+); //remove or disable redux devtools extension when in production
 
 setAuthenticationHeader(localStorage.getItem('jsonwebtoken'));
 
@@ -31,7 +39,7 @@ ReactDOM.render(
       <BaseLayout>
         <Switch>
           <Route path='/' exact component={App} />
-          <Route path='/dashboard' component={requireAuth(Dashboard)} />
+          <Route path='/dashboard' exact component={requireAuth(Dashboard)} />
           <Route path='/displayData' component={DisplayData} />
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
