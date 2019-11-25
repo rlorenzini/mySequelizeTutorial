@@ -21,8 +21,6 @@ import userReducer from './stores/reducers/reducer';
 //=====================OTHER===========================
 import * as serviceWorker from './serviceWorker';
 
-//allReducers is the combined reducer 
-
 const store = createStore(
   userReducer,
   compose(
