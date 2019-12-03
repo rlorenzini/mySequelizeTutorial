@@ -615,7 +615,7 @@ Going back to our console log in our developer tools, we see each index is an ob
 
 <img height="400px" src="photos/appDisplayPotatoes.png" />
 
-Our final result isn't pretty, since we really haven't done much styling, but we have successfully taken our potatoes from our database and displayed them for our users.
+Our final result isn't pretty, since we really haven't done much styling, but we have successfully taken our potatoes from our database and displayed them for our users. In the next section, we will be combining **sorting** and **associations** by creating a **favorites list**. 
 
 
 <a name="associations"><img height="200px" src="photos/and-so-it-begins.png"/></a>
