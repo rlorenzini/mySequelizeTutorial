@@ -20,6 +20,7 @@ const Contributors =
 | [SQLZ#FORMS](#forms-and-posts) | FORMS AND POSTS |
 | [SQLZ#SEEDS](#using-seeders) | USING SEEDERS |
 | [SQLZ#DISP](#display-data) | DISPLAYING DATA FROM DATABASE |
+| [SQLZ#ASSOC](#associations) | ASSOCIATING TABLES AND DATA |
 
 <br/>
 <br/>
@@ -615,6 +616,38 @@ Going back to our console log in our developer tools, we see each index is an ob
 <img height="400px" src="photos/appDisplayPotatoes.png" />
 
 Our final result isn't pretty, since we really haven't done much styling, but we have successfully taken our potatoes from our database and displayed them for our users.
+
+
+<a name="associations"><img height="200px" src="photos/and-so-it-begins.png"/></a>
+# ASSOCIATIONS
+**The bread and butter of any database** 
+<a href="#top">`back to top`</a>
+
+**Associations** are the backbone of all data. You can collect data. You can display data. You can manipulate data. These are very important, but data doesn't exist to just sit in one spot without reference to anything else. There are endless combinations to explain associations and their importance, so let's look at a few.
+
+1. Bryan Abreu is a **pitcher** for the **Houston Astros**, which is a **Major League Baseball** team. Bryan is *associated* with being a pitcher, being *a pitcher for* the Astros, and the Astros are *associated* with baseball.
+
+2. Daniel Radcliffe is an **actor** who is known for **his role** as **Harry Potter** in the **Harry Potter movie series**. Daniel is *associated for his profession* as an actor, is *associated with his role* as Harry Potter, and Harry Potter is *associated* with being a *movie*, being a *movie series*, being a *movie series adapted from a book series*, and for being in the *fantasy genre*.
+
+3. Rose Gold is a **waxy potato**. Rose Gold is *associated* with being a *type of potato*, a *vegetable*, and for being a *waxy potato*.
+
+I'm sure most people can think of a dozen associations off the top of their head. Your database is **very limited** if you do not use associations. Without associations, how would you look up car parts, store a favorites list, have a friends list, or even a comment section in a blog? **NOTE:** it is *possible* but *not practical* to do this without associations. 
+
+## Types of Associations 
+
+## One to One Associations
+
+**belongsTo, hasOne** 
+
+
+
+
+## One to Many Associations 
+
+**hasMany, belongsToMany**
+
+
+
 
 
 # FUTURE UPDATES
