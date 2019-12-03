@@ -1,0 +1,52 @@
+li {
+  list-style: none;
+}
+
+#potatoListUL {
+  display: grid;
+  grid-template-columns: 20rem 20rem 20rem;
+  grid-row-gap: 5px;
+  grid-column-gap: 10px;
+}
+
+.potatoListLI {
+  border-top: 2px solid blue;
+  border-right: 2px solid blue;
+}
+
+.potatoStarch {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.potatoCook {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.firstRowPotatoDisplay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.potatoName {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+
+.favoriteButtonActive {
+  height: 1.5rem;
+  color: blue;
+  border: 2px solid red;
+  background-color: black;
+
+}
+
+.favoriteButton {
+  height: 1.5rem;
+  color: blue;
+  border: 2px solid blue;
+  background-color: black;
+}

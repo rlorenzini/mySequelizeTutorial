@@ -95,7 +95,15 @@ app.get('/username', tools.authenticate, (req, res) => {
 })
 
 //====================ASSOCIATIONS BETWEEN POTATOES AND USERS =================
+app.post('/userFavoritePotato', (req,res) => {
+  let userid = req.body.userid
+  let potatoid = Number(req.body.potatoid)
 
+  models.FavoritePotatoes.create({
+    userid: userid,
+    potatoid: potatoid
+  }); //end of favoritepotatoes build
+}); //end of post
 
 //====================QUERYING OUR DATA========================================
 //models.Table.<insert_here>({})
