@@ -621,6 +621,7 @@ Our final result isn't pretty, since we really haven't done much styling, but we
 <a name="associations"><img height="200px" src="photos/and-so-it-begins.png"/></a>
 # ASSOCIATIONS
 **The bread and butter of any database** 
+
 <a href="#top">`back to top`</a>
 
 **Associations** are the backbone of all data. You can collect data. You can display data. You can manipulate data. These are very important, but data doesn't exist to just sit in one spot without reference to anything else. There are endless combinations to explain associations and their importance, so let's look at a few.
