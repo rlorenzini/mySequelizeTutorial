@@ -21,6 +21,8 @@ const Contributors =
 | [SQLZ#SEEDS](#using-seeders) | USING SEEDERS |
 | [SQLZ#DISP](#display-data) | DISPLAYING DATA FROM DATABASE |
 | [SQLZ#ASSOC](#associations) | ASSOCIATING TABLES AND DATA |
+| [SQLZ#OTOM](#one-to-many) | ONE TO MANY ASSOCIATIONS |
+|[SQLZ#OTOO](#one-to-one) | ONE TO ONE ASSOCIATIONS |
 
 <br/>
 <br/>
@@ -636,18 +638,21 @@ I'm sure most people can think of a dozen associations off the top of their head
 
 ## Types of Associations 
 
-## One to One Associations
-
-**belongsTo, hasOne** 
-
-
-
+<a name="one-to-many"></a>
 
 ## One to Many Associations 
 
+<a href="#top">`back to top`</a>
+
 **hasMany, belongsToMany**
 
+<a name="one-to-one"></a>
 
+## One to One Associations
+
+<a href="#top">`back to top`</a>
+
+**belongsTo, hasOne** 
 
 
 
