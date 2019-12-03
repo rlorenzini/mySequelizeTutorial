@@ -7,6 +7,7 @@ class App extends Component {
   return (
     <div className='App'>
       <div>This will be the home page.</div>
+      <div>Login to access the full power of this potato app!</div>
     </div>
   )};
 }

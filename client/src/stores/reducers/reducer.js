@@ -1,6 +1,7 @@
 const initialState = {
   isAuthenticated: false,
   username: 'user',
+  userid: 'userid'
 };
 
 //we want Redux to watch for changes in authentication status and which user is active
@@ -15,7 +16,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isAuthenticated: action.token != null ? true : false,
-        username: action.username
+        username: action.username,
+        userid: action.userid
       }
     case 'LOGOUT':
     //LOGOUT sets authentication to false and username to ''
@@ -23,7 +25,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isAuthenticated: false,
-        username: ''
+        username: '',
+        userid: ''
       }
     default: return state
   };

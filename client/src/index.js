@@ -4,10 +4,12 @@ import './index.css';
 //=====================COMPONENTS======================
 import App from './App';
 import BaseLayout from './components/BaseLayout';
-import Dashboard from './components/userComponents/Dashboard';
 import DisplayData from './components/DisplayData';
 import Register from './components/Register';
 import Login from './components/Login';
+//=====================USER COMPONENTS=================
+import Dashboard from './components/userComponents/Dashboard';
+import UserDisplayData from './components/userComponents/UserDisplayData';
 //=====================NAVIGATION======================
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 //=====================REACT REDUX=====================
@@ -39,6 +41,7 @@ ReactDOM.render(
           <Route path='/' exact component={App} />
           <Route path='/dashboard' exact component={requireAuth(Dashboard)} />
           <Route path='/displayData' component={DisplayData} />
+          <Route path='/userDisplayData' exact component={requireAuth(UserDisplayData)} />
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
         </Switch>

@@ -10,7 +10,7 @@ export default class Header extends Component {
   handleLogoutClick = () => {
     localStorage.removeItem('jsonwebtoken')
     localStorage.removeItem('userid')
-    this.props.onLogout() //check mapDispatchToProps in BaseLayout 
+    this.props.onLogout() //check mapDispatchToProps in BaseLayout
   }
 
   render(){
@@ -21,7 +21,9 @@ export default class Header extends Component {
       <NavLink to='/dashboard'>Dashboard</NavLink>
       : <NavLink to='/'>Home</NavLink>}
 
-    <NavLink to='/displayData'>DisplayData</NavLink>
+    {this.props.isAuthenticated ?
+      <NavLink to='/userDisplayData'>DisplayData</NavLink>
+      : <NavLink to='/displayData'>DisplayData</NavLink>}
 
     {this.props.isAuthenticated ? null :
       <NavLink to='/Register'>Register</NavLink>}

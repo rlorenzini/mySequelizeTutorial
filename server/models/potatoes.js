@@ -6,7 +6,10 @@ module.exports = (sequelize, DataTypes) => {
     cook_method: DataTypes.STRING
   }, {});
   potatoes.associate = function(models) {
-    // associations can be defined here
+    potatoes.hasMany(models.FavoritePotatoes, {
+      as: 'FavoritePotatoes',
+      foreignKey: 'potatoid'
+    })
   };
   return potatoes;
 };
