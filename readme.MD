@@ -644,7 +644,12 @@ I'm sure most people can think of a dozen associations off the top of their head
 
 <a href="#top">`back to top`</a>
 
-**hasMany, belongsToMany**
+### hasMany, belongsToMany
+
+**hasMany and belongsToMany** are the two ways to do a **One to Many Association**, but what does this even mean? When we do an One to Many Association, we are declaring, "this one **item** can refer to **multiple things**." For instance, looking at our potato database we can see a *potato* can **refer** to many different *types* of potatoes. As with our previous examples, a player can be associated with one team, or if they have a long career multiple teams. Also, one actor or actress can be associated with many films, and one film can be associated with many actors and actresses.
+
+**NOTE:** As stated previously, I am using **React and Javascript** on my frontend and **Node, Express, and Javascript** on my backend. In order to do more complex things with my frontend, such as protecting routes with authentication, using Higher Order Components, and storing global state, I am now using **Redux and React Redux**. This is where knowing the language you are coding in is important, since **Sequelize** cannot substitute frontend knowledge. 
+
 
 <a name="one-to-one"></a>
 
@@ -652,7 +657,7 @@ I'm sure most people can think of a dozen associations off the top of their head
 
 <a href="#top">`back to top`</a>
 
-**belongsTo, hasOne** 
+### belongsTo, hasOne
 
 
 
