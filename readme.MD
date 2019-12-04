@@ -620,8 +620,8 @@ Going back to our console log in our developer tools, we see each index is an ob
 Our final result isn't pretty, since we really haven't done much styling, but we have successfully taken our potatoes from our database and displayed them for our users. In the next section, we will be combining **sorting** and **associations** by creating a **favorites list**.
 
 
-<a name="associations"><img height="400px" src="photos/and-so-it-begins.png"/></a>
-# ASSOCIATIONS
+<a name="associations"><img height="400px" src="photos/associations.png"/></a>
+
 **The bread and butter of any database**
 
 <a href="#top">`back to top`</a>
@@ -642,9 +642,8 @@ This is just an example, but let's look at associations in use.
 
 ## Types of Associations
 
-<a name="one-to-many"></a>
+<a name="one-to-many"><img height="400px" src="photos/one-to-many.png"/></a>
 
-## One to Many Associations
 
 <a href="#top">`back to top`</a>
 
@@ -785,9 +784,8 @@ Whichever potato we click to favorite sends **req.body.userid** and **req.body.p
 
 Every single favorite is its own entry in our database. Our user, who's **unique ID** is 2, has favorited **three separate potatoes**. **NOTE:** We cannot currently check if an entry already exists, since we have not written the code to do such. Therefore, a user can currently favorite the same potato multiple times. Try thinking of different ways to protect our user from making this mistake and how you would develop it in your code.
 
-<a name="one-to-one"></a>
+<a name="one-to-one"><img height="400px" src="photos/one-to-one.png"/></a>
 
-## One to One Associations
 
 <a href="#top">`back to top`</a>
 
