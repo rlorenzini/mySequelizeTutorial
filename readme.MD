@@ -620,7 +620,7 @@ Going back to our console log in our developer tools, we see each index is an ob
 Our final result isn't pretty, since we really haven't done much styling, but we have successfully taken our potatoes from our database and displayed them for our users. In the next section, we will be combining **sorting** and **associations** by creating a **favorites list**. 
 
 
-<a name="associations"><img height="200px" src="photos/and-so-it-begins.png"/></a>
+<a name="associations"><img height="400px" src="photos/and-so-it-begins.png"/></a>
 # ASSOCIATIONS
 **The bread and butter of any database** 
 
@@ -666,7 +666,7 @@ sequelize migration:create --name add-fav-potato-association-table
 
 Inside of our new migration, we are going to build our new table **improperly**. I am doing this on purpose, so we can see potential issues and how to fix them. Before scrolling past the picture to look at the solution, see if you can find the error yourself. If you cannot, do not fret! I will be explaining what I did wrong **and** how to fix it. With this migration, I want to build a **favorite potatoes** table with the **userid** and **potatoid**. I will explain why further down, but for now try and find the error.
 
-<img height="200px" src="photos/fav-potato-migration.png" />
+<img height="400px" src="photos/fav-potato-migration.png" />
 
 ```console
 sequelize db:migrate
@@ -674,7 +674,7 @@ sequelize db:migrate
 
 Do not forget we must migrate for our migration to be applied. This will not fail to run because the code itself is fine. Also, remember that Sequelize does not build our models for us after our initial build. We will have to add our own favorite potatoes model. 
 
-<img height="300px" src="photos/fav-potato-model.png" /> 
+<img height="400px" src="photos/fav-potato-model.png" /> 
 
 The part I intentially built wrong was not including **createdAt and updatedAt** in my migration. The error message, when you try to build an entry in this table, will say something about one or both of these **not existing**. Our model itself is not wrong and will work properly, because Sequelize **does not require** us to have createdAt and updatedAt inside of our model, but they **must exist inside our table on our database**. The only way for us to get them to the database is via a migration. **If you do this inside your databse directly and not via migrations, Sequelize will not build properly if you pull your project at a later time.** Doing each step is very important! The only thing Sequelize automatically creates for **every** migration we create is the **ID**, and **only if** we are running the createTable function. Even though Sequelize automatically tracks the date of each row's creation and last update, we still must build those columns inside our migration.
 
@@ -684,7 +684,7 @@ In order to fix this mistake, which is very easy to do when you run in autopilot
 sequelize migration:create --name add-dates-to-favorite-potatoes
 ```
 
-<img height="300px" src="photos/fav-potato-add-columns.png" />
+<img height="400px" src="photos/fav-potato-add-columns.png" />
 
 ```console
 sequelize db:migrate
@@ -702,9 +702,9 @@ By creating a new table which holds both the **userid** and **potatoid**, we onl
 
 There are a lot of steps, which makes missing one or two very easy, but they are all important. Updating our **user and potato models** is one of those steps. We want to tell Sequelize, "this user/potato will be associated with many favorites". **NOTE:** Remember, I did not use typical naming conventions. Also, Users is capitalized which potatoes is not. This is to show new users of Sequelize naming conventions are **NOT** mandatory, even though they are recommended. **Use the naming convention your job demands**, or whichever naming convention you prefer. 
 
-<img height="200px" src="photos/users-association.png" />
+<img height="400px" src="photos/users-association.png" />
 
-<img height="200px" src="photos/potatoes-association.png" />
+<img height="400px" src="photos/potatoes-association.png" />
 
 ```JavaScript
 CurrentTable.hasMany(models.AssociatedModel, {
@@ -723,13 +723,13 @@ This is a lot to digest, so if you are getting lost take a five minute break and
 
 Let us look at how we would create a new entry in our favorites tables. Our user is logged into our application and is interested in our selection of potatoes. They wish to save a few potatoes to their favorites. As with most any website, this is most commonly a **single click**. I have built our **displayData.js** file again, but this time it is **protected by authentication**. When you are not logged in, you simply see the potato data. When you are logged in, you now see an option to **favorite a potato**. I have named this file **userDisplayData.js**.
 
-<img height="300px" src="photos/user-display-data.png" />
+<img height="400px" src="photos/user-display-data.png" />
 
 Our UI looks almost exactly the same, and the *mostly* the same as well. We only need to add a new **post fetch request and button**. 
 
-<img height="200px" src="photos/add-fav-button.png" />
+<img height="400px" src="photos/add-fav-button.png" />
 
-<img height="200px" src="photos/post-fav-potato.png" />
+<img height="400px" src="photos/post-fav-potato.png" />
 
 ```JavaScript
 <button className='favoriteButton'
@@ -762,7 +762,7 @@ As you can see, in order to store a new **favorite potato** we are only sending 
 
 Let's check out what our backend is doing with our new favorites. 
 
-<img height="200px" src="photos/create-new-fav-potato.png" />
+<img height="400px" src="photos/create-new-fav-potato.png" />
 
 Associations sound and look intimidating, but so far we have only added a few lines of code between our frontend and backend. The backend checks for the **body**, which we sent in our **addPotatoToFavorites** function. As we have done before, we are going to build a new entry in a table. For learning purposes, instead of using **build** I am going to use **create**. The only difference is with **build** you must **save()** your model, whereas **create** runs **save** automatically. 
 
