@@ -626,7 +626,9 @@ Our final result isn't pretty, since we really haven't done much styling, but we
 
 <a href="#top">`back to top`</a>
 
-**Associations** are the backbone of all data. You can collect data. You can display data. You can manipulate data. These are very important, but data doesn't exist to just sit in one spot without reference to anything else. There are endless combinations to explain associations and their importance, so let's look at a few.
+**Associations** are the backbone of all data. You can collect data. You can display data. You can manipulate data. These are very important, but data doesn't exist to just sit in one spot without reference to anything else. There are endless combinations to explain associations and their importance, as we will see below.
+
+**How do I know *WHEN* I need an association and *WHY* I need an association?** 
 
 1. Bryan Abreu is a **pitcher** for the **Houston Astros**, which is a **Major League Baseball** team. Bryan is *associated* with being a pitcher, being *a pitcher for* the Astros, and the Astros are *associated* with baseball.
 
@@ -634,7 +636,9 @@ Our final result isn't pretty, since we really haven't done much styling, but we
 
 3. Rose Gold is a **waxy potato**. Rose Gold is *associated* with being a *type of potato*, a *vegetable*, and for being a *waxy potato*.
 
-I'm sure most people can think of a dozen associations off the top of their head. Your database is **very limited** if you do not use associations. Without associations, how would you look up car parts, store a favorites list, have a friends list, or even a comment section in a blog? **NOTE:** it is *possible* but *not practical* to do this without associations. 
+I'm sure most people can think of a dozen associations off the top of their head. Your database is **very limited** if you do not use associations. Without associations, how would you look up car parts, store a favorites list, have a friends list, or even a comment section in a blog? **NOTE:** it is *possible* but *not practical* to do this without associations. You database will quickly get bloated due to repetitive data. For example, a car dealership would have to build every single car from scratch. If there are two 2015 Toyota Corollas which are exactly identical *except for their VIN number*, you would have to *build both cars from scratch*. With associations, you can say, "This Corolla is associated with these parts, but has its own unique VIN number." Now, we have reduced the amount of data we have to store **by half**. There are millions of cars in the USA alone, all of which have unique VIN numbers. By using associations, we only have to list each car part *once* and tell each car to *associate* with those specific parts. Otherwise, we would be building *millions* of cars in our database.
+
+This is just an example, but let's look at associations in use.
 
 ## Types of Associations 
 
@@ -646,10 +650,55 @@ I'm sure most people can think of a dozen associations off the top of their head
 
 ### hasMany, belongsToMany
 
-**hasMany and belongsToMany** are the two ways to do a **One to Many Association**, but what does this even mean? When we do an One to Many Association, we are declaring, "this one **item** can refer to **multiple things**." For instance, looking at our potato database we can see a *potato* can **refer** to many different *types* of potatoes. As with our previous examples, a player can be associated with one team, or if they have a long career multiple teams. Also, one actor or actress can be associated with many films, and one film can be associated with many actors and actresses.
+**hasMany and belongsToMany** are the two ways to do a **One to Many Association**, but what does this even mean? When we do an One to Many Association, we are declaring, "this one **item** can refer to **multiple things**." For instance, looking at our potato database we can see a *potato* can **refer to many** different *types* of potatoes. As with our previous examples, a player can be associated with one team, or if they have a long career multiple teams. Also, one actor or actress can be associated with many films, and one film can be associated with many actors and actresses.
 
 **NOTE:** As stated previously, I am using **React and Javascript** on my frontend and **Node, Express, and Javascript** on my backend. In order to do more complex things with my frontend, such as protecting routes with authentication, using Higher Order Components, and storing global state, I am now using **Redux and React Redux**. This is where knowing the language you are coding in is important, since **Sequelize** cannot substitute frontend knowledge. 
 
+### hasMany 
+
+**hasMany** is the first association we will be working with, because reasons. Do you want to know my reasoning? Well, my reasoning **has many** reasons. First, I find it easy to work with, especially as a newcomer. Second, in **MY OPINION** it has the most utility. Third, it's the one I have used the most and know the best.
+
+As always, we must start with the CLI to create a new migration. Remember, Sequelize is built on migrations and stores a log of each migration it ran and when. Skipping this step will not immediately destroy your app, but if you ever have to relaunch or rebuild your app it will fail to build your Sequelize properly. 
+
+```console
+sequelize migration:create --name add-fav-potato-association-table
+```
+
+Inside of our new migration, we are going to build our new table **improperly**. I am doing this on purpose, so we can see potential issues and how to fix them. Before scrolling past the picture to look at the solution, see if you can find the error yourself. If you cannot, do not fret! I will be explaining what I did wrong **and** how to fix it. With this migration, I want to build a **favorite potatoes** table with the **userid** and **potatoid**. I will explain why further down, but for now try and find the error.
+
+<img height="200px" src="photos/fav-potato-migration.png" />
+
+```console
+sequelize db:migrate
+```
+
+Do not forget we must migrate for our migration to be applied. This will not fail to run because the code itself is fine. Also, remember that Sequelize does not build our models for us after our initial build. We will have to add our own favorite potatoes model. 
+
+<img height="300px" src="photos/fav-potato-model.png" /> 
+
+The part I intentially built wrong was not including **createdAt and updatedAt** in my migration. The error message, when you try to build an entry in this table, will say something about one or both of these **not existing**. Our model itself is not wrong and will work properly, because Sequelize **does not require** us to have createdAt and updatedAt inside of our model, but they **must exist inside our table on our database**. The only way for us to get them to the database is via a migration. **If you do this inside your databse directly and not via migrations, Sequelize will not build properly if you pull your project at a later time.** Doing each step is very important! The only thing Sequelize automatically creates for **every** migration we create is the **ID**, and **only if** we are running the createTable function. Even though Sequelize automatically tracks the date of each row's creation and last update, we still must build those columns inside our migration.
+
+In order to fix this mistake, which is very easy to do when you run in autopilot, we need to run a new migration. 
+
+```console
+sequelize migration:create --name add-dates-to-favorite-potatoes
+```
+
+<img height="300px" src="photos/fav-potato-add-columns.png" />
+
+```console
+sequelize db:migrate
+```
+
+Now our table has both createdAt and updatedAt, meaning Sequelize will now be happy. Since we have to create multiple columns, we must wrap it inside of **Promise.all([])**. Sequelize's migrations can only return **one instance**, which is why we make our one instance **Promise.all([])**. This is how we handle doing multiple things within one migration. Building a table, no matter how many columns it has, is considered one action and returns once. If we were to build two tables within one migration, we would have to use Promise.all([]). 
+
+**Why do we have a new table for our favorites?**
+
+This method aims to resolve a few issues. Associating two tables directly can get quite mess, mostly due to how **DataTypes** work with databases and Sequelize. For instance, the easiest way to associate to an item is based on the **unique ID** of that item. **Only** that item has that ID. As a user, I want to favorite **multiple** potatoes. Can **DataTypes.INTEGER** hold a sequence of numbers? No. **DataTypes.STRING** can, but it is not longer an **INTEGER** which directly associates to a potato's **unique ID**. We would have to create a function to take the **STRING** and split it into multiple **INTEGERS**, and then create a function which uses **findOne** on each **INTEGER** we have. This is extemely cumbersome and will slow down your server immensely!
+
+By creating a new table which holds both the **userid** and **potatoid**, we only have to reference that table and **findAll** where the **userid** matches our current user. Now, we have every **potatoid** which is **ASSOCIATED WITH** our user.
+
+Before I get ahead of myself, let us look at how we would create a new entry in our favorites tables. Our user is logged into our application and is interested in our selection of potatoes. They wish to save a few potatoes to their favorites. As with most any website, this is most commonly a **single click**. I have built our **dataDisplay.js** file again, but this time it is **protected by authentication**. When you are not logged in, you simply see the potato data. When you are logged in, you now see an option to **favorite a potato**. 
 
 <a name="one-to-one"></a>
 
