@@ -727,9 +727,9 @@ Let us look at how we would create a new entry in our favorites tables. Our user
 
 Our UI looks almost exactly the same, and the *mostly* the same as well. We only need to add a new **post fetch request and button**. 
 
-<img height="400px" src="photos/add-fav-button.png" />
+<img height="300px" src="photos/add-fav-button.png" />
 
-<img height="400px" src="photos/post-fav-potato.png" />
+<img height="300px" src="photos/post-fav-potato.png" />
 
 ```JavaScript
 <button className='favoriteButton'
@@ -762,7 +762,7 @@ As you can see, in order to store a new **favorite potato** we are only sending 
 
 Let's check out what our backend is doing with our new favorites. 
 
-<img height="400px" src="photos/create-new-fav-potato.png" />
+<img height="300px" src="photos/create-new-fav-potato.png" />
 
 Associations sound and look intimidating, but so far we have only added a few lines of code between our frontend and backend. The backend checks for the **body**, which we sent in our **addPotatoToFavorites** function. As we have done before, we are going to build a new entry in a table. For learning purposes, instead of using **build** I am going to use **create**. The only difference is with **build** you must **save()** your model, whereas **create** runs **save** automatically. 
 
