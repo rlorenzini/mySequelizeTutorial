@@ -698,7 +698,92 @@ This method aims to resolve a few issues. Associating two tables directly can ge
 
 By creating a new table which holds both the **userid** and **potatoid**, we only have to reference that table and **findAll** where the **userid** matches our current user. Now, we have every **potatoid** which is **ASSOCIATED WITH** our user.
 
-Before I get ahead of myself, let us look at how we would create a new entry in our favorites tables. Our user is logged into our application and is interested in our selection of potatoes. They wish to save a few potatoes to their favorites. As with most any website, this is most commonly a **single click**. I have built our **dataDisplay.js** file again, but this time it is **protected by authentication**. When you are not logged in, you simply see the potato data. When you are logged in, you now see an option to **favorite a potato**. 
+### UPDATE YOUR MODELS WITH ASSOCIATIONS 
+
+There are a lot of steps, which makes missing one or two very easy, but they are all important. Updating our **user and potato models** is one of those steps. We want to tell Sequelize, "this user/potato will be associated with many favorites". **NOTE:** Remember, I did not use typical naming conventions. Also, Users is capitalized which potatoes is not. This is to show new users of Sequelize naming conventions are **NOT** mandatory, even though they are recommended. **Use the naming convention your job demands**, or whichever naming convention you prefer. 
+
+<img height="200px" src="photos/users-association.png" />
+
+<img height="200px" src="photos/potatoes-association.png" />
+
+```JavaScript
+CurrentTable.hasMany(models.AssociatedModel, {
+  as: "AssociatedTable",
+  foreignKey: "AssociatedColumnFromAssociationTable"
+})
+```
+
+For simplicity, I keep variables very similar. My favorites table has a userid, and my user table has an id. This can get confusing, so I wrote out how I understand the Sequelize associations model. We are telling our **current table**, which is either our **users or potatoes table**, it is going to **have many associations**. These associations are going to be with another **model**, which I labeled **AssociatedModel**. In our example, this is our **FavoritePotaotes** model. **hasMany** takes in options are the model, with **as: and foreignKey:** being the two options I use most often. 
+
+**as:** checked our database for the **Associated Table** we are associating with. Since I like to keep variables similar if they represent the same thing, **my model and table are both called FavoritePotatoes**. This is purely because named them as such. Our **foreignKey:** is looking inside of our **Associated Table** for a specific **column**. This column has been called **userid**, because our **FavoritePotatoes** needs to know the **ID of the user** that has favorited a specific potato. 
+
+This is a lot to digest, so if you are getting lost take a five minute break and come back.
+
+### Frontend
+
+Let us look at how we would create a new entry in our favorites tables. Our user is logged into our application and is interested in our selection of potatoes. They wish to save a few potatoes to their favorites. As with most any website, this is most commonly a **single click**. I have built our **displayData.js** file again, but this time it is **protected by authentication**. When you are not logged in, you simply see the potato data. When you are logged in, you now see an option to **favorite a potato**. I have named this file **userDisplayData.js**.
+
+<img height="300px" src="photos/user-display-data.png" />
+
+Our UI looks almost exactly the same, and the *mostly* the same as well. We only need to add a new **post fetch request and button**. 
+
+<img height="200px" src="photos/add-fav-button.png" />
+
+<img height="200px" src="photos/post-fav-potato.png" />
+
+```JavaScript
+<button className='favoriteButton'
+  id={onePotato.id}
+  value="false"
+  onClick={this.addPotatoToFavorites}>Add To Favorites
+</button>
+```
+
+Our new button has a few properties. For now, ignore the **VALUE="false"** property. This is purely for styling test purposes and is **not used** in relation to Sequelize. What we need to focus on is our **onClick** property, which calls the **addPotatoToFavorites** function. **addPotatoToFavorites** creates a **post fetch request** which is sending a **JSON file**. This JSON file includes a **body** with two keys; **userid and potatoid**. This function uses **React Redux** to send the **userid** to our backend. You can use local storage to store the **userid**, but I chose to use **React Redux** moving forward. **e.target.id** is used to take the **potatoid** from the button, which is why our button has a value **id={onePotato.id}**. Since each button is unique and each have a unique event instance, we can directly pull a single ID from the button which is triggering the onclick event. 
+
+```JavaScript
+addPotatoToFavorites=(e)=>{
+  fetch('http://localhost:8080/userFavoritePotato', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      userid: this.props.userid,
+      potatoid: e.target.id
+    })
+  })
+}
+```
+
+As you can see, in order to store a new **favorite potato** we are only sending **TWO INTEGERS** to our backend. If we did not create our favorites table and did not use associations, we would have to rebuild our **user** with the entirety of **every favorited potato**. Maybe you could have a **DataTypes.STRING** which you split and then append a new string to an array before combining it back into a string and modifying our data entry. What data would you include in your new column? Even if you only store the name, you'll have to split your string and run a **findOne** for each potato name. Again, this is just not efficient and can get confusing very fast.
+
+### Backend
+
+Let's check out what our backend is doing with our new favorites. 
+
+<img height="200px" src="photos/create-new-fav-potato.png" />
+
+Associations sound and look intimidating, but so far we have only added a few lines of code between our frontend and backend. The backend checks for the **body**, which we sent in our **addPotatoToFavorites** function. As we have done before, we are going to build a new entry in a table. For learning purposes, instead of using **build** I am going to use **create**. The only difference is with **build** you must **save()** your model, whereas **create** runs **save** automatically. 
+
+```JavaScript
+app.post('/userFavoritePotato', (req,res) => {
+  let userid = req.body.userid
+  let potatoid = Number(req.body.potatoid)
+
+  models.FavoritePotatoes.create({
+    userid: userid,
+    potatoid: potatoid
+  });
+});
+
+```
+
+Whichever potato we click to favorite sends **req.body.userid** and **req.body.potatoid** to our backend. Our backend takes those values and sends them to our **FavoritePotatoes** table. **NOTE:** This is where you would experience the error I explained earlier if you build your migration improperly. To make sure everything worked properly, let us check our database with Postico.
+
+<img height="400px" src="photos/postico-fav-table.png" />
+
+Every single favorite is its own entry in our database. Our user, who's **unique ID** is 2, has favorited **three separate potatoes**. **NOTE:** We cannot currently check if an entry already exists, since we have not written the code to do such. Therefore, a user can currently favorite the same potato multiple times. Try thinking of different ways to protect our user from making this mistake and how you would develop it in your code. 
 
 <a name="one-to-one"></a>
 
