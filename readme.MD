@@ -657,7 +657,7 @@ This is just an example, but let's look at associations in use.
 
 **hasMany** is the first association we will be working with, because reasons. Do you want to know my reasoning? Well, my reasoning **has many** reasons. First, I find it easy to work with, especially as a newcomer. Second, in **MY OPINION** it has the most utility. Third, it's the one I have used the most and know the best.
 
-As always, we must start with the CLI to create a new migration. Remember, Sequelize is built on migrations and stores a log of each migration it ran and when. Skipping this step will not immediately destroy your app, but if you ever have to relaunch or rebuild your app it will fail to build your Sequelize properly.
+As always, we must start with the CLI (command-line interface) to create a new migration. Remember, Sequelize is built on migrations and stores a log of each migration it ran and when. Skipping this step will not immediately destroy your app, but if you ever have to relaunch or rebuild your app it will fail to build your Sequelize properly.
 
 ```console
 sequelize migration:create --name add-fav-potato-association-table
