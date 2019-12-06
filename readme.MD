@@ -791,6 +791,11 @@ Every single favorite is its own entry in our database. Our user, who's **unique
 
 ### belongsTo, hasOne
 
+<a name="many-to-many"></a>
+# Many to Many Associations
+
+### hasMany
+
 
 
 # FUTURE UPDATES
