@@ -23,6 +23,7 @@ const Contributors =
 | [SQLZ#ASSOC](#associations) | ASSOCIATING TABLES AND DATA |
 | [SQLZ#OTOM](#one-to-many) | ONE TO MANY ASSOCIATIONS |
 | [SQLZ#OTOO](#one-to-one) | ONE TO ONE ASSOCIATIONS |
+| [SQLZ#MTOM](#many-to-many) | MANY TO MANY ASSOCIATIONS |
 
 <br/>
 <br/>
