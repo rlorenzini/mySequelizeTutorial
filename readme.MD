@@ -819,3 +819,5 @@ destroy({ where: {} }) destroys all data in a table
 destroy({ where: {}, truncate: true })
 
 build({ attribute: desiredValue }) needs the required attributes at minimum
+
+modify entries
