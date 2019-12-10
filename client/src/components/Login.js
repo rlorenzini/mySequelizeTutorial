@@ -41,7 +41,7 @@ class Login extends Component {
           let userid = json.id
           let firstName = json.firstName
           let lastName = json.lastName
-          let email = json.email
+          // let email = json.email
 
           localStorage.setItem('userid', userid)
           localStorage.setItem('jsonwebtoken', token)
