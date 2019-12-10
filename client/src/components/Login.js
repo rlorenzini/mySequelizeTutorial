@@ -39,11 +39,19 @@ class Login extends Component {
           let token = json.token
           let username = json.username
           let userid = json.id
+          let firstName = json.firstName
+          let lastName = json.lastName
+          let email = json.email
 
           localStorage.setItem('userid', userid)
           localStorage.setItem('jsonwebtoken', token)
 
-          this.props.onAuthenticated(token, username, userid) //check mapDispatchToProps
+          this.props.onAuthenticated(
+            token,
+            username,
+            userid,
+            firstName,
+            lastName) //check mapDispatchToProps
           this.props.history.push('/dashboard')
 
           setAuthenticationHeader(token)
@@ -96,8 +104,8 @@ const mapStateToProps = (state) => {
 //our onAuthenticated function is the ON_AUTH action from redux reducer.js
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAuthenticated: (token, username, userid) => dispatch({
-      type: 'ON_AUTH', token, username, userid
+    onAuthenticated: (token, username, userid, firstName, lastName) => dispatch({
+      type: 'ON_AUTH', token, username, userid, firstName, lastName
     })
   }
 };

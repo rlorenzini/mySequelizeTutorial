@@ -1,3 +1,7 @@
+.hidden {
+  display: none;
+}
+
 li {
   list-style: none;
 }
@@ -49,4 +53,26 @@ li {
   color: blue;
   border: 2px solid blue;
   background-color: black;
+}
+
+.basicButton {
+  height: 2rem;
+  color: white;
+  border: 2px solid white;
+  background-color: black;
+  border-radius: 20px;
+}
+
+.updateUserInformation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.updateUserInformationInput {
+  height: 1.5rem;
+  margin: 1px;
+  color: white;
+  background-color: black;
+  border: 2px solid white;
 }

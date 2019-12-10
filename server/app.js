@@ -72,7 +72,14 @@ app.post('/login', (req,res) => {
           if (token) {
             //the token with be a json file with the following information
             //the username, the token, the user's id, and a status of 200
-            res.json({ username: username, token: token, id: user.id, status: 200 })
+            res.json({
+              username: username,
+              token: token,
+              id: user.id,
+              firstName: user.firstName,
+              lastName: user.lastName,
+              email: user.email,
+              status: 200 })
           } else {
             //if the token fails, send a json file with a message and status of 500
             res.status(500).json({ message: 'unable to generate token', status: 500 })
@@ -93,6 +100,17 @@ app.post('/login', (req,res) => {
 app.get('/username', tools.authenticate, (req, res) => {
   res.send(currentUser[currentUser.length - 1])
 })
+
+//====================UPDATING INFORMATION=====================================
+app.post('/updateUserInformation', (req,res) => {
+  let userid = req.body.userid
+  let firstName = req.body.firstName
+  let lastName = req.body.lastName
+  console.log(userid, firstName, lastName)
+})
+// MODEL.update({id: inputID, where: {
+//   column: 'newValue'
+//}})
 
 //====================ASSOCIATIONS BETWEEN POTATOES AND USERS =================
 app.post('/userFavoritePotato', (req,res) => {
