@@ -1,3 +1,5 @@
+// TOWORKON search for notes on what needs done next
+
 const express = require('express'),
   app = express(),
   cors = require('cors'),
@@ -108,11 +110,15 @@ app.post('/updateUserInformation', (req,res) => {
   let lastName = req.body.lastName
   console.log(userid, firstName, lastName)
 })
+// TOWORKON using model.update to change user information in the user table
+// send a response to the frontend to inform the user the update went through 
+
 // MODEL.update({id: inputID, where: {
 //   column: 'newValue'
 //}})
 
 //====================ASSOCIATIONS BETWEEN POTATOES AND USERS =================
+// TOWORKON check for already favorited potato to prevent duplicates
 app.post('/userFavoritePotato', (req,res) => {
   let userid = req.body.userid
   let potatoid = Number(req.body.potatoid)
