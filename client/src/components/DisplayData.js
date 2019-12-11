@@ -14,7 +14,8 @@ export default class DisplayData extends Component {
     fetch('http://localhost:8080/displayData', {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'authorization': 'Bearer ' + localStorage.getItem('jsonwebtoken')
       }
     }).then(response => response.json()).then(json => {
       for (let i = 0; i < json.result.length; i++) {

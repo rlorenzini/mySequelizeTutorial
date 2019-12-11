@@ -25,12 +25,14 @@ class Dashboard extends Component {
     fetch('http://localhost:8080/updateUserInformation', {
       method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'authorization': 'Bearer ' + localStorage.getItem('jsonwebtoken')
       },
       body: JSON.stringify({
         userid: this.state.userid,
         firstName: this.state.newFirstName,
-        lastName: this.state.newLastName
+        lastName: this.state.newLastName,
+        // authentication: localStorage.getItem('jsonwebtoken')
       })
     })
   }
