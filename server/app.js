@@ -10,7 +10,7 @@ const express = require('express'),
   models = require('./models'),
   PORT = process.env.PORT || 8080;
 
-const tools = require('./tools/authentication');
+const authenticate = require('./tools/authentication');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -101,28 +101,49 @@ app.post('/login', (req,res) => {
 //check the tools/authentication file for the function
 
 // TOWORKON tools.authenticate cannot see jwt, which is declared before tools
-// is defined. Need to figure out why in order to run authentication checks. 
-app.get('/username', tools.authenticate, (req, res) => {
+// is defined. Need to figure out why in order to run authentication checks.
+app.get('/username', authenticate, (req, res) => {
   res.send(currentUser[currentUser.length - 1])
 })
 
 //====================UPDATING INFORMATION=====================================
-app.post('/updateUserInformation', (req,res) => {
+app.post('/updateUserInformation', authenticate, (req,res) => {
   let userid = req.body.userid
   let firstName = req.body.firstName
   let lastName = req.body.lastName
-  console.log(userid, firstName, lastName)
-}) //end of post
-// TOWORKON using model.update to change user information in the user table
-// send a response to the frontend to inform the user the update went through
 
-// MODEL.update({id: inputID, where: {
-//   column: 'newValue'
-//}})
+  let message = "You have successfully updated your user information!"
+
+  models.Users.update({
+    firstName: firstName,
+    lastName: lastName
+  }, {
+      where: {
+        id: userid
+    }
+  }).then(
+    res.json({
+      message: message,
+      firstName: firstName,
+      lastName: lastName
+    })
+  )
+}) //end of post
+
+// models.TABLE.update({
+//   column1: value1,   //modify the values in these columns
+//   column2: value2,   //set the values to the values we pass in
+//   columnN: valueN
+// }, {
+//   where: {
+//     column: value    //only modify the entry that matches this value
+//   }                  //in the column we want to check (username, userid, etc)
+// })
+
 
 //====================ASSOCIATIONS BETWEEN POTATOES AND USERS =================
 // TOWORKON check for already favorited potato to prevent duplicates
-app.post('/userFavoritePotato', (req,res) => {
+app.post('/userFavoritePotato', authenticate, (req,res) => {
   let userid = req.body.userid
   let potatoid = Number(req.body.potatoid)
 

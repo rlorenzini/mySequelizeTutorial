@@ -23,6 +23,12 @@ export default (state = initialState, action) => {
         firstName: action.firstName,
         lastName: action.lastName
       }
+    case 'UPDATE':
+      return {
+        ...state,
+        firstName: action.firstName,
+        lastName: action.lastName
+      }
     case 'LOGOUT':
     //LOGOUT sets authentication to false and username to ''
     //is not considered a function (cannot attach promise)

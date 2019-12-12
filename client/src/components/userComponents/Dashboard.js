@@ -10,7 +10,9 @@ class Dashboard extends Component {
       userid: userid,
       newFirstName: '',
       newLastName: '',
-      active: false
+      active: false,
+      message: '',
+      activeMessage: false
     }
   }
 
@@ -32,8 +34,18 @@ class Dashboard extends Component {
         userid: this.state.userid,
         firstName: this.state.newFirstName,
         lastName: this.state.newLastName,
-        // authentication: localStorage.getItem('jsonwebtoken')
       })
+    }).then((response) => response.json())
+    .then((json) => {
+      console.log(json.message)
+      this.setState({
+        message: json.message,
+        activeMessage: true,
+      })
+      this.props.onUpdate(
+        json.firstName,
+        json.lastName
+      )
     })
   }
 
@@ -46,7 +58,11 @@ class Dashboard extends Component {
     return (
       <div>
         <h1>Welcome, {this.props.user}!</h1>
-        <button className="basicButton" onClick={this.triggerUpdateForm}>Update User Info</button>
+        <button
+          className="basicButton"
+          onClick={this.triggerUpdateForm}>
+          Update User Info
+        </button>
         <span className={this.state.active ? null : "hidden"}>
           <div>
           First Name: {this.props.firstName}<br/>
@@ -69,12 +85,23 @@ class Dashboard extends Component {
               onClick={this.triggerSubmitUpdatedUserInformation}>
               Submit New Info
             </button>
+            <div className={this.state.activeMessage ? null : "hidden"}>
+              Yay! {this.state.message}
+            </div>
           </div>
         </span>
       </div>
     )
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onUpdate: (firstName, lastName) => dispatch({
+      type: 'UPDATE', firstName, lastName
+    })
+  }
+};
 
 const mapStateToProps = (state) => {
   return {
@@ -85,4 +112,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
