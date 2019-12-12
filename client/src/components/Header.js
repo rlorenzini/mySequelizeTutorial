@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './styling/header.css';
 
-export default class Header extends Component {
+class Header extends Component {
 
   //when logging out, remove jwt with user's info
   //run logout action from react redux
   //push the history (page) to the login component
   handleLogoutClick = () => {
+
     localStorage.removeItem('jsonwebtoken')
     localStorage.removeItem('userid')
     this.props.onLogout() //check mapDispatchToProps in BaseLayout
@@ -35,6 +37,22 @@ export default class Header extends Component {
     </div>
   )};
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLogout: () => dispatch({
+      type: 'LOGOUT'
+    })
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.isAuthenticated
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)
 //breaking down our isAuthenticated NavLinks
 
 //first, we check if the isAuthenticated prop is set

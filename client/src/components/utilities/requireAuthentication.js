@@ -11,7 +11,7 @@ export default function requireAuth(ComposedComponent) {
     //we are passing props.history, so we must set our constructor with props
     constructor(props) {
       super(props)
-      
+
       //if authenticated is not true, push the page back to the index page
       if(this.props.isAuthenticated === false) {
         this.props.history.push('/')
@@ -19,7 +19,7 @@ export default function requireAuth(ComposedComponent) {
     };
 
     componentDidUpdate(nextProps) {
-      if(nextProps.isAuthenticated === false) {
+      if(this.props.isAuthenticated === false) {
         this.props.history.push('/')
       }
     };
