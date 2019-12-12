@@ -20,6 +20,7 @@ const Contributors =
 | [SQLZ#FORMS](#forms-and-posts) | FORMS AND POSTS |
 | [SQLZ#SEEDS](#using-seeders) | USING SEEDERS |
 | [SQLZ#DISP](#display-data) | DISPLAYING DATA FROM DATABASE |
+| [SQLZ#UPD](#user-update) | UPDATE DATABASE DATA |
 | [SQLZ#ASSOC](#associations) | ASSOCIATING TABLES AND DATA |
 | [SQLZ#OTOM](#one-to-many) | ONE TO MANY ASSOCIATIONS |
 | [SQLZ#OTOO](#one-to-one) | ONE TO ONE ASSOCIATIONS |
@@ -618,7 +619,74 @@ Going back to our console log in our developer tools, we see each index is an ob
 
 <img height="400px" src="photos/appDisplayPotatoes.png" />
 
-Our final result isn't pretty, since we really haven't done much styling, but we have successfully taken our potatoes from our database and displayed them for our users. In the next section, we will be combining **sorting** and **associations** by creating a **favorites list**.
+Our final result isn't pretty, since we really haven't done much styling, but we have successfully taken our potatoes from our database and displayed them for our users. In the next section, we will be combining **sorting** and **associations** by creating a **favorites list**, but first we will touch a very inportant topic. **Updating information.**
+
+# UPDATING DATA 
+<a name="user-update"></a>
+
+<a href="#top">`back to top`</a>
+
+How often do you find yourself going into your settings on a website and changing your profile information? Maybe you update your biography, change your name, change your email address, or your physical address. If you use a blog or review app, do you ever find yourself editing your comments? 
+
+All of these come down to one concept: **updating data in your database.** With Sequelize, this is rather simple as we have access to anotherbuilt-in function, **update()**. Sequelize really likes to name stuff based on what it does, which makes using Sequelize more intuitive. How does **update()** work though?
+
+```JavaScript
+models.TABLE.update({
+  column_1_to_update: value_1,
+  column_2_to_update: value_2,
+  column_nth: value_nth
+  }, {
+  where: {
+    column_to_check: value_to_check_for
+  }
+})
+```
+
+First, you check your models for the **table** you wish you modify. For example, if you want to update your **user information** you would want to check the **user model**. The next part might not be as intuitive. First, **we tell Sequelize which columns we want to modify and what data we want the values to become**. Strange, right? We are telling Sequelize to modify data *before* telling it which entries we wish to modify. This is because **update()** takes in **arguments** first followed by an **options object**. The options tells our **update()** function **what to do** with our changes.
+
+In our **options**, we can use **where**. This works the same as **findOne() and findAll()**. "Change the values of these columns where this column has this value." Or, in laymans terms, "I want to update my data. My username is XYZ." Our **option** can, of course, take in multiple values in the column. If we want to update a set of data, for instance every Toyota Corolla manufactured in 2019, we could specify that in our **where** argument. 
+
+<img height="400px" src="photos/app-update.png" />
+
+```JavaScript
+models.Users.update({
+  firstName: firstName,
+  lastName: lastName
+  }, {
+  where: {
+    id: userid
+  }
+})
+```
+When our client executes a **fetch** to our **/updateUserInformation** action, we take the information they wish to update and apply it to our Sequelize **update()** function. My thought process is fairly simple with how I build my backend action. First, I assign my variables to the information coming in. I then create messages based on pass/fail conditions. In this example, I am only setting one message for if we successfully update the user's information. In a fully developed application, you would want to catch errors and send responses if the update fails for whatever reason.
+
+After assigning all my variables, I then want to run my **update()**. We declared models in the beginning ```const models = require('./models)```, our models has a model called Users, and we are using the Sequelize **update()** function. Remember, our models are our tables from our database. Since we are wanting the users to be able to update their user information, we are using models.Users. 
+
+I build the **update()** function with the information I want to edit and which entries I want edited, in this case the first name and last name of the current user, I then send a response. The response is a confirmation that the update was successful. I also send the first name and last name to the frontend when it is successful, because I do not want the frontend handling the success response. The display will only change based on the information the backend sends, and the backend will only send the updated information if the update is successful.
+
+<img height="400px" src="photos/dashboard-jsx.png" />
+
+<img height="400px" src="photos/dashboard-fetch-update.png" />
+
+There is a lot going on, but the main thing to focus on right now are the inputs on lines 72 and 78 and the button on line 84. The button has an **onClick** called **triggerSubmitUpdatedUserInformation**. Great name, right? When the button triggers, it updates the user information. This function does a fetch call to our backend for the action **/updateUserInformation**, which we went over above. We want to **POST** our updated information to our database. We send our information through the **body** as **JSON.stringify()** since we are working with JSON. What we are sending in our JSON should look familiar; userid, firstName, lastName. If you look at the backend again, you will see we are assign variables to these values. Userid is req.body.userid, and so on. 
+
+After sending our data, we use a **promise** (async/await works as well) to wait for a **response**. Our backend is sending a **response as a json**, so we turn our response into **response.json()**. We use another promise to take the **json** and do something with it. What I am doing is displaying the **json.message** on my webpage to inform the user **the update was successful**, then I'm updating the display with the **new first name and last name**. **NOTE:** Knowing the language and tools you are using is important, as I am using React and Redux to update my display. The way you update your display may be different from the way I updated my display.
+
+Let's look at our functionality in action.
+
+<img height="400px" src="photos/postico-preupdate.png" />
+
+<img height="400px" src="photos/app-preupdate.png" /> 
+
+As we see, my first name is "frogs" and last name is "potatoes". I want to change my information to my actual first name and last name, Richard Lorenzini. I fill out my form and get ready to update my information.
+
+<img height="400px" src="photos/postico-postupdate.png" />
+
+<img height="400px" src="photos/app-postupdate.png" />
+
+Both in postico and on our application's user interface we see the information has been updated. **NOTE:** remember you must refresh postico to see these changes take effect. Our UI is set up as a single page application and will show us the changes automatically. 
+
+Now that we can update basic information, let's dive into associations!
 
 
 <a name="associations"><img height="200px" src="photos/associations.png"/></a>
