@@ -621,7 +621,13 @@ Going back to our console log in our developer tools, we see each index is an ob
 
 Our final result isn't pretty, since we really haven't done much styling, but we have successfully taken our potatoes from our database and displayed them for our users. In the next section, we will be combining **sorting** and **associations** by creating a **favorites list**, but first we will touch a very inportant topic. **Updating information.**
 
-# UPDATING DATA 
+<br/>
+<br/>
+
+---
+
+<br/>
+
 <a name="user-update"><img height="200px" src="photos/updating-data.png" /></a>
 
 <a href="#top">`back to top`</a>
@@ -688,6 +694,12 @@ Both in postico and on our application's user interface we see the information h
 
 Now that we can update basic information, let's dive into associations!
 
+<br/>
+<br/>
+
+---
+
+<br/>
 
 <a name="associations"><img height="200px" src="photos/associations.png"/></a>
 
@@ -861,7 +873,6 @@ Every single favorite is its own entry in our database. Our user, who's **unique
 ### belongsTo, hasOne
 
 <a name="many-to-many"><img height="200px" src="photos/many-to-many.png" /></a>
-# Many to Many Associations
 
 ### hasMany
 
