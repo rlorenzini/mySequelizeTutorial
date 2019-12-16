@@ -100,8 +100,6 @@ app.post('/login', (req,res) => {
 //whenever we want to check for the user, we need to authenticate
 //check the tools/authentication file for the function
 
-// TOWORKON tools.authenticate cannot see jwt, which is declared before tools
-// is defined. Need to figure out why in order to run authentication checks.
 app.get('/username', authenticate, (req, res) => {
   res.send(currentUser[currentUser.length - 1])
 })
