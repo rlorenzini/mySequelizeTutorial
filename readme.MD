@@ -36,7 +36,7 @@ const Contributors =
 
 ## So what is Sequelize?
 
-**Sequelize** is a tool used to make the connection between your *backend* and your *database* simpler. Setting up Sequelize and understanding what's going on can be daunting, so I hope this simple and basic tutorial helps anyone who reads it.
+**Sequelize** is a tool used to make the connection between your *backend* and your *database* simpler, specifically when working with **multiple developers with different SQL backgrounds**. For example, if one developer has coded in mySQL, another in SQLite, and a third in postgreSQL, all developers will be able to use a **single query syntax**. In either small or large applications this can be beneficial. Setting up Sequelize and understanding what's going on can be daunting, so I hope this simple and basic tutorial helps anyone who reads it.
 <br/>
 <br/>
 This tutorial is **VERY BASIC** and will not go into great depth about every aspect of Sequelize.
@@ -126,7 +126,7 @@ I install **express** to make my time coding my backend simpler, **cors** is to 
 npm install -g sequelize-cli
 ```
 
-Sequelize does not, by default, have a command-line interface. **Sequelize CLI** literally stands for "Sequelize Command-Line Interface". We are installing this so we can avoid a lot of the file creating and editing Sequelize performs. This also makes migrations easier.
+Sequelize does not, by default, have a command-line interface. **Sequelize CLI** stands for "Sequelize Command-Line Interface". We are installing this so we can avoid a lot of the file creating and editing Sequelize performs. This also makes migrations easier.
 
 <img height="400px" src="photos/codeBackendSetup.png"/>
 
