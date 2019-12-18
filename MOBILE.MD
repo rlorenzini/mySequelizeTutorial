@@ -11,7 +11,7 @@ const Contributors =
 
 **THIS IS A WORK IN PROGRESS**
 
-**KNOWN MOBILE ISSUE:** Search links may not work or will only send you to the beginning of the document.
+**KNOWN MOBILE ISSUE:** Search links may not work or will only send you to the beginning of the document when using a GitHub application. Issue does not persist when using mobile web browsers.
 
 | SEARCH OPTIONS | WHAT IT'S FOR |
 | :--- | :--- |
