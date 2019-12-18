@@ -1,5 +1,7 @@
 <a name="top"><img height="200px" src="photos/sequelize-101.png" href/></a>
 
+**Are you on mobile?** <a href="./MOBILE.MD">CLICK HERE</a>
+
 # SEQUELIZE TUTORIAL FOR BEGINNERS
 
 ```JavaScript
