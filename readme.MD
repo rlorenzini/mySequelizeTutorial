@@ -36,16 +36,18 @@ const Contributors =
 
 ## So what is Sequelize?
 
-**Sequelize** is a tool used to make the connection between your *backend* and your *database* simpler, specifically when working with **multiple developers with different SQL backgrounds**. For example, if one developer has coded in mySQL, another in SQLite, and a third in postgreSQL, all developers will be able to use a **single query syntax**. In either small or large applications this can be beneficial. Setting up Sequelize and understanding what's going on can be daunting, so I hope this simple and basic tutorial helps anyone who reads it.
+**Sequelize** is a tool used in a **Node.js** environment to make the connection between your *backend* and your *database* simpler, specifically when working with **multiple developers with different SQL backgrounds**. For example, if one developer has coded in mySQL, another in SQLite, and a third in postgreSQL, all developers will be able to use a **single query syntax**. In either small or large applications this can be beneficial. Sequelize **normalizes** the way you interact with your databaes by having one function work across multiple SQL commands. Whether you are using mySQL, SQLite, or postgreSQL, **.findOne(), .build(), .create(), etc** all work the same *in your code*. 
+
+Sequelize's greatest strength comes from normalizing all the SQL languages, but it is also its greatest weakness. Due to creating generic functions, Sequelize cannot optimize queries as well as the native language. This is a whole topic in and of itself, which is not the focus of this tutorial. Let it be food for thought and explore multiple server languages to find which works best for you.
 <br/>
 <br/>
-This tutorial is **VERY BASIC** and will not go into great depth about every aspect of Sequelize. Also, I use certain tools to help me out when coding, which others may or may not be aware of. Below, I list the tools I use and a basic description of what I use them for.
+Setting up Sequelize and understanding what's going on can be daunting, so I hope this simple and basic tutorial helps anyone who reads it. This tutorial is **VERY BASIC** and will not go into great depth about every aspect of Sequelize. Also, I use certain tools to help me out when coding, which others may or may not be aware of. Below, I list the tools I use and a basic description of what I use them for.
 
 | TOOL | PURPOSE |
 | :-- | :-- |
-| Postico | Visualizes your database |
-| Postman | Debug and test fetch calls |
-| ElephantSQL | Online hosting service for databases |
+| Postico | Visualizes your database with a user friendly interface |
+| Postman | Debug and test fetch calls by targeting your frontend or backend |
+| ElephantSQL | Online hosting service for databases; free, but can buy upgrades |
 | ATOM | My preferred code editor |
 
 <br/>
@@ -271,7 +273,7 @@ Imagine following this tutorial and at this point <GO TO JACLYN'S GITHUB FOR THI
 
 I'm only partially kidding, but this is essentially what happens when you do not commit fully to Sequelize. If you use pg-promise to create a new table, Sequelize will be unable to retrieve that script and build a proper environment. Then, the user who downloaded and ran your project will not have a fully functional environment.
 
-Say you created a Users table in pg-promise. If the user then goes to a *login page* you created and submits their login information, your application will crash due to being unable to communicate properly with the server. Sequelize does not know the Users table exists since it did not create a migration and execute building the Users table. This is why if you plan to use Sequelize it is **HIGHLY** recommended, and almost completely required, to **ONLY** utilize Sequelize.
+Say you created a Users table in pg-promise. If the user then goes to a *login page* you created and submits their login information, your application will crash due to being unable to communicate properly with the server. Sequelize does not know the Users table exists since it did not create a migration and execute building the Users table. This is why if you plan to use Sequelize it is **HIGHLY** recommended, and almost completely required, to **ONLY** utilize Sequelize **when modifying tables**. IF you build, delete, add columns to, or remove columns from tables, **stick with Sequelize** to avoid these issues. As for querying data, such as finding data or entering data, you can decide between using Sequelize or the language you are using (mySQL, postgreSQL, SQLite, etc). For more complexity and optimization, using the native language is almost always better than strictly using Sequelize.
 
 <img height="400px" src="photos/posticoPostMigrate.png"/>
 
