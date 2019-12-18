@@ -30,7 +30,7 @@ const Contributors =
 <br/>
 <br/>
 
-<a name="and-so-it-begins"><img height="200px" src="photos/and-so-it-begins.png"/></a>
+<a name="and-so-it-begins"><img height="100px" src="photos/and-so-it-begins.png"/></a>
 
 <a href="#top">`back to top`</a>
 
@@ -58,11 +58,11 @@ Setting up Sequelize and understanding what's going on can be daunting, so I hop
 <br/>
 
 
-<a name="setting-up"><img height="200px" src="photos/setting-up.png"/></a>
+<a name="setting-up"><img height="100px" src="photos/setting-up.png"/></a>
 
 <a href="#top">`back to top`</a>
 
-<img height="400px" src="photos/terminalStart.png"/>
+<img height="200px" src="photos/terminalStart.png"/>
 
 I have created a new folder called `mySequelize` and opened a terminal at that folder.
 
@@ -74,7 +74,7 @@ My terminal is displaying the following, indicating I am on my Macbook Pro, in t
 
 ## Setting Up Git
 
-<img height="400px" src="photos/terminalGitInit.png"/>
+<img height="200px" src="photos/terminalGitInit.png"/>
 
 ```console
 git init
@@ -82,13 +82,13 @@ git init
 
 We will begin by initializing our git folder and connecting to this git repository.
 
-<img height="400px" src="photos/terminalGitAddOrigin.png"/>
+<img height="200px" src="photos/terminalGitAddOrigin.png"/>
 
 ```console
 git add remote origin <insert_repository_url_here>
 ```
 
-<img height="400px" src="photos/terminalGitIgnore.png"/>
+<img height="200px" src="photos/terminalGitIgnore.png"/>
 
 ```console
 touch .gitignore
@@ -96,11 +96,11 @@ touch .gitignore
 
 .gitignore is used to tell your git commands to ignore certain folders. This is extremely useful when working in a Node.js environment, as your Node_Modules folder (the packages installed into your project) can get massive quickly.
 
-<img height="400px" src="photos/codeGitIgnore.png"/>
+<img height="200px" src="photos/codeGitIgnore.png"/>
 
 My .gitignore file can be located in my GitHub repository <a href='https://github.com/rlorenzini/usingGitignore/blob/master/.gitignore'>HERE</a>. This is a cookie-cutter catch-all .gitignore file.
 
-<img height="400px" src="photos/terminalGitPush.png"/>
+<img height="200px" src="photos/terminalGitPush.png"/>
 
 ```console
 git add . && git commit -m "first commit" && git push origin master
@@ -115,12 +115,12 @@ I always perform an initial commit to verify I have properly setup my git enviro
 
 <br/>
 
-<a name="npm-time"><img height="200px" src="photos/npm-initialization.png"/></a>
+<a name="npm-time"><img height="100px" src="photos/npm-initialization.png"/></a>
 
 
 <a href="#top">`back to top`</a>
 
-<img height="400px" src="photos/terminalNPMInstall.png"/>
+<img height="200px" src="photos/terminalNPMInstall.png"/>
 
 ```console
 npm init && npm install express && npm install cors && npm install body-parser && npm install sequelize && npm install sequelize pg
@@ -129,7 +129,7 @@ Don't forget to initialize node in your project with ```npm init```. Otherwise, 
 
 I install **express** to make my time coding my backend simpler, **cors** is to avoid certain HTTP request issues, **body-parser** allows us to translate what is being sent from the frontend to the backend, **sequelize** is the point of this tutorial and makes the transfer of data from the backend to our database simpler, and **sequelize pg** is used to tell sequelize we are using a *postgres database*.
 
-<img height="400px" src="photos/terminalSQLCLI.png"/>
+<img height="200px" src="photos/terminalSQLCLI.png"/>
 
 ```console
 npm install -g sequelize-cli
@@ -137,7 +137,7 @@ npm install -g sequelize-cli
 
 Sequelize does not, by default, have a command-line interface. **Sequelize CLI** stands for "Sequelize Command-Line Interface". We are installing this so we can avoid a lot of the file creating and editing Sequelize performs. This also makes migrations easier.
 
-<img height="400px" src="photos/codeBackendSetup.png"/>
+<img height="200px" src="photos/codeBackendSetup.png"/>
 
 Setting up our backend **app.js** environment. What we installed, we are requiring.
 
@@ -155,7 +155,7 @@ is so we can tell Sequelize where the models are. More on that later.
 
 <br/>
 
-<a name="database-setup"><img height="200px" src="photos/database-setup.png"/></a>
+<a name="database-setup"><img height="100px" src="photos/database-setup.png"/></a>
 
 
 <a href="#top">`back to top`</a>
@@ -182,13 +182,13 @@ can help avoid any early-stage issues, but is not required.
 | SEEDERS | Seeders should not be used until you have a basic understanding of Sequelize and databases. |
 | CONFIG | The config file in this folder tells Sequelize what database you are using and where it is located. |
 
-<img height="400px" src="photos/codeConfigMysql.png"/>
+<img height="200px" src="photos/codeConfigMysql.png"/>
 
 The config file will very likely need modified from the beginning of your project. For example, unless your database is a MySQL database, you will need to change your dialect. In our case, we are going to change the dialect to **postgres** since we are using a postgres database.
 
 I prefer to setup a database on a website called **ElephantSQL**. It is a free online service to host a database and store the data. ElephantSQL **DOES NOT** replace Postico and **DOES NOT** show you the tables, columns, and data inside of your database.
 
-<img height="400px" src="photos/elephantSQL.png"/>
+<img height="200px" src="photos/elephantSQL.png"/>
 
 ElephantSQL provides us several pieces of information, which is automatically generated when we create our database. What we are interested in is **Server, User & Database, and Password**.
 
@@ -204,9 +204,9 @@ The placement of the information into postico and your config file are straight 
 SERVER goes into "host", USER & DATABASE goes into "username"/USER and "database", and PASSWORD goes into "password".
 
 
-<img height="400px" src="photos/posticoDatabase.png"/>
+<img height="200px" src="photos/posticoDatabase.png"/>
 
-<img height="400px" src="photos/codeConfigElephantSQL.png"/>
+<img height="200px" src="photos/codeConfigElephantSQL.png"/>
 
 <br/>
 <br/>
@@ -215,16 +215,16 @@ SERVER goes into "host", USER & DATABASE goes into "username"/USER and "database
 
 <br/>
 
-<a name="first-migration"><img height="200px" src="photos/first-migration.png"/></a>
+<a name="first-migration"><img height="100px" src="photos/first-migration.png"/></a>
 
 
 <a href="#top">`back to top`</a>
 
-<img height="400px" src="photos/posticoDatabaseInitial.png"/>
+<img height="200px" src="photos/posticoDatabaseInitial.png"/>
 
 Once we connect into our database via Postico, we can see all of our tables, columns, and data is a clean interface. Our Postico database is practically empty at this stage, as we have no created any tables.
 
-<img height="400px" src="photos/terminalModelCreate.png"/>
+<img height="200px" src="photos/terminalModelCreate.png"/>
 
 ```console
 sequelize model:create --name Users --attributes 'username:string, password:string, firstName:string, lastName:string, email:string'
@@ -244,7 +244,7 @@ command takes in a name and attributes. The name must be declared as
 --attributes 'FirstColumnName:DATATYPE, SecondColumnName:DATA, etc:etc'
 ```
 
-<img height="400px" src="photos/codeMigrationFile.png"/>
+<img height="200px" src="photos/codeMigrationFile.png"/>
 
 Running our model:create command has generated a new migration file. Migration files are JavaScript files with JavaScript code. Essentially, in our migration file above, we are creating a Class via Sequelize. This file is executed when we run
 ```console
@@ -263,7 +263,7 @@ which is an object. The first key for our object is UP, and the last key is DOWN
 | UP | Used to create, modify, or update your database. |
 | DOWN | Used to delete, undo, or reverse whatever UP does. |
 
-<img height="400px" src="photos/terminalDBMigrate.png"/>
+<img height="200px" src="photos/terminalDBMigrate.png"/>
 
 I'm going to slow down and explain a bit about Sequelize, as to understand db:migrate we must understand how Sequelize functions. Sequelize keeps a log of everything done. Every migration is kept, with a log of when what was ran. This way, if a new user pulls our project and runs our project, Sequelize can build the environment from scratch exactly how you, the original developer, built your project. Due to this, you **must** commit fully to Sequelize. Let me explain.
 
@@ -275,7 +275,7 @@ I'm only partially kidding, but this is essentially what happens when you do not
 
 Say you created a Users table in pg-promise. If the user then goes to a *login page* you created and submits their login information, your application will crash due to being unable to communicate properly with the server. Sequelize does not know the Users table exists since it did not create a migration and execute building the Users table. This is why if you plan to use Sequelize it is **HIGHLY** recommended, and almost completely required, to **ONLY** utilize Sequelize **when modifying tables**. IF you build, delete, add columns to, or remove columns from tables, **stick with Sequelize** to avoid these issues. As for querying data, such as finding data or entering data, you can decide between using Sequelize or the language you are using (mySQL, postgreSQL, SQLite, etc). For more complexity and optimization, using the native language is almost always better than strictly using Sequelize.
 
-<img height="400px" src="photos/posticoPostMigrate.png"/>
+<img height="200px" src="photos/posticoPostMigrate.png"/>
 
 Looking at our Postico after our db:migrate, we can see our Users table and the columns we specified. **MAGNIFICENT.**
 
@@ -286,11 +286,11 @@ Looking at our Postico after our db:migrate, we can see our Users table and the 
 
 <br/>
 
-<a name="forms-and-posts"><img height="200px" src="photos/forms-and-posts.png"/></a>
+<a name="forms-and-posts"><img height="100px" src="photos/forms-and-posts.png"/></a>
 
 <a href="#top">`back to top`</a>
 
-<img height="400px" src="photos/codePostForm.png"/>
+<img height="200px" src="photos/codePostForm.png"/>
 
 I built my project in **React**, a framework for **JavaScript** based on Components and Single Page Applications. React is my comfort zone and go-to for building projects, but that is not the only reason I used it for this project. React allows you to break apart the webpage into components and inject them easily wherever they are needed. This way, I do not have to show off my entire project, but I can show off just the raw HTML code used to build the form.
 
@@ -304,9 +304,9 @@ Our header informs our server, the **backend**, what to expect. This is why we i
 
 **NOTE:** There are many ways to do this step, with many different frameworks and libraries to change how you do it. For example, if you wish to use **AXIOS** to handle your fetch requests your code will look different. Be sure to keep in mind the technologies you are using, as my code may or may not translate properly into your technologies without a bit of fiddling.
 
-<img height="400px" src="photos/appPostForm.png"/>
+<img height="200px" src="photos/appPostForm.png"/>
 
-<img height="400px" src="photos/terminalPostBody.png"/>
+<img height="200px" src="photos/terminalPostBody.png"/>
 
 Our POST request is console logged on our backend so we can get an idea of what we are receiving from the frontend. When using **body-parser**, the JSON file is sent in the request as **body**. To access the JSON file, we must call **req.body**. Our user, me, sent nothing but "a" in every input.
 
@@ -325,7 +325,7 @@ As we see, we are no longer working with **this.state.username**, but we have al
 
 
 
-<img height="400px" src="photos/codeBackendPostToDB.png"/>
+<img height="200px" src="photos/codeBackendPostToDB.png"/>
 
 Personally, the first thing I do is create variable names for my data being received. Typing out **username** is quicker and takes up less space than typing **req.body.username**. This is a personal preference to shorten and clean-up my code, but is not required.
 
@@ -348,7 +348,7 @@ email: req.body.email
 ```
 This is how our **build** object would look if we did not define our req.body values as variables. It is not wrong and will work, but my preference is to define variables first.
 
-<img height="400px" src="photos/posticoTerminalResults.png"/>
+<img height="200px" src="photos/posticoTerminalResults.png"/>
 
 Postico is now displaying **"a"** values in each of our columns. **NOTE:** Postico does not refresh dynamically as data is put into your database. Remember to refresh to see the results. Our **id** column is, by default, 1 as this is our first entry. Behind my terminal is **createdAt and updatedAt**, which are updated automatically by Sequelize.
 
@@ -361,7 +361,7 @@ Looking at our terminal, we see a long command being run which may be familiar t
 
 <br/>
 
-<a name="using-seeders"><img height="200px" src="photos/seeders.png"/></a>
+<a name="using-seeders"><img height="100px" src="photos/seeders.png"/></a>
 
 
 <a href="#top">`back to top`</a>
@@ -414,7 +414,7 @@ On to the code! Let's create a seeder file and plug in our data.
 sequelize seed:generate --name potato-data
 ```
 
-<img height="400px" src="photos/seederUp.png" />
+<img height="200px" src="photos/seederUp.png" />
 
 This is my completed **UP** for my seeder file, which has 13 **objects** inside of 1 **array**. Seeders typically only have one of two arguments, being **bulkInsert** and **bulkDelete**. Let's break down why our **UP** is using **bulkInsert** and how to properly use **bulkInsert**.
 
@@ -474,7 +474,7 @@ This is how the time stamp comes thorugh, and even though it is easy to do ourse
 
 This is the first entry of my seeder. As you recall, we created the attributes **name, starch_level, and cook_method** when we ran our **model:create** command. We did not create a constraint of **NOT NULL** on these values, but we decided when we created our table these values were important for our userbase. This is why we have created our object this way. Feel free to experiment and see if and when you can ignore passing values into a column, if you can put the columns out of order, and if you can pass through a limited amount of digits or pass an integer as a string. Or, maybe wait until **after** we create our **DOWN**.
 
-<img height="300px" src="photos/seederDown.png" />
+<img height="150px" src="photos/seederDown.png" />
 
 ```JavaScript
 down: (queryInterface, Sequelize) => {
@@ -493,7 +493,7 @@ sequelize db:seed:all
 ```
 And our database is full of data! Success.
 
-<img height="300px" src="photos/posticoPotatoes.png" />
+<img height="150px" src="photos/posticoPotatoes.png" />
 
 A few seeder commands you may need to know.
 
@@ -516,7 +516,7 @@ If you have multiple seeders and want to run just one, specify the name of the s
 
 <br/>
 
-<a name="display-data"><img height="200px" src="photos/displaying-data.png"/></a>
+<a name="display-data"><img height="100px" src="photos/displaying-data.png"/></a>
 
 <a href="#top">`back to top`</a>
 
@@ -526,7 +526,7 @@ Sequelize has built-in functions for getting data. Some of the most common funct
 
 We are going to start with **findAll()**.
 
-<img height="300px" src="photos/codeGetPotatoes.png" />
+<img height="150px" src="photos/codeGetPotatoes.png" />
 
 Overall, two lines of code is all we need to get all entries in our **potatoes** table and send them to the front. Like everything else, let's break it down.
 
@@ -561,7 +561,7 @@ We take our promise **result** and send it via **res.json** as **result**. Our r
 
 ## Get Requests, Frontend
 
-<img height="400px" src="photos/codeFetchPotatoes.png" />
+<img height="200px" src="photos/codeFetchPotatoes.png" />
 
 To simplify the tutorial, I am using **React Components** instead of **React Hooks**. This is simply so those who are newer to either coding as a whole or Sequelize will have an easier time understanding what I am doing.
 
@@ -587,13 +587,13 @@ First, I create a **newArray** which will hold our **fetch results**. We **fetch
 
 After our fetch, we are using a **promise**. We take the response and run the **json()** function on it, which makes the response easier for us to use as a whole. Console.log(response) instead if you want to see all the data you receive during a fetch cal. Once we run the **json()** function, we take the new **json file** and iterate through it with a **for loop**. But why? Let's check our **developer tools** and **console.log(json)** instead of doing the for loop.
 
-<img height="400px" src="photos/codeJsonLog.png" />
+<img height="200px" src="photos/codeJsonLog.png" />
 
 Our **json file** is an object, which holds an array, which holds objects, and those objects are our potatoes. **json.result** is how we get to our **result array**. **result** should look familiar since we sent the **result of our findAll()** to our frontend from our backend. Since result is an **array**, we must **iterate** through it to get **each result individually**. Using a **for loop**, we can **push each individual object within our array into our newArray**. With React, we must then set a state to use our data elsewhere. I have set the state of **potatoName** to be **newArray**. In more vanilla JavaScript, pushing the data into a newArray is likely all you need. This simply depends on the frameworks and libraries you are using.
 
 We have the data on the frontend now, but we need to display it for our users. **NOTE:** Do not copy the following code without understanding it first, **ESPECIALLY** if you are not using React.
 
-<img height="400px" src="photos/codeRenderPotatoes.png" />
+<img height="200px" src="photos/codeRenderPotatoes.png" />
 
 Since I set the state of **potatoName to be newArray**, this translates to **this.state.potatoName = newArray**. For those who are not React developers or do not use state, this essentially means I assigned a new global variable. I'm going to call said global variable **this.state.potatoName** and give it a shorter variable, **potatoes**. **potatoes** holds our **newArray**, which holds **all 13 potatoes** from our database.
 
@@ -626,7 +626,7 @@ Since **map()** says, **"do the following with each index inside this array"**, 
 
 Going back to our console log in our developer tools, we see each index is an object. Now we know **onePotato** is an object with the keys **id, name, starch_level, etc**. Look familiar? It should, since each key represents one column in our potatoes table. Since I want to display the name and starch levels of the potatoes for the user, I'm going to call the **name and starch_level**. **onePotato.name** will represent every potato's name, and **onePotato.starch_level** will represent every potato's starch level.
 
-<img height="400px" src="photos/appDisplayPotatoes.png" />
+<img height="200px" src="photos/appDisplayPotatoes.png" />
 
 Our final result isn't pretty, since we really haven't done much styling, but we have successfully taken our potatoes from our database and displayed them for our users. In the next section, we will be combining **sorting** and **associations** by creating a **favorites list**, but first we will touch a very inportant topic. **Updating information.**
 
@@ -637,7 +637,7 @@ Our final result isn't pretty, since we really haven't done much styling, but we
 
 <br/>
 
-<a name="user-update"><img height="200px" src="photos/updating-data.png" /></a>
+<a name="user-update"><img height="100px" src="photos/updating-data.png" /></a>
 
 <a href="#top">`back to top`</a>
 
@@ -661,7 +661,7 @@ First, you check your models for the **table** you wish you modify. For example,
 
 In our **options**, we can use **where**. This works the same as **findOne() and findAll()**. "Change the values of these columns where this column has this value." Or, in laymans terms, "I want to update my data. My username is XYZ." Our **option** can, of course, take in multiple values in the column. If we want to update a set of data, for instance every Toyota Corolla manufactured in 2019, we could specify that in our **where** argument. 
 
-<img height="400px" src="photos/app-update.png" />
+<img height="200px" src="photos/app-update.png" />
 
 ```JavaScript
 models.Users.update({
@@ -679,9 +679,9 @@ After assigning all my variables, I then want to run my **update()**. We declare
 
 I build the **update()** function with the information I want to edit and which entries I want edited, in this case the first name and last name of the current user, I then send a response. The response is a confirmation that the update was successful. I also send the first name and last name to the frontend when it is successful, because I do not want the frontend handling the success response. The display will only change based on the information the backend sends, and the backend will only send the updated information if the update is successful.
 
-<img height="400px" src="photos/dashboard-jsx.png" />
+<img height="200px" src="photos/dashboard-jsx.png" />
 
-<img height="400px" src="photos/dashboard-fetch-update.png" />
+<img height="200px" src="photos/dashboard-fetch-update.png" />
 
 There is a lot going on, but the main thing to focus on right now are the inputs on lines 72 and 78 and the button on line 84. The button has an **onClick** called **triggerSubmitUpdatedUserInformation**. Great name, right? When the button triggers, it updates the user information. This function does a fetch call to our backend for the action **/updateUserInformation**, which we went over above. We want to **POST** our updated information to our database. We send our information through the **body** as **JSON.stringify()** since we are working with JSON. What we are sending in our JSON should look familiar; userid, firstName, lastName. If you look at the backend again, you will see we are assign variables to these values. Userid is req.body.userid, and so on. 
 
@@ -689,15 +689,15 @@ After sending our data, we use a **promise** (async/await works as well) to wait
 
 Let's look at our functionality in action.
 
-<img height="400px" src="photos/postico-preupdate.png" />
+<img height="200px" src="photos/postico-preupdate.png" />
 
-<img height="400px" src="photos/app-preupdate.png" /> 
+<img height="200px" src="photos/app-preupdate.png" /> 
 
 As we see, my first name is "frogs" and last name is "potatoes". I want to change my information to my actual first name and last name, Richard Lorenzini. I fill out my form and get ready to update my information.
 
-<img height="400px" src="photos/postico-postupdate.png" />
+<img height="200px" src="photos/postico-postupdate.png" />
 
-<img height="400px" src="photos/app-postupdate.png" />
+<img height="200px" src="photos/app-postupdate.png" />
 
 Both in postico and on our application's user interface we see the information has been updated. **NOTE:** remember you must refresh postico to see these changes take effect. Our UI is set up as a single page application and will show us the changes automatically. 
 
@@ -710,7 +710,7 @@ Now that we can update basic information, let's dive into associations!
 
 <br/>
 
-<a name="associations"><img height="200px" src="photos/associations.png"/></a>
+<a name="associations"><img height="100px" src="photos/associations.png"/></a>
 
 **The bread and butter of any database**
 
@@ -732,7 +732,7 @@ This is just an example, but let's look at associations in use.
 
 ## Types of Associations
 
-<a name="one-to-many"><img height="200px" src="photos/one-to-many.png"/></a>
+<a name="one-to-many"><img height="100px" src="photos/one-to-many.png"/></a>
 
 
 <a href="#top">`back to top`</a>
@@ -755,7 +755,7 @@ sequelize migration:create --name add-fav-potato-association-table
 
 Inside of our new migration, we are going to build our new table **improperly**. I am doing this on purpose, so we can see potential issues and how to fix them. Before scrolling past the picture to look at the solution, see if you can find the error yourself. If you cannot, do not fret! I will be explaining what I did wrong **and** how to fix it. With this migration, I want to build a **favorite potatoes** table with the **userid** and **potatoid**. I will explain why further down, but for now try and find the error.
 
-<img height="400px" src="photos/fav-potato-migration.png" />
+<img height="200px" src="photos/fav-potato-migration.png" />
 
 ```console
 sequelize db:migrate
@@ -763,7 +763,7 @@ sequelize db:migrate
 
 Do not forget we must migrate for our migration to be applied. This will not fail to run because the code itself is fine. Also, remember that Sequelize does not build our models for us after our initial build. We will have to add our own favorite potatoes model.
 
-<img height="400px" src="photos/fav-potato-model.png" />
+<img height="200px" src="photos/fav-potato-model.png" />
 
 The part I intentially built wrong was not including **createdAt and updatedAt** in my migration. The error message, when you try to build an entry in this table, will say something about one or both of these **not existing**. Our model itself is not wrong and will work properly, because Sequelize **does not require** us to have createdAt and updatedAt inside of our model, but they **must exist inside our table on our database**. The only way for us to get them to the database is via a migration. **If you do this inside your databse directly and not via migrations, Sequelize will not build properly if you pull your project at a later time.** Doing each step is very important! The only thing Sequelize automatically creates for **every** migration we create is the **ID**, and **only if** we are running the createTable function. Even though Sequelize automatically tracks the date of each row's creation and last update, we still must build those columns inside our migration.
 
@@ -773,7 +773,7 @@ In order to fix this mistake, which is very easy to do when you run in autopilot
 sequelize migration:create --name add-dates-to-favorite-potatoes
 ```
 
-<img height="400px" src="photos/fav-potato-add-columns.png" />
+<img height="200px" src="photos/fav-potato-add-columns.png" />
 
 ```console
 sequelize db:migrate
@@ -791,9 +791,9 @@ By creating a new table which holds both the **userid** and **potatoid**, we onl
 
 There are a lot of steps, which makes missing one or two very easy, but they are all important. Updating our **user and potato models** is one of those steps. We want to tell Sequelize, "this user/potato will be associated with many favorites". **NOTE:** Remember, I did not use typical naming conventions. Also, Users is capitalized which potatoes is not. This is to show new users of Sequelize naming conventions are **NOT** mandatory, even though they are recommended. **Use the naming convention your job demands**, or whichever naming convention you prefer.
 
-<img height="400px" src="photos/users-association.png" />
+<img height="200px" src="photos/users-association.png" />
 
-<img height="400px" src="photos/potatoes-association.png" />
+<img height="200px" src="photos/potatoes-association.png" />
 
 ```JavaScript
 CurrentTable.hasMany(models.AssociatedModel, {
@@ -812,13 +812,13 @@ This is a lot to digest, so if you are getting lost take a five minute break and
 
 Let us look at how we would create a new entry in our favorites tables. Our user is logged into our application and is interested in our selection of potatoes. They wish to save a few potatoes to their favorites. As with most any website, this is most commonly a **single click**. I have built our **displayData.js** file again, but this time it is **protected by authentication**. When you are not logged in, you simply see the potato data. When you are logged in, you now see an option to **favorite a potato**. I have named this file **userDisplayData.js**.
 
-<img height="400px" src="photos/user-display-data.png" />
+<img height="200px" src="photos/user-display-data.png" />
 
 Our UI looks almost exactly the same, and the *mostly* the same as well. We only need to add a new **post fetch request and button**.
 
-<img height="300px" src="photos/add-fav-button.png" />
+<img height="150px" src="photos/add-fav-button.png" />
 
-<img height="300px" src="photos/post-fav-potato.png" />
+<img height="150px" src="photos/post-fav-potato.png" />
 
 ```JavaScript
 <button className='favoriteButton'
@@ -851,7 +851,7 @@ As you can see, in order to store a new **favorite potato** we are only sending 
 
 Let's check out what our backend is doing with our new favorites.
 
-<img height="300px" src="photos/create-new-fav-potato.png" />
+<img height="150px" src="photos/create-new-fav-potato.png" />
 
 Associations sound and look intimidating, but so far we have only added a few lines of code between our frontend and backend. The backend checks for the **body**, which we sent in our **addPotatoToFavorites** function. As we have done before, we are going to build a new entry in a table. For learning purposes, instead of using **build** I am going to use **create**. The only difference is with **build** you must **save()** your model, whereas **create** runs **save** automatically.
 
@@ -870,18 +870,18 @@ app.post('/userFavoritePotato', (req,res) => {
 
 Whichever potato we click to favorite sends **req.body.userid** and **req.body.potatoid** to our backend. Our backend takes those values and sends them to our **FavoritePotatoes** table. **NOTE:** This is where you would experience the error I explained earlier if you build your migration improperly. To make sure everything worked properly, let us check our database with Postico.
 
-<img height="400px" src="photos/postico-fav-table.png" />
+<img height="200px" src="photos/postico-fav-table.png" />
 
 Every single favorite is its own entry in our database. Our user, who's **unique ID** is 2, has favorited **three separate potatoes**. **NOTE:** We cannot currently check if an entry already exists, since we have not written the code to do such. Therefore, a user can currently favorite the same potato multiple times. Try thinking of different ways to protect our user from making this mistake and how you would develop it in your code.
 
-<a name="one-to-one"><img height="200px" src="photos/one-to-one.png"/></a>
+<a name="one-to-one"><img height="100px" src="photos/one-to-one.png"/></a>
 
 
 <a href="#top">`back to top`</a>
 
 ### belongsTo, hasOne
 
-<a name="many-to-many"><img height="200px" src="photos/many-to-many.png" /></a>
+<a name="many-to-many"><img height="100px" src="photos/many-to-many.png" /></a>
 
 ### hasMany
 
