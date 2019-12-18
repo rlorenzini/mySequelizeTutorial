@@ -39,7 +39,14 @@ const Contributors =
 **Sequelize** is a tool used to make the connection between your *backend* and your *database* simpler, specifically when working with **multiple developers with different SQL backgrounds**. For example, if one developer has coded in mySQL, another in SQLite, and a third in postgreSQL, all developers will be able to use a **single query syntax**. In either small or large applications this can be beneficial. Setting up Sequelize and understanding what's going on can be daunting, so I hope this simple and basic tutorial helps anyone who reads it.
 <br/>
 <br/>
-This tutorial is **VERY BASIC** and will not go into great depth about every aspect of Sequelize.
+This tutorial is **VERY BASIC** and will not go into great depth about every aspect of Sequelize. Also, I use certain tools to help me out when coding, which others may or may not be aware of. Below, I list the tools I use and a basic description of what I use them for.
+
+| TOOL | PURPOSE |
+| :-- | :-- |
+| Postico | Visualizes your database |
+| Postman | Debug and test fetch calls |
+| ElephantSQL | Online hosting service for databases |
+| ATOM | My preferred code editor |
 
 <br/>
 <br/>
