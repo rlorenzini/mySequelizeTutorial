@@ -4,11 +4,14 @@
 
 ```JavaScript
 const Contributors =
-[ { Name: "Richard Lorenzini" }, { Name: "Jaclyn Legacion" } ]
+[ { Name: "Richard Lorenzini" }, 
+{ Name: "Jaclyn Legacion" } ]
 ```
 <br/>
 
 **THIS IS A WORK IN PROGRESS**
+
+**KNOWN MOBILE ISSUE:** Search links may not work or will only send you to the beginning of the document.
 
 | SEARCH OPTIONS | WHAT IT'S FOR |
 | :--- | :--- |
