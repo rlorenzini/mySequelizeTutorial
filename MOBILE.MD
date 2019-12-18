@@ -1,4 +1,4 @@
-<a name="top"><img height="200px" src="photos/sequelize-101.png" href/></a>
+<a name="top"><img height="100px" src="photos/sequelize-101.png" href/></a>
 
 # SEQUELIZE TUTORIAL FOR BEGINNERS
 
