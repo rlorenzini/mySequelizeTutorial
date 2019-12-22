@@ -34,14 +34,16 @@ class UserDisplayData extends Component {
     fetch('http://localhost:8080/userFavoritePotato', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'authorization': 'Bearer ' + localStorage.getItem('jsonwebtoken')
       },
       body: JSON.stringify({
         userid: this.props.userid,
         potatoid: e.target.id
       }) //end of body
     }) //end of fetch
-
+    .then(response => response.json())
+    .then(json => console.log(json))
     // if (e.target.value === "false") {
     //   e.target.value = "true"
     //   e.target.className = "favoriteButtonActive"

@@ -51,7 +51,8 @@ class Login extends Component {
             username,
             userid,
             firstName,
-            lastName) //check mapDispatchToProps
+            lastName
+          ) //check mapDispatchToProps
           this.props.history.push('/dashboard')
 
           setAuthenticationHeader(token)

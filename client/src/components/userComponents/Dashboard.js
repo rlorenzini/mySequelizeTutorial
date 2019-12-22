@@ -23,7 +23,6 @@ class Dashboard extends Component {
   }
 
   triggerSubmitUpdatedUserInformation = (e) => {
-    console.log("triggerSubmitUpdatedUserInformation")
     fetch('http://localhost:8080/updateUserInformation', {
       method: "POST",
       headers: {

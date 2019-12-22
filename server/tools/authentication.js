@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken');
 function authenticate (req, res, next) {
   //set a request prop as headers with authorization
   let headers = req.headers["authorization"]
+  
+  console.log(req.headers)
 
   let token = headers.split(' ')[1]
 

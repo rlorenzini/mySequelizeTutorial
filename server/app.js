@@ -144,12 +144,26 @@ app.post('/updateUserInformation', authenticate, (req,res) => {
 app.post('/userFavoritePotato', authenticate, (req,res) => {
   let userid = req.body.userid
   let potatoid = Number(req.body.potatoid)
+  let message = "Potato already favorited."
 
-  models.FavoritePotatoes.create({
-    userid: userid,
-    potatoid: potatoid
-  }); //end of favoritepotatoes build
+  models.FavoritePotatoes.findOne({
+    where: {
+      userid: userid,
+      potatoid: potatoid
+    }
+  }).then((item) => {
+    if(item) {
+      res.json({ message: message })
+    } else {
+      models.FavoritePotatoes.create({
+        userid: userid,
+        potatoid: potatoid
+      }); //end of favoritepotatoes create
+    } //end of else
+  }); //end of promise
 }); //end of post
+
+
 
 //====================QUERYING OUR DATA========================================
 //models.Table.<insert_here>({})
