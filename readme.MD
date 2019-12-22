@@ -925,6 +925,10 @@ Because I called it item. I could have called it anything; car, potatoThatMayOrM
 
 It checks if a user is currently logged in or not. If a user is not logged in, this post can never be triggered. How you build authentication is up to you. Check my frontend **utilities** and backend **tools** to see how I built these. Sequelize does not do authentication, so I use **axios** for its simplicity. If you do not want to worry about authentication at this time, simply remove the authenticate parameter.
 
+<img height="400px" src="photos/app-favorites.png" />
+
+As you can see, I tried to add a potato I already had in my favorites list and received the **json message** in my **console log**. Users will not be using the developer tools to check console logs, so we should add it directly to the UI. How you want to display it is completely up to you! 
+
 <a name="one-to-one"><img height="200px" src="photos/one-to-one.png"/></a>
 
 
