@@ -876,6 +876,55 @@ Whichever potato we click to favorite sends **req.body.userid** and **req.body.p
 
 Every single favorite is its own entry in our database. Our user, who's **unique ID** is 2, has favorited **three separate potatoes**. **NOTE:** We cannot currently check if an entry already exists, since we have not written the code to do such. Therefore, a user can currently favorite the same potato multiple times. Try thinking of different ways to protect our user from making this mistake and how you would develop it in your code.
 
+### Prevent Favoriting Twice 
+
+Whenever using data sets, whether creating a friends list, favorited items, shopping cart, or anything else which associates a user to an item, one issue to overcome is **duplicates**. In most cases, you do **not** want duplicates, and if you do you want to handle them. In the case of a shopping cart, you would check for a duplicate and simply increase the duplicate's count. For our potatoes, users can only favorite a single potato once. 
+
+<img height="200px" src="photos/postico-no-two-favs.png" />
+
+I have favorited several potatoes so far; 5: Red Bliss, 4: Katahdin, 2: Purple Peruvian, and 1: Yukon Gold. The way we present the favorites can change, but we still have to **prevent** a user from favoriting twice. Whether we disable the favorite button, change its look and feel, or swap it out with a remove favorite button is up to us. For learning purposes, let's simply add a catch to the favorites. 
+
+<img height="400px" src="photos/no-two-favorites.png" />
+
+I split my code editor to show both the frontend (right side) and backend (left side) at the same time. On the frontend, nothing significant changes other than the addition of a **promise**. The promise is attached to our **fetch call**. When our backend responds, either the item will be **favorited** or we will receive a **message**. 
+
+The backend is where the work happens. Before we **create()** a favorite we want to **check if the favorite exists already**. We are saving favorites by **associating the userid with the potatoid**. If our userid already matches a potatoid we wish to favorite, we should not allow the user to save the potato again. Luckily, Sequelize's **findOne()** returns a promise. 
+
+```JavaScript
+app.post('/userFavoritePotato', authenticate, (req,res) => {
+  let userid = req.body.userid
+  let potatoid = Number(req.body.potatoid)
+  let message = "Potato already favorited."
+
+  models.FavoritePotatoes.findOne({
+    where: {
+      userid: userid,
+      potatoid: potatoid
+    }
+  }).then((item) => {
+    if(item) {
+      res.json({ message: message })
+    } else {
+      models.FavoritePotatoes.create({
+        userid: userid,
+        potatoid: potatoid
+      }); //end of favoritepotatoes create
+    } //end of else
+  }); //end of promise
+}); //end of post
+```
+
+
+By using **findOne()** we can return the entire entry in our favorite's table. If the entry **exists**, we send a response to our user in the form of a **json message** (this is my preference). If the entry **does not exist**, we do what we already did earlier; create a new entry in our favorite's table. 
+
+**Why is the promise returning item?**
+
+Because I called it item. I could have called it anything; car, potatoThatMayOrMayNotExistInOurFavoritesTable, usersFavoritePotato, spaceCat, etc. Item is generic, singular, and is simply to understand. Does our promise return an item? Send an error message. Does our promise not return an item? Build an item. Naming things can be tricky.
+
+**What does the authenticate parameter in your post do?**
+
+It checks if a user is currently logged in or not. If a user is not logged in, this post can never be triggered. How you build authentication is up to you. Check my frontend **utilities** and backend **tools** to see how I built these. Sequelize does not do authentication, so I use **axios** for its simplicity. If you do not want to worry about authentication at this time, simply remove the authenticate parameter.
+
 <a name="one-to-one"><img height="200px" src="photos/one-to-one.png"/></a>
 
 
