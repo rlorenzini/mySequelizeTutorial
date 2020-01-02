@@ -719,6 +719,21 @@ Now that we can update basic information, let's dive into associations!
 
 <a href="#top">`back to top`</a>
 
+If you've been following this tutorial from the beginning up until now, you have seen me explain **create()** and **build()**. These are important enough for their own section, but also go hand and hand with **deleting data**. If you cannot add or delete data, your application and backend will be very limited in scope. 
+
+Do you want a user login? Do you want to keep track of scores? Do you want to save a player's game? Do you want to add information to a user? Do you want to add a new potato to the potato database? Does your admin want to add new admins? Are you using a map and want to add permanent markers, designated locations, or information? Would you want to be able to delete any or all of that stuff? Does your user or your admin need access to adding or deleting information?
+
+In the modern world, it is very difficult to imagine an application or website which does not add and store information, even if it is just a basic username and password. Some applications, specifically on mobile, get around using a server by storing information on your device. For example, if you play a Solitaire or Chess app which tracks your win/loss ratio but does not have a user login the ratio is very likely stored locally. The demands of your client and the scope of your project determines if you need a backend and what your backend needs to do, so be mindful of what you are building and why.
+
+### Create() vs Build() WIP
+
+create() uses save()
+build() automatically saves
+
+### Destroy() WIP
+
+deleted data from database
+
 <a name="associations"><img height="200px" src="photos/associations.png"/></a>
 
 **The bread and butter of any database**
