@@ -23,10 +23,12 @@ const Contributors =
 | [SQLZ#SEEDS](#using-seeders) | USING SEEDERS |
 | [SQLZ#DISP](#display-data) | DISPLAYING DATA FROM DATABASE |
 | [SQLZ#UPD](#user-update) | UPDATE DATABASE DATA |
+| [SQLZ#ADDEL](#add-del-data) | ADDING AND DELETING DATA |
 | [SQLZ#ASSOC](#associations) | ASSOCIATING TABLES AND DATA |
 | [SQLZ#OTOM](#one-to-many) | ONE TO MANY ASSOCIATIONS |
 | [SQLZ#OTOO](#one-to-one) | ONE TO ONE ASSOCIATIONS |
 | [SQLZ#MTOM](#many-to-many) | MANY TO MANY ASSOCIATIONS |
+| [ASSOC#ADDEL](#add-del-assoc) | ADDING AND DELETING ASSOCIATIONS |
 
 <br/>
 <br/>
@@ -712,6 +714,11 @@ Now that we can update basic information, let's dive into associations!
 
 <br/>
 
+# Add and Delete
+<a name="add-del-data"></a>
+
+<a href="#top">`back to top`</a>
+
 <a name="associations"><img height="200px" src="photos/associations.png"/></a>
 
 **The bread and butter of any database**
@@ -939,6 +946,11 @@ As you can see, I tried to add a potato I already had in my favorites list and r
 <a name="many-to-many"><img height="200px" src="photos/many-to-many.png" /></a>
 
 ### hasMany
+
+# Add and Delete Associations
+<a name="add-del-data"></a>
+
+<a href="#top">`back to top`</a>
 
 
 
