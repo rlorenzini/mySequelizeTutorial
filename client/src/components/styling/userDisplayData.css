@@ -55,6 +55,13 @@ li {
   background-color: black;
 }
 
+.removeFavoriteButton {
+  height: 1.5rem;
+  color: yellow;
+  border: 2px solid yellow;
+  background-color: black;
+}
+
 .basicButton {
   height: 2rem;
   color: white;

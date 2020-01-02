@@ -5,7 +5,7 @@ class Dashboard extends Component {
   constructor(props) {
     super(props)
 
-    let userid= localStorage.getItem('userid')
+    let userid = localStorage.getItem('userid')
     this.state = {
       userid: userid,
       newFirstName: '',
