@@ -63,11 +63,13 @@ class UserDisplayData extends Component {
     }) //end of fetch
     .then(response => response.json())
     .then(json => console.log(json))
+    //TOWORKON need to update UI
 
   } //end of addPotatoToFavorites
 
   removePotatoFromFavorites=(e)=>{
     console.log("you clicked a button! congrats!")
+    //TOWORKON need to remove from favorites association and update UI
   }
 
   render(){
