@@ -952,7 +952,7 @@ As you can see, I tried to add a potato I already had in my favorites list and r
 ### hasMany
 
 # Add and Delete Associations
-<a name="add-del-data"></a>
+<a name="add-del-assoc"></a>
 
 <a href="#top">`back to top`</a>
 
