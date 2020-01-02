@@ -20,8 +20,8 @@ app.use(cors());
 app.get('/displayData', (req,res) => {
   models.potatoes.findAll().then((result) => {
     res.json({result:result})
-  })
-})
+  });
+});
 //====================REGISTRATION==============================
 app.post('/register', (req,res) => {
 
@@ -138,9 +138,12 @@ app.post('/updateUserInformation', authenticate, (req,res) => {
 //   }                  //in the column we want to check (username, userid, etc)
 // })
 
+//====================ADD AND DELETE DATA =====================================
+
 
 //====================ASSOCIATIONS BETWEEN POTATOES AND USERS =================
-// TOWORKON check for already favorited potato to prevent duplicates
+//TOWORKON UI change for favorited potatoes
+//app.get(getfavorites) => sends list, frontend state for each?
 app.post('/userFavoritePotato', authenticate, (req,res) => {
   let userid = req.body.userid
   let potatoid = Number(req.body.potatoid)
@@ -163,11 +166,37 @@ app.post('/userFavoritePotato', authenticate, (req,res) => {
   }); //end of promise
 }); //end of post
 
+app.post('/favoritePotatoes', authenticate, (req,res) => {
+  //user is sending us their userid for us to find their favorite potatoes
+  //therefore we MUST use post to RECEIVE data from the user
 
+  let userid = req.body.userid
+
+  models.FavoritePotatoes.findAll({
+    where: {
+      userid: userid
+    } //findAll returns an array of objects
+  }).then((items) => {
+    if(items) {
+      res.json({ array: items })
+    } //sending array of favorites to frontend
+    else{
+      res.json({ message: "No favorited items" })
+    }
+  }); //end of promise
+}); //end of post
+
+//====================DELETE ASSOCIATIONS =====================================
+
+app.post('removeFavoritePotaotes', (req,res) => {
+  console.log(req.body)
+  console.log("success")
+})
 
 //====================QUERYING OUR DATA========================================
 //models.Table.<insert_here>({})
 //findOne, findAll, destroy, build, findByPk, update
+//findAll returns an ARRAY of OBJECTS <<<<<<<<<<<<<
 
 //findOne({ where: { attribute: desiredValue } })
 
@@ -185,6 +214,7 @@ app.post('/userFavoritePotato', authenticate, (req,res) => {
 //ASSOCIATIONS
 //hasOne
 //hasMany
+//manyToMany (users commenting on potatoes; ie: recipes, why they like/hate them)
 //check unogs for example
 
 app.listen(PORT, () => {

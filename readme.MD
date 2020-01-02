@@ -990,4 +990,6 @@ destroy({ where: {}, truncate: true })
 
 build({ attribute: desiredValue }) needs the required attributes at minimum
 
-UI change for favorited items 
+UI change for favorited items
+
+add a table with each Sequelize function and links to their location in the READMEs
