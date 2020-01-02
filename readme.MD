@@ -40,7 +40,7 @@ const Contributors =
 
 ## So what is Sequelize?
 
-**Sequelize** is a tool used in a **Node.js** environment to make the connection between your *backend* and your *database* simpler, specifically when working with **multiple developers with different SQL backgrounds**. For example, if one developer has coded in mySQL, another in SQLite, and a third in postgreSQL, all developers will be able to use a **single query syntax**. In either small or large applications this can be beneficial. Sequelize **normalizes** the way you interact with your databaes by having one function work across multiple SQL commands. Whether you are using mySQL, SQLite, or postgreSQL, **.findOne(), .build(), .create(), etc** all work the same *in your code*. 
+**Sequelize** is a tool used in a **Node.js** environment to make the connection between your *backend* and your *database* simpler, specifically when working with **multiple developers with different SQL backgrounds**. For example, if one developer has coded in mySQL, another in SQLite, and a third in postgreSQL, all developers will be able to use a **single query syntax**. In either small or large applications this can be beneficial. Sequelize **normalizes** the way you interact with your databaes by having one function work across multiple SQL commands. Whether you are using mySQL, SQLite, or postgreSQL, **.findOne(), .build(), .create(), etc** all work the same *in your code*.
 
 Sequelize's greatest strength comes from normalizing all the SQL languages, but it is also its greatest weakness. Due to creating generic functions, Sequelize cannot optimize queries as well as the native language. This is a whole topic in and of itself, which is not the focus of this tutorial. Let it be food for thought and make sure you explore multiple server languages to find which works best for you.
 <br/>
@@ -645,7 +645,7 @@ Our final result isn't pretty, since we really haven't done much styling, but we
 
 <a href="#top">`back to top`</a>
 
-How often do you find yourself going into your settings on a website and changing your profile information? Maybe you update your biography, change your name, change your email address, or your physical address. If you use a blog or review app, do you ever find yourself editing your comments? 
+How often do you find yourself going into your settings on a website and changing your profile information? Maybe you update your biography, change your name, change your email address, or your physical address. If you use a blog or review app, do you ever find yourself editing your comments?
 
 All of these come down to one concept: **updating data in your database.** With Sequelize, this is rather simple as we have access to anotherbuilt-in function, **update()**. Sequelize really likes to name stuff based on what it does, which makes using Sequelize more intuitive. How does **update()** work though?
 
@@ -663,7 +663,7 @@ models.TABLE.update({
 
 First, you check your models for the **table** you wish you modify. For example, if you want to update your **user information** you would want to check the **user model**. The next part might not be as intuitive. First, **we tell Sequelize which columns we want to modify and what data we want the values to become**. Strange, right? We are telling Sequelize to modify data *before* telling it which entries we wish to modify. This is because **update()** takes in **arguments** first followed by an **options object**. The options tells our **update()** function **what to do** with our changes.
 
-In our **options**, we can use **where**. This works the same as **findOne() and findAll()**. "Change the values of these columns where this column has this value." Or, in laymans terms, "I want to update my data. My username is XYZ." Our **option** can, of course, take in multiple values in the column. If we want to update a set of data, for instance every Toyota Corolla manufactured in 2019, we could specify that in our **where** argument. 
+In our **options**, we can use **where**. This works the same as **findOne() and findAll()**. "Change the values of these columns where this column has this value." Or, in laymans terms, "I want to update my data. My username is XYZ." Our **option** can, of course, take in multiple values in the column. If we want to update a set of data, for instance every Toyota Corolla manufactured in 2019, we could specify that in our **where** argument.
 
 <img height="400px" src="photos/app-update.png" />
 
@@ -679,7 +679,7 @@ models.Users.update({
 ```
 When our client executes a **fetch** to our **/updateUserInformation** action, we take the information they wish to update and apply it to our Sequelize **update()** function. My thought process is fairly simple with how I build my backend action. First, I assign my variables to the information coming in. I then create messages based on pass/fail conditions. In this example, I am only setting one message for if we successfully update the user's information. In a fully developed application, you would want to catch errors and send responses if the update fails for whatever reason.
 
-After assigning all my variables, I then want to run my **update()**. We declared models in the beginning ```const models = require('./models)```, our models has a model called Users, and we are using the Sequelize **update()** function. Remember, our models are our tables from our database. Since we are wanting the users to be able to update their user information, we are using models.Users. 
+After assigning all my variables, I then want to run my **update()**. We declared models in the beginning ```const models = require('./models)```, our models has a model called Users, and we are using the Sequelize **update()** function. Remember, our models are our tables from our database. Since we are wanting the users to be able to update their user information, we are using models.Users.
 
 I build the **update()** function with the information I want to edit and which entries I want edited, in this case the first name and last name of the current user, I then send a response. The response is a confirmation that the update was successful. I also send the first name and last name to the frontend when it is successful, because I do not want the frontend handling the success response. The display will only change based on the information the backend sends, and the backend will only send the updated information if the update is successful.
 
@@ -687,7 +687,7 @@ I build the **update()** function with the information I want to edit and which 
 
 <img height="400px" src="photos/dashboard-fetch-update.png" />
 
-There is a lot going on, but the main thing to focus on right now are the inputs on lines 72 and 78 and the button on line 84. The button has an **onClick** called **triggerSubmitUpdatedUserInformation**. Great name, right? When the button triggers, it updates the user information. This function does a fetch call to our backend for the action **/updateUserInformation**, which we went over above. We want to **POST** our updated information to our database. We send our information through the **body** as **JSON.stringify()** since we are working with JSON. What we are sending in our JSON should look familiar; userid, firstName, lastName. If you look at the backend again, you will see we are assign variables to these values. Userid is req.body.userid, and so on. 
+There is a lot going on, but the main thing to focus on right now are the inputs on lines 72 and 78 and the button on line 84. The button has an **onClick** called **triggerSubmitUpdatedUserInformation**. Great name, right? When the button triggers, it updates the user information. This function does a fetch call to our backend for the action **/updateUserInformation**, which we went over above. We want to **POST** our updated information to our database. We send our information through the **body** as **JSON.stringify()** since we are working with JSON. What we are sending in our JSON should look familiar; userid, firstName, lastName. If you look at the backend again, you will see we are assign variables to these values. Userid is req.body.userid, and so on.
 
 After sending our data, we use a **promise** (async/await works as well) to wait for a **response**. Our backend is sending a **response as a json**, so we turn our response into **response.json()**. We use another promise to take the **json** and do something with it. What I am doing is displaying the **json.message** on my webpage to inform the user **the update was successful**, then I'm updating the display with the **new first name and last name**. **NOTE:** Knowing the language and tools you are using is important, as I am using React and Redux to update my display. The way you update your display may be different from the way I updated my display.
 
@@ -695,7 +695,7 @@ Let's look at our functionality in action.
 
 <img height="400px" src="photos/postico-preupdate.png" />
 
-<img height="400px" src="photos/app-preupdate.png" /> 
+<img height="400px" src="photos/app-preupdate.png" />
 
 As we see, my first name is "frogs" and last name is "potatoes". I want to change my information to my actual first name and last name, Richard Lorenzini. I fill out my form and get ready to update my information.
 
@@ -703,7 +703,7 @@ As we see, my first name is "frogs" and last name is "potatoes". I want to chang
 
 <img height="400px" src="photos/app-postupdate.png" />
 
-Both in postico and on our application's user interface we see the information has been updated. **NOTE:** remember you must refresh postico to see these changes take effect. Our UI is set up as a single page application and will show us the changes automatically. 
+Both in postico and on our application's user interface we see the information has been updated. **NOTE:** remember you must refresh postico to see these changes take effect. Our UI is set up as a single page application and will show us the changes automatically.
 
 Now that we can update basic information, let's dive into associations!
 
@@ -719,7 +719,7 @@ Now that we can update basic information, let's dive into associations!
 
 <a href="#top">`back to top`</a>
 
-If you've been following this tutorial from the beginning up until now, you have seen me explain **create()** and **build()**. These are important enough for their own section, but also go hand and hand with **deleting data**. If you cannot add or delete data, your application and backend will be very limited in scope. 
+If you've been following this tutorial from the beginning up until now, you have seen me explain **create()** and **build()**. These are important enough for their own section, but also go hand and hand with **deleting data**. If you cannot add or delete data, your application and backend will be very limited in scope.
 
 Do you want a user login? Do you want to keep track of scores? Do you want to save a player's game? Do you want to add information to a user? Do you want to add a new potato to the potato database? Does your admin want to add new admins? Are you using a map and want to add permanent markers, designated locations, or information? Would you want to be able to delete any or all of that stuff? Does your user or your admin need access to adding or deleting information?
 
@@ -898,19 +898,19 @@ Whichever potato we click to favorite sends **req.body.userid** and **req.body.p
 
 Every single favorite is its own entry in our database. Our user, who's **unique ID** is 2, has favorited **three separate potatoes**. **NOTE:** We cannot currently check if an entry already exists, since we have not written the code to do such. Therefore, a user can currently favorite the same potato multiple times. Try thinking of different ways to protect our user from making this mistake and how you would develop it in your code.
 
-### Prevent Favoriting Twice 
+### Prevent Favoriting Twice
 
-Whenever using data sets, whether creating a friends list, favorited items, shopping cart, or anything else which associates a user to an item, one issue to overcome is **duplicates**. In most cases, you do **not** want duplicates, and if you do you want to handle them. In the case of a shopping cart, you would check for a duplicate and simply increase the duplicate's count. For our potatoes, users can only favorite a single potato once. 
+Whenever using data sets, whether creating a friends list, favorited items, shopping cart, or anything else which associates a user to an item, one issue to overcome is **duplicates**. In most cases, you do **not** want duplicates, and if you do you want to handle them. In the case of a shopping cart, you would check for a duplicate and simply increase the duplicate's count. For our potatoes, users can only favorite a single potato once.
 
 <img height="200px" src="photos/postico-no-two-favs.png" />
 
-I have favorited several potatoes so far; 5: Red Bliss, 4: Katahdin, 2: Purple Peruvian, and 1: Yukon Gold. The way we present the favorites can change, but we still have to **prevent** a user from favoriting twice. Whether we disable the favorite button, change its look and feel, or swap it out with a remove favorite button is up to us. For learning purposes, let's simply add a catch to the favorites. 
+I have favorited several potatoes so far; 5: Red Bliss, 4: Katahdin, 2: Purple Peruvian, and 1: Yukon Gold. The way we present the favorites can change, but we still have to **prevent** a user from favoriting twice. Whether we disable the favorite button, change its look and feel, or swap it out with a remove favorite button is up to us. For learning purposes, let's simply add a catch to the favorites.
 
 <img height="400px" src="photos/no-two-favorites.png" />
 
-I split my code editor to show both the frontend (right side) and backend (left side) at the same time. On the frontend, nothing significant changes other than the addition of a **promise**. The promise is attached to our **fetch call**. When our backend responds, either the item will be **favorited** or we will receive a **message**. 
+I split my code editor to show both the frontend (right side) and backend (left side) at the same time. On the frontend, nothing significant changes other than the addition of a **promise**. The promise is attached to our **fetch call**. When our backend responds, either the item will be **favorited** or we will receive a **message**.
 
-The backend is where the work happens. Before we **create()** a favorite we want to **check if the favorite exists already**. We are saving favorites by **associating the userid with the potatoid**. If our userid already matches a potatoid we wish to favorite, we should not allow the user to save the potato again. Luckily, Sequelize's **findOne()** returns a promise. 
+The backend is where the work happens. Before we **create()** a favorite we want to **check if the favorite exists already**. We are saving favorites by **associating the userid with the potatoid**. If our userid already matches a potatoid we wish to favorite, we should not allow the user to save the potato again. Luckily, Sequelize's **findOne()** returns a promise.
 
 ```JavaScript
 app.post('/userFavoritePotato', authenticate, (req,res) => {
@@ -937,7 +937,7 @@ app.post('/userFavoritePotato', authenticate, (req,res) => {
 ```
 
 
-By using **findOne()** we can return the entire entry in our favorite's table. If the entry **exists**, we send a response to our user in the form of a **json message** (this is my preference). If the entry **does not exist**, we do what we already did earlier; create a new entry in our favorite's table. 
+By using **findOne()** we can return the entire entry in our favorite's table. If the entry **exists**, we send a response to our user in the form of a **json message** (this is my preference). If the entry **does not exist**, we do what we already did earlier; create a new entry in our favorite's table.
 
 **Why is the promise returning item?**
 
@@ -949,7 +949,7 @@ It checks if a user is currently logged in or not. If a user is not logged in, t
 
 <img height="400px" src="photos/app-favorites.png" />
 
-As you can see, I tried to add a potato I already had in my favorites list and received the **json message** in my **console log**. Users will not be using the developer tools to check console logs, so we should add it directly to the UI. How you want to display it is completely up to you! 
+As you can see, I tried to add a potato I already had in my favorites list and received the **json message** in my **console log**. Users will not be using the developer tools to check console logs, so we should add it directly to the UI. How you want to display it is completely up to you!
 
 <a name="one-to-one"><img height="200px" src="photos/one-to-one.png"/></a>
 
@@ -990,4 +990,4 @@ destroy({ where: {}, truncate: true })
 
 build({ attribute: desiredValue }) needs the required attributes at minimum
 
-modify entries
+UI change for favorited items 
