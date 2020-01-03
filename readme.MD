@@ -977,7 +977,7 @@ First, let's look as our user interface and Postico.
 
 <img height="400px" src="photos/app-favs.png" />
 
-<img height="400px" src-"photos/postico-favs.png" />
+<img height="400px" src="photos/postico-favs.png" />
 
 We can see I have favorited several potatoes, and Postico reflects our association in our databse. **Make sure the information matches** before you start moving forward. I'll show how I display the difference between favorited and not shortly.
 
