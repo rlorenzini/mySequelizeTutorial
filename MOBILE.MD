@@ -951,7 +951,9 @@ It checks if a user is currently logged in or not. If a user is not logged in, t
 
 <img height="200px" src="photos/app-favorites.png" />
 
-As you can see, I tried to add a potato I already had in my favorites list and received the **json message** in my **console log**. Users will not be using the developer tools to check console logs, so we should add it directly to the UI. How you want to display it is completely up to you!
+As you can see, I tried to add a potato I already had in my favorites list and received the **json message** in my **console log**. Users will not be using the developer tools to check console logs, so we should add it directly to the UI. How you want to display it is completely up to you! For the sake of this tutorial, I'm merely changing the button's text and color. 
+
+<img height="200px" src="photos/app-favs.png" />
 
 
 
