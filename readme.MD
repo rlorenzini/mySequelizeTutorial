@@ -949,7 +949,9 @@ It checks if a user is currently logged in or not. If a user is not logged in, t
 
 <img height="400px" src="photos/app-favorites.png" />
 
-As you can see, I tried to add a potato I already had in my favorites list and received the **json message** in my **console log**. Users will not be using the developer tools to check console logs, so we should add it directly to the UI. How you want to display it is completely up to you!
+As you can see, I tried to add a potato I already had in my favorites list and received the **json message** in my **console log**. Users will not be using the developer tools to check console logs, so we should add it directly to the UI. How you want to display it is completely up to you! For the sake of this tutorial, I'm merely changing the button's text and color. 
+
+<img height="400px" src="photos/app-favs.png" />
 
 <a name="one-to-one"><img height="200px" src="photos/one-to-one.png"/></a>
 
@@ -962,10 +964,189 @@ As you can see, I tried to add a potato I already had in my favorites list and r
 
 ### hasMany
 
-# Add and Delete Associations
+# Delete Associations
 <a name="add-del-assoc"></a>
 
 <a href="#top">`back to top`</a>
+
+I'm building this section before I finish covering all the other association types as I feel it is more important to know how to delete an association than how to build multiple types of associations. Any one association *can* work for what you need, regardless if it is the best or not. If you cannot delete entries, however, that is a different problem entirely. What if you couldn't unfriend someone from a social media app? Or remove items from a shopping cart? It doesn't matter how the website associations that information with your user account if you cannot remove it. 
+
+**NOTE:** I'm going to be referencing my association as **favorited** *A LOT* in the following section, but **KEEP YOUR MIND OPEN**. If I add an item to a shopping cart, the association doesn't change. I just change the name of it from *favorited items* to *shopping cart*. Anything in any application where an user can store items **is an association** of some sort, whether it is state management on the frontend or table associations on the backend. 
+
+First, let's look as our user interface and Postico. 
+
+<img height="400px" src="photos/app-favs.png" />
+
+<img height="400px" src-"photos/postico-favs.png" />
+
+We can see I have favorited several potatoes, and Postico reflects our association in our databse. **Make sure the information matches** before you start moving forward. I'll show how I display the difference between favorited and not shortly.
+
+Originally when displaying the data my UI did not properly reflect which potatoes were saved. I was displaying based on the unique ID of each favorite (the left-most column in Postico) instead of by the potatoid (third column). Make sure you are mindful of which number you are pulling from, or you may get unexpected results. It's harder to catch in a small-case scenario like this where your favorite's unique IDs will match your data entry's unique IDs. Larger applications will likely have vast amounts of data where this is either far less likely to occur or far more obvious when it does occur.
+
+When you think of deleting data as a programmer, what are the necessary components you need in order to build a delete function? If you're new to programming or working with a backend, take a moment to think about a few of the key components before reading on. Breaking down the necessary steps and recognizing what needs built and why is an important step to programming, and working with a tool like Sequelize will never eliminate this.
+
+Have you thought about it? 
+
+Just as with adding information to a database, we need **something interactive for our users** (such as a delete button), **a function to post the request to the server** (such as fetch, axios, or HXR), and **our backend needs to tell the server to delete the posted data** (Sequelize handles this part for us). These are the **three main components** we will need for our application. You can break these down into many more components, such as a more complex UI with multi-click deletions and a Sequelize query for all incoming requests, but we're going to keep it as simple as possible for now. 
+
+### The Backend
+
+The first major step to this hurdle is **displaying the difference between items which are favorited and those which are not favorited**. There are many ways to do this, such as having a separate page or putting a star next to an item. Many applications use both of these concepts, where you can find a list of your favorited items on a separate page (shopping carts, favorited items, read books, watched videos, wish lists, friends list) and a basic UI change (gold star next to an item). The backend needs to send the favorited associations to the frontend, but it **must be a post**. Why? Because we want **the user's favorited items**, which means **the user must send us their unique ID**. 
+
+**Why must it be the user's unique ID?** 
+
+Because when we set up the favorites, we decided to associate the user's ID to the potato's ID. We *could* have used the username, first name, last name, email, or any other user value, **but the unique ID is unique**. This *guarantees* we will never have two users with the same user ID. 
+
+**But we only want to *GET* the favorites. Why must we *POST*?**
+
+Since the user has to **SEND** us information for us to get *only* their favorited items, we must use **post**. **Get** is used for only data retrieval, whereas **post** is used when data is to be sent from the frontend to the backend. If, for example, an admin wanted to see **all favorites data** we would simply **get** all said data. As soon as we want to **filter out information in any way**, we must **post** the desired constraints to the backend. In our example, our user only wants their favorites, so we filter out all other user's favorites. 
+
+<img height="400px" src="photos/back-user-favs.png" />
+
+```JavaScript
+app.post('/favoritePotatoes', authenticate, (req,res) => {
+
+  let userid = req.body.userid
+
+  models.FavoritePotatoes.findAll({
+    where: {
+      userid: userid
+    } 
+  }).then((items) => {
+    if(items) {
+      res.json({ array: items })
+    } 
+    else{
+      res.json({ message: "No favorited items" })
+    }
+  }); 
+}); 
+```
+We are posting to **'/favoritePotatoes'**, we want to authenticate this route since **only a user should be able to retrieve their favorites**, and we are using the **findAll()** function since our user **wants all of their favorites**. **NOTE:** there is a huge different between findOne() and findAll(). findOne() returns **a single object** and findAll() returns **an array of objects**. You do not have to create a for loop, a while statement, an if else condition, or anything else to push the entries into a single array. findAll() does the heavy lifting for us, simplifying our code. **This is where querying in the native language can have better performance**. Sequelize *assumes* a lot, which can negatively impact your performance. 
+
+After looking at findAll(), I'm sure a lot of people are seeing a pattern with Sequelize. Query({options}) is the basic setup, with the most common option being **where: {}**. "The user wants to find all of their favorite potatoes."
+
+```JavaScript
+models.FavoritePotatoes.findAll({
+  where:{
+    userid: userid
+  }
+})
+```
+
+Reading the code, we are checking a model called FavoritePotatoes. We want to find all entries where the userid column matches the userid we are provided. Elegant code can read almost like a sentence, and Sequelize does its best to make it as easy as possible on us.
+
+
+Sequelize functions **return promises**, and the promise for findAll() is the array. We declare the array as **items**, and can now use this data as needed. I built a simple catch where if no items are returned we send a message, "No favorited items".
+
+If favorited items are returned, we want to get this information to the frontend. My preferred was is with **res.json()**. Since it is an array, I call my key **array** since Sequelize gave us an array of objects. We can call this favoritedArray, usersFavoritedItemsFromThePotatoTableInOurDatabase, or whatever you desire. 
+
+Regardless of the outcome, whenever our frontend calls the "/favoritePotatoes" action it will get a response. 
+
+### The Frontend
+
+<img height="400px" src="photos/front-fav-fetch.png" />
+
+Whether you build the frontend or backend first, building the second component is *a little* easier. We have our backend setup, so our frontend merely needs to match the requirements of the backend. We need to send the user's unique ID, it has to be a post request, and we know we are getting a response in the form of a json object. 
+
+```JavaScript
+fetch('http://localhost:8080/favoritePotatoes', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'authorization': 'Bearer ' + localStorage.getItem('jsonwebtoken')
+  },
+  body: JSON.stringify({
+    userid: this.props.userid
+  })
+}).then(response => response.json()).then(json => {
+  if(json.array) {
+    this.setState({
+      ...this.state,
+      favoritePotatoes: json.array
+    })
+  }
+  else {console.log(json.message)}
+  })
+}
+```
+
+I am using **fetch** to send a request to my backend, which is located at "http://localhost:8080". I want to call the action "/favoritePotatoes". I know the method needs to be "POST" and my authentication is set up (headers: {"authorization":"XYZ"}. In the body, I **have to send the user's unique ID**, which I already have stored in my state manager **Redux** as userid. Our backend is expecting the body of the request to have a key called "userid", so we must send the userid with a key called "userid". Fetch is promise based, meaning as soon as we **receive a response from the backend** we can immediately do something with it. I know I'm sending json objects, regardless if the fetch passes or fails, so I turn my response into json.
+
+If statements can check if something is "truthy" or "falsey", meaning **if the json.array exists, do this. Else, do something else**. If the array exists, we want to store the information and use it elsewhere. In my case, I'm using local state in **React** to store the array for later. If not array exists in the response, we will console log the error message. Likely, you'd want to display the error message as something like "you have not favorited any items yet" or "your shopping cart is empty" for a better user experience.
+
+Now that I have my array of objects, the objects being each favorited potato, I can display them on my frontend. My primary code from the **hasMany associations section** is not changing, but I am now going to change the appearance of my user's favorited items. 
+
+<img height="400px" src="photos/front-fav-render.png" /> 
+
+```JavaScript
+render(){
+  let potatoes = this.state.potatoName
+  let favoritePotatoes = this.state.favoritePotatoes
+  let potatoName = (<p>Loading</p>)
+  if (!this.state.loading) {
+    potatoName = potatoes.map((onePotato) => {
+      for(let i = 0; i < favoritePotatoes.length; i++) {
+        if(onePotato.id === favoritePotatoes[i].potatoid) {
+          return (
+            <li id={onePotato.id} className="potatoListLI">
+              <div className="firstRowPotatoDisplay">
+                <p className="potatoName">{onePotato.name}</p>
+                <button className='removeFavoriteButton'
+                  id={onePotato.id}
+                  onClick={this.removePotatoFromFavorites}
+                  >Remove From Favorites
+                </button>
+              </div>
+              <p className="potatoStarch">Type: {onePotato.starch_level}</p>
+              <p className="potatoCook">Cook methods: {onePotato.cook_method}</p>
+            </li>
+          )
+        }
+      }
+      return (
+        <li id={onePotato.id} className="potatoListLI">
+          <div className="firstRowPotatoDisplay">
+            <p className="potatoName">{onePotato.name}</p>
+            <button className='favoriteButton'
+              id={onePotato.id}
+              onClick={this.addPotatoToFavorites}
+              >Add To Favorites
+            </button>
+          </div>
+          <p className="potatoStarch">Type: {onePotato.starch_level}</p>
+          <p className="potatoCook">Cook methods: {onePotato.cook_method}</p>
+        </li>
+      )
+    })
+  }
+
+```
+
+Whew, that's a lot to digest at once. The bottom **render()** is staying the same as before. We take the full list of all potatoes and display them on the page. 
+
+The first **render()** is where things get freaky. We are declaring two variables; **potatoes and favoritePotatoes**. potatoes refers to **all the potatoes**, regardless of being favorited or not. favoritePotatoes refers to **only our user's potatoes**. We start by mapping through **all the potatoes first**, because our page will display **all potatoes** regardless if the user has all of the potatoes favorited or none of them favorited. I then want to look through my array of favorited potatoes to check if the favorite potatoes exist in the potatoes we are displaying (the answer should be yes to all favorited potatoes). 
+
+```JavaScript
+if(onePotato.id === favoritePotatoes[i].potatoid) {
+```
+
+If there is a potato in our entire list which is also a favorited potato, we will do the following. The JSX code will look almost identical to the original render(), but **the button has been changed**. The className is "removeFavoriteButton" and the button's text is "Remove From Favorites". We have also changed the onClick from addPotatoToFavorites() to removePotatoFromFavorites(). We want a function to remove the potato from the favorites since adding an already favorited potato has no purpose, so the button needs to change both in appearance and functionality. We will create the new function soon.
+
+Our user will now see a change in their UI if an item is favorited. If you wish to display all information on one page **this is very important for the user's experience**. If the user can see which items are saved and which aren't, and both add or remove saved items then and there, it will be a much more seamless experience for the user. Once our database grows to hundres of thousands of entries and a user can potentially have thousands of favorited items, a separate favorites only page would be a good idea. 
+
+<img height="400px" src="photos/app-favs.png" />
+
+As is, our button will not fire properly because we never created the removePotatoFromFavorites() function. A quick and easy way to test this is to simply create a console log. When in doubt, log it out.
+
+<img height="200px" src="photos/front-del-click.png" />
+
+Our onClick now triggers a console log which says "you clicked a button! congrats!" When we click on a favorited potato, our developer tools now show our new console log. 
+
+<img height="200px" src="photos/app-del-click.png" />
+
+Now that our UI reflects the status of items and our new button can properly trigger, we can finally focus on creating a delete query with Sequelize. Remember what we need; a post call from the frontend, a post action on the backend, and a Sequelize query to delete the data from the database. Sequelize has a built in function called **destroy()** which we will be using.
+
 
 
 
