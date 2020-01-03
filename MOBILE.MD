@@ -1075,7 +1075,7 @@ fetch('http://localhost:8080/favoritePotatoes', {
 }
 ```
 
-I am using **fetch** to send a request to my backend, which is located at "http://localhost:8080". I want to call the action "/favoritePotatoes". I know the method needs to be "POST" and my authentication is set up (headers: {"authorization":"XYZ"}. In the body, I **have to send the user's unique ID**, which I already have stored in my state manager **Redux** as userid. Our backend is expecting the body of the request to have a key called "userid", so we must send the userid with a key called "userid". Fetch is promise based, meaning as soon as we **receive a response from the backend** we can immediately do something with it. I know I'm sending json objects, regardless if the fetch passes or fails, so I turn my response into json.
+I am using **fetch** to send a request to my backend, which is located at "http://localhost:8080". I want to call the action "/favoritePotatoes". I know the method needs to be "POST" and my authentication is set up (headers: {"authorization":"XYZ"}). In the body, I **have to send the user's unique ID**, which I already have stored in my state manager **Redux** as userid. Our backend is expecting the body of the request to have a key called "userid", so we must send the userid with a key called "userid". Fetch is promise based, meaning as soon as we **receive a response from the backend** we can immediately do something with it. I know I'm sending json objects, regardless if the fetch passes or fails, so I turn my response into json.
 
 If statements can check if something is "truthy" or "falsey", meaning **if the json.array exists, do this. Else, do something else**. If the array exists, we want to store the information and use it elsewhere. In my case, I'm using local state in **React** to store the array for later. If not array exists in the response, we will console log the error message. Likely, you'd want to display the error message as something like "you have not favorited any items yet" or "your shopping cart is empty" for a better user experience.
 
@@ -1143,10 +1143,10 @@ Our user will now see a change in their UI if an item is favorited. If you wish 
 
 As is, our button will not fire properly because we never created the removePotatoFromFavorites() function. A quick and easy way to test this is to simply create a console log. When in doubt, log it out.
 
-<img height="100px" src="photos/front-del-click.png" />
+<img height="75px" src="photos/front-del-click.png" />
 
 Our onClick now triggers a console log which says "you clicked a button! congrats!" When we click on a favorited potato, our developer tools now show our new console log. 
 
-<img height="100px" src="photos/app-del-click.png" />
+<img height="75px" src="photos/app-del-click.png" />
 
 Now that our UI reflects the status of items and our new button can properly trigger, we can finally focus on creating a delete query with Sequelize. Remember what we need; a post call from the frontend, a post action on the backend, and a Sequelize query to delete the data from the database. Sequelize has a built in function called **destroy()** which we will be using.
