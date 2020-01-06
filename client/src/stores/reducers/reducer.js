@@ -7,7 +7,7 @@ const initialState = {
 };
 
 //we want Redux to watch for changes in authentication status and which user is active
-//this one reducer has two actions, ON_AUTH and LOGOUT
+//this one reducer has three actions, ON_AUTH, UPDATE, and LOGOUT
 
 export default (state = initialState, action) => {
   //Redux actions uses switch cases to change the state in the Redux stores
