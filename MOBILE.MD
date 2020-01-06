@@ -29,7 +29,7 @@ const Contributors =
 | [SQLZ#OTOM](#one-to-many) | ONE TO MANY ASSOCIATIONS |
 | [SQLZ#OTOO](#one-to-one) | ONE TO ONE ASSOCIATIONS |
 | [SQLZ#MTOM](#many-to-many) | MANY TO MANY ASSOCIATIONS |
-| [ASSOC#ADDEL](#add-del-assoc) | ADDING AND DELETING ASSOCIATIONS |
+| [ASSOC#DEL](#add-del-assoc) | DELETING ASSOCIATIONS |
 
 <br/>
 <br/>
