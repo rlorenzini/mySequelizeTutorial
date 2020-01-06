@@ -28,7 +28,8 @@ const Contributors =
 | [SQLZ#OTOM](#one-to-many) | ONE TO MANY ASSOCIATIONS |
 | [SQLZ#OTOO](#one-to-one) | ONE TO ONE ASSOCIATIONS |
 | [SQLZ#MTOM](#many-to-many) | MANY TO MANY ASSOCIATIONS |
-| [ASSOC#DEL](#add-del-assoc) | DELETING ASSOCIATIONS |
+| [ASSOC#DEL](#del-assoc) | DELETING ASSOCIATIONS |
+
 
 <br/>
 <br/>
@@ -964,7 +965,7 @@ As you can see, I tried to add a potato I already had in my favorites list and r
 ### hasMany
 
 
-<a name="add-del-assoc"><img height="200px" src="photos/add-delete-associations.png" /></a>
+<a name="del-assoc"><img height="200px" src="photos/delete-associations.png" /></a>
 
 <a href="#top">`back to top`</a>
 
