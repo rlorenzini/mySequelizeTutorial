@@ -714,8 +714,7 @@ Now that we can update basic information, let's dive into associations!
 
 <br/>
 
-# Add and Delete
-<a name="add-del-data"></a>
+<a name="add-del-data"><img height="200px" src="photos/add-delete-data.png" /></a>
 
 <a href="#top">`back to top`</a>
 
@@ -964,8 +963,8 @@ As you can see, I tried to add a potato I already had in my favorites list and r
 
 ### hasMany
 
-# Delete Associations
-<a name="add-del-assoc"></a>
+
+<a name="add-del-assoc"><img height="200px" src="photos/add-delete-associations.png" /></a>
 
 <a href="#top">`back to top`</a>
 
