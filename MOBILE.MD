@@ -973,6 +973,8 @@ As you can see, I tried to add a potato I already had in my favorites list and r
 
 <a href="#top">`back to top`</a>
 
+<a href="#destroy-func">To Destroy() Function</a>
+
 I'm building this section before I finish covering all the other association types as I feel it is more important to know how to delete an association than how to build multiple types of associations. Any one association *can* work for what you need, regardless if it is the best or not. If you cannot delete entries, however, that is a different problem entirely. What if you couldn't unfriend someone from a social media app? Or remove items from a shopping cart? It doesn't matter how the website associations that information with your user account if you cannot remove it. 
 
 **NOTE:** I'm going to be referencing my association as **favorited** *A LOT* in the following section, but **KEEP YOUR MIND OPEN**. If I add an item to a shopping cart, the association doesn't change. I just change the name of it from *favorited items* to *shopping cart*. Anything in any application where an user can store items **is an association** of some sort, whether it is state management on the frontend or table associations on the backend. 
@@ -1150,3 +1152,8 @@ Our onClick now triggers a console log which says "you clicked a button! congrat
 <img height="75px" src="photos/app-del-click.png" />
 
 Now that our UI reflects the status of items and our new button can properly trigger, we can finally focus on creating a delete query with Sequelize. Remember what we need; a post call from the frontend, a post action on the backend, and a Sequelize query to delete the data from the database. Sequelize has a built in function called **destroy()** which we will be using.
+
+# Destroy() Data
+
+<a name="destroy-func"></a>
+
