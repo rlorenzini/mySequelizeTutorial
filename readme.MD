@@ -1153,6 +1153,8 @@ Now that our UI reflects the status of items and our new button can properly tri
 
 <a name="destroy-func"></a>
 
+TODO: check Cascade constraint; must delete all associations to delete an entry (one post with associated comments); 
+
 
 # FUTURE UPDATES
 <a href="#top">`back to top`</a>
