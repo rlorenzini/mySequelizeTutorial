@@ -10,6 +10,10 @@ const Contributors =
 ```
 <br/>
 
+# MAJOR NOTICE
+
+**THIS PROJECT WILL NO LONGER BE WORKED ON FOR THE TIME BEING.** My tutorial will stay online as is for all to see and reference. Once I am capable of working on this tutorial again, I intend to finish, at a minimum, the basic uses for each function (specifically need to use Destroy() and findByPk()) and create/use the two other kinds of associations (manyToOne and manyToMany). Thank you to everyone for providing constructive criticisms and feedback. 
+
 **THIS IS A WORK IN PROGRESS**
 
 | SEARCH OPTIONS | WHAT IT'S FOR |
