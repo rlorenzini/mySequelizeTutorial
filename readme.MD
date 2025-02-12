@@ -6,7 +6,7 @@
 
 ```JavaScript
 const Contributors =
-[ { Name: "Richard Lorenzini" }, { Name: "Jaclyn Legacion" } ]
+[ { Name: "Alora Lorenzini" }, { Name: "Jaclyn Legacion" } ]
 ```
 <br/>
 
